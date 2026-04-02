@@ -1,0 +1,655 @@
+/* ══════════════════════════════════════════════════════
+   CONTACT.CSS — AmyServes Contact Page
+   Depends on: main.css, navbar.css
+══════════════════════════════════════════════════════ */
+
+/* ── HERO ───────────────────────────────────────────── */
+.contact-hero {
+    background: var(--navy-dark);
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0 60px;
+  }
+  
+  .contact-hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 50% 80% at 85% 50%, rgba(60,52,137,0.2) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 60%, rgba(15,110,86,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  
+  .contact-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+  }
+  
+  .contact-hero-content .eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 16px;
+  }
+  
+  .contact-hero-content h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  
+  .contact-hero-content h1 em {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+  
+  .contact-hero-content p {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    max-width: 500px;
+  }
+  
+  /* ── QUICK REACH ────────────────────────────────────── */
+  .quick-reach {
+    background: var(--white);
+    padding: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .quick-reach-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .qr-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 24px 20px;
+    text-decoration: none;
+    border-right: 1px solid var(--border);
+    transition: background 0.2s ease;
+    position: relative;
+  }
+  
+  .qr-card:last-child {
+    border-right: none;
+  }
+  
+  .qr-card--whatsapp:hover { background: rgba(37,211,102,0.05); }
+  .qr-card--email:hover    { background: rgba(26,60,94,0.04); }
+  
+  .qr-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .qr-card--whatsapp .qr-icon { background: rgba(37,211,102,0.1); color: #25d366; }
+  .qr-card--email    .qr-icon { background: rgba(26,60,94,0.08);  color: var(--navy); }
+  .qr-card--location .qr-icon { background: rgba(200,148,26,0.1); color: var(--gold); }
+  .qr-card--hours    .qr-icon { background: rgba(60,52,137,0.08); color: var(--purple); }
+  
+  .qr-icon svg { width: 20px; height: 20px; }
+  
+  .qr-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+    margin-bottom: 3px;
+  }
+  
+  .qr-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+  
+  .qr-sub {
+    font-size: 0.75rem;
+    color: var(--warm-grey);
+  }
+  
+  .qr-arrow {
+    margin-left: auto;
+    font-size: 1rem;
+    color: var(--gold);
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  
+  .qr-card:hover .qr-arrow {
+    opacity: 1;
+    transform: translateX(3px);
+  }
+  
+  /* ── MAIN LAYOUT ────────────────────────────────────── */
+  .contact-main {
+    background: var(--light-grey);
+    padding: 64px 0 96px;
+  }
+  
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 40px;
+    align-items: start;
+  }
+  
+  /* ── FORM CARD ──────────────────────────────────────── */
+  .contact-form-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 40px 44px;
+  }
+  
+  .contact-form-header {
+    margin-bottom: 28px;
+  }
+  
+  .contact-form-header h2 {
+    font-size: 1.5rem;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  
+  .contact-form-header p {
+    font-size: 0.9rem;
+    color: var(--warm-grey);
+    line-height: 1.6;
+  }
+  
+  /* Brand selector */
+  .brand-selector {
+    margin-bottom: 28px;
+    padding: 20px;
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+  }
+  
+  .brand-selector-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--warm-grey);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  
+  .brand-selector-btns {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .brand-sel-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 10px;
+    border-radius: var(--radius-md);
+    border: 2px solid var(--border);
+    background: var(--white);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .brand-sel-btn img {
+    height: 28px;
+    width: auto;
+    object-fit: contain;
+  }
+  
+  .brand-sel-btn span {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--warm-grey);
+  }
+  
+  .brand-sel-btn:hover {
+    border-color: var(--navy);
+    background: var(--cream);
+  }
+  
+  .brand-sel-btn.active {
+    border-color: var(--navy);
+    background: var(--navy);
+  }
+  
+  .brand-sel-btn.active span {
+    color: var(--white);
+  }
+  
+  .brand-sel-btn[data-brand="puraklen"].active {
+    border-color: var(--teal);
+    background: var(--teal);
+  }
+  
+  .brand-sel-btn[data-brand="yourfirm"].active {
+    border-color: var(--purple);
+    background: var(--purple);
+  }
+  
+  /* Form fields */
+  .cf-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .cf-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  
+  .cf-field:last-of-type {
+    margin-bottom: 0;
+  }
+  
+  .cf-field label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--navy);
+  }
+  
+  .cf-required {
+    color: #dc3246;
+  }
+  
+  .cf-field input,
+  .cf-field select,
+  .cf-field textarea {
+    padding: 11px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.92rem;
+    font-family: inherit;
+    color: var(--black);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .cf-field input:focus,
+  .cf-field select:focus,
+  .cf-field textarea:focus {
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(26,60,94,0.07);
+  }
+  
+  .cf-field input.invalid,
+  .cf-field textarea.invalid {
+    border-color: #dc3246;
+  }
+  
+  .cf-field select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238a8070' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    cursor: pointer;
+  }
+  
+  .cf-field textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+  }
+  
+  .cf-error {
+    font-size: 0.75rem;
+    color: #dc3246;
+    min-height: 16px;
+  }
+  
+  .cf-form-error {
+    font-size: 0.82rem;
+    color: #dc3246;
+    margin-bottom: 12px;
+    min-height: 18px;
+  }
+  
+  .cf-submit-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px;
+    font-size: 0.95rem;
+    margin-top: 8px;
+  }
+  
+  .cf-privacy {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: var(--warm-grey);
+    margin-top: 12px;
+  }
+  
+  .cf-privacy svg {
+    flex-shrink: 0;
+    color: var(--teal);
+  }
+  
+  /* Success state */
+  .cf-success-inner {
+    text-align: center;
+    padding: 48px 24px;
+  }
+  
+  .cf-success-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+  }
+  
+  .cf-success-inner h3 {
+    font-size: 1.4rem;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  
+  .cf-success-inner p {
+    font-size: 0.9rem;
+    color: var(--warm-grey);
+    line-height: 1.7;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  
+  /* ── SIDEBAR ────────────────────────────────────────── */
+  .contact-info-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: sticky;
+    top: 104px;
+  }
+  
+  /* Brand cards */
+  .contact-brand-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+    border-left: 4px solid transparent;
+  }
+  
+  .contact-brand-card--teal   { border-left-color: var(--teal); }
+  .contact-brand-card--purple { border-left-color: var(--purple); }
+  
+  .cbc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .cbc-logo {
+    height: 28px;
+    width: auto;
+  }
+  
+  .cbc-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 100px;
+    background: var(--off-white);
+    color: var(--warm-grey);
+  }
+  
+  .contact-brand-card p {
+    font-size: 0.85rem;
+    color: var(--warm-grey);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+  
+  .cbc-link {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--teal);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .contact-brand-card--purple .cbc-link { color: var(--purple); }
+  
+  .cbc-link:hover { color: var(--navy); }
+  
+  /* FAQ */
+  .contact-faq-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+  }
+  
+  .contact-faq-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .faq-item:last-child { border-bottom: none; }
+  
+  .faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 13px 0;
+    background: none;
+    border: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--navy);
+    cursor: pointer;
+    text-align: left;
+    transition: color 0.2s;
+  }
+  
+  .faq-question svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+    color: var(--warm-grey);
+  }
+  
+  .faq-question[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+  
+  .faq-question:hover { color: var(--teal); }
+  
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+  
+  .faq-answer.open {
+    max-height: 200px;
+    padding-bottom: 12px;
+  }
+  
+  .faq-answer p {
+    font-size: 0.85rem;
+    color: var(--warm-grey);
+    line-height: 1.65;
+  }
+  
+  /* Social card */
+  .contact-social-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  
+  .contact-social-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+  
+  .contact-social-links {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .csocial-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--navy);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  
+  .csocial-btn:hover {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--white);
+  }
+  
+  /* ── TOAST ──────────────────────────────────────────── */
+  .contact-toast {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--navy-dark);
+    color: var(--white);
+    padding: 12px 22px;
+    border-radius: var(--radius-md);
+    font-size: 0.88rem;
+    font-weight: 500;
+    z-index: 5000;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .contact-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  
+  /* ── RESPONSIVE ─────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .contact-layout {
+      grid-template-columns: 1fr 300px;
+      gap: 28px;
+    }
+  }
+  
+  @media (max-width: 860px) {
+    .contact-layout {
+      grid-template-columns: 1fr;
+    }
+  
+    .contact-info-col {
+      position: static;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  
+    .contact-faq-card,
+    .contact-social-card {
+      grid-column: span 2;
+    }
+  
+    .quick-reach-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  
+    .qr-card {
+      border-bottom: 1px solid var(--border);
+    }
+  
+    .qr-card:nth-child(2) {
+      border-right: none;
+    }
+  }
+  
+  @media (max-width: 580px) {
+    .contact-form-card {
+      padding: 28px 20px;
+    }
+  
+    .cf-row {
+      grid-template-columns: 1fr;
+    }
+  
+    .brand-selector-btns {
+      gap: 8px;
+    }
+  
+    .quick-reach-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .qr-card {
+      border-right: none;
+    }
+  
+    .contact-info-col {
+      grid-template-columns: 1fr;
+    }
+  
+    .contact-faq-card,
+    .contact-social-card {
+      grid-column: span 1;
+    }
+  
+    .contact-social-card {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  }

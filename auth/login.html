@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login — AmyServes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/auth.css" />
+  </head>
+  <body>
+
+    <div class="auth-page">
+
+      <!-- ── LEFT PANEL ───────────────────────────────── -->
+      <div class="auth-panel">
+        <div class="auth-panel-logo">
+          <a href="../index.html">
+            <img src="../assets/images/logos/amyserves.png" alt="AmyServes" />
+          </a>
+        </div>
+
+        <div class="auth-panel-content">
+          <h2>Welcome back to your client portal</h2>
+          <p>Track your service requests, messages, and account activity — all in one place.</p>
+
+          <div class="auth-features">
+            <div class="auth-feature">
+              <div class="auth-feature-icon">📋</div>
+              <div class="auth-feature-text">
+                <strong>Service Tracking</strong>
+                <span>Monitor your active cleaning and HR requests</span>
+              </div>
+            </div>
+            <div class="auth-feature">
+              <div class="auth-feature-icon">💬</div>
+              <div class="auth-feature-text">
+                <strong>Direct Messaging</strong>
+                <span>Communicate with your assigned team</span>
+              </div>
+            </div>
+            <div class="auth-feature">
+              <div class="auth-feature-icon">📁</div>
+              <div class="auth-feature-text">
+                <strong>Document Access</strong>
+                <span>View invoices, contracts, and reports</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-panel-footer">
+          <p>© 2026 AmyServes Group · Abuja, Nigeria</p>
+        </div>
+      </div>
+
+      <!-- ── RIGHT PANEL (FORM) ────────────────────────── -->
+      <div class="auth-form-section">
+        <div class="auth-form-box">
+
+          <!-- Mobile logo (shown only on small screens) -->
+          <div class="auth-mobile-logo">
+            <a href="../index.html">
+              <img src="../assets/images/logos/amyserves.png" alt="AmyServes" />
+            </a>
+          </div>
+
+          <h1>Sign in</h1>
+          <p class="auth-subtitle">
+            Don't have an account? <a href="signup.html">Create one</a>
+          </p>
+
+          <!-- Alert -->
+          <div class="auth-alert error" id="loginAlert"></div>
+
+          <!-- Form -->
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+            <span class="field-error" id="emailError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password" />
+              <button class="password-toggle" type="button" onclick="togglePassword('password', this)" aria-label="Toggle password">
+                <svg id="eyeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+            <span class="field-error" id="passwordError"></span>
+          </div>
+
+          <a href="forgot-password.html" class="forgot-link">Forgot password?</a>
+
+          <button class="btn-auth" id="loginBtn" onclick="handleLogin()">
+            <span class="spinner"></span>
+            <span class="btn-text">Sign in</span>
+          </button>
+
+          <div class="auth-divider">or</div>
+
+          <p style="text-align:center; font-size:0.85rem; color:var(--warm-grey);">
+            Are you staff? <a href="../dashboard/staff/index.html" style="color:var(--teal);font-weight:600;">Go to staff portal →</a>
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/supabase.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/auth-login.js"></script>
+  </body>
+</html>

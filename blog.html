@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AmyServes Blog — insights on HR, business management, workplace cleaning, and growing your business in Nigeria." />
+  <title>Blog — AmyServes</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/blog.css" />
+  <link rel="stylesheet" href="css/sections.css"/>
+</head>
+
+<body>
+
+  <!-- ── NAVBAR ──────────────────────────────────────── -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-logo">
+        <img src="assets/images/logos/amyserves.png" alt="AmyServes" />
+      </a>
+      <ul class="navbar-links">
+        <li><a href="index.html">Home</a></li>
+        <li>
+          <a href="puraklen/index.html" class="brand-link">
+            <img src="assets/images/logos/puraklen.png" alt="" class="nav-brand-logo" />
+            Pura-Kle'N
+          </a>
+        </li>
+        <li>
+          <a href="yourfirm/index.html" class="brand-link">
+            <img src="assets/images/logos/yourfirm.png" alt="" class="nav-brand-logo" />
+            Yourfirm
+          </a>
+        </li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="navbar-cta">
+        <a href="https://wa.me/2349011339978" target="_blank" class="btn-whatsapp-nav">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          WhatsApp Us
+        </a>
+        <a href="contact.html" class="btn-getstarted">
+          <span>Get Started</span> →
+        </a>
+      </div>
+      <button class="navbar-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="navbar-mobile" id="navMobile">
+      <div class="navbar-mobile-inner">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="puraklen/index.html" class="nav-link">Puraklen</a>
+        <a href="yourfirm/index.html" class="nav-link">Yourfirm</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <div class="navbar-mobile-divider"></div>
+        <div class="navbar-mobile-actions">
+          <a href="https://wa.me/2349011339978" target="_blank" class="btn-whatsapp-mobile">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            WhatsApp Us
+          </a>
+          <a href="contact.html" class="btn-getstarted-mobile">Get Started →</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── BLOG HERO ──────────────────────────────────── -->
+  <section class="blog-hero">
+    <div class="blog-hero-bg"></div>
+    <div class="container">
+      <div class="blog-hero-content">
+        <span class="eyebrow">AmyServes Journal</span>
+        <h1>Insights for <em>Growing Businesses</em></h1>
+        <p>HR strategies, workplace management, and business growth tips — written for Nigerian SMEs by the people who live it daily.</p>
+        <div class="blog-search-wrap">
+          <svg class="blog-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="blogSearch" placeholder="Search articles…" class="blog-search-input" />
+          <button class="blog-search-clear" id="searchClear" style="display:none">✕</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FILTER BAR ─────────────────────────────────── -->
+  <div class="blog-filter-bar" id="blogFilterBar">
+    <div class="container">
+      <div class="blog-filters">
+        <button class="filter-btn active" data-filter="all">All Posts</button>
+        <button class="filter-btn" data-filter="hr">
+          <span class="filter-dot filter-dot--purple"></span>HR & People
+        </button>
+        <button class="filter-btn" data-filter="cleaning">
+          <span class="filter-dot filter-dot--teal"></span>Cleaning & Hygiene
+        </button>
+        <button class="filter-btn" data-filter="business">
+          <span class="filter-dot filter-dot--gold"></span>Business Growth
+        </button>
+        <button class="filter-btn" data-filter="compliance">
+          <span class="filter-dot filter-dot--navy"></span>Compliance & Legal
+        </button>
+      </div>
+      <div class="blog-sort">
+        <select id="blogSort">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+          <option value="popular">Most Liked</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BLOG MAIN LAYOUT ───────────────────────────── -->
+  <main class="blog-main">
+    <div class="container">
+      <div class="blog-layout">
+
+        <!-- LEFT: POSTS -->
+        <div class="blog-posts-col">
+
+          <!-- Featured Post -->
+          <article class="blog-card blog-card--featured" data-category="hr" data-post-id="1" data-likes="47" data-date="2026-03-20">
+            <div class="blog-card-image">
+              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&q=80" alt="HR Strategy" loading="lazy" />
+              <span class="blog-card-badge blog-card-badge--purple">HR & People</span>
+              <span class="blog-card-featured-label">Featured</span>
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <div class="blog-author-chip">
+                  <div class="blog-author-avatar" style="background:var(--purple)">CA</div>
+                  <span>Chiamaka (Amy)</span>
+                </div>
+                <span class="blog-meta-dot">·</span>
+                <time>March 20, 2026</time>
+                <span class="blog-meta-dot">·</span>
+                <span>8 min read</span>
+              </div>
+              <h2 class="blog-card-title">
+                <a href="blog-post.html?id=N" class="blog-post-link" data-id="1">Why Nigerian SMEs Keep Getting HR Wrong — And What to Fix First</a>
+              </h2>
+              <p class="blog-card-excerpt">Most growing businesses in Abuja and Lagos handle HR reactively — they hire fast, fire slow, and document nothing. Here's a practical framework to build people systems before they become problems.</p>
+              <div class="blog-card-footer">
+                <div class="blog-card-reactions">
+                  <button class="reaction-btn" data-post-id="1" data-type="like" title="Like">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    <span class="reaction-count">47</span>
+                  </button>
+                  <button class="reaction-btn comment-trigger-btn" data-post-id="1" title="Comments">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <span class="reaction-count" id="comment-count-1">12</span>
+                  </button>
+                </div>
+                <div class="blog-card-share">
+                  <button class="share-btn" data-post-id="1" title="Share">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                  </button>
+                </div>
+                <a href="blog-post.html" class="blog-read-more blog-post-link" data-id="1">Read Article →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Regular Posts Grid -->
+          <div class="blog-grid" id="blogGrid">
+
+            <article class="blog-card" data-category="cleaning" data-post-id="2" data-likes="31" data-date="2026-03-15">
+              <div class="blog-card-image blog-card-image--sm">
+                <img src="https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=600&q=80" alt="Office Cleaning" loading="lazy" />
+                <span class="blog-card-badge blog-card-badge--teal">Cleaning</span>
+              </div>
+              <div class="blog-card-body">
+                <div class="blog-card-meta">
+                  <div class="blog-author-chip">
+                    <div class="blog-author-avatar" style="background:var(--teal)">OM</div>
+                    <span>Operations Team</span>
+                  </div>
+                  <span class="blog-meta-dot">·</span>
+                  <time>Mar 15, 2026</time>
+                  <span class="blog-meta-dot">·</span>
+                  <span>5 min read</span>
+                </div>
+                <h3 class="blog-card-title">
+                  <a href="blog-post.html" class="blog-post-link" data-id="2">The Hidden Cost of a Dirty Office: What Abuja Businesses Are Missing</a>
+                </h3>
+                <p class="blog-card-excerpt">Productivity, client perception, and staff morale are all affected by your workplace environment. The numbers tell a clear story.</p>
+                <div class="blog-card-footer">
+                  <div class="blog-card-reactions">
+                    <button class="reaction-btn" data-post-id="2" data-type="like">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                      <span class="reaction-count">31</span>
+                    </button>
+                    <button class="reaction-btn comment-trigger-btn" data-post-id="2">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                      <span class="reaction-count" id="comment-count-2">6</span>
+                    </button>
+                  </div>
+                  <a href="blog-post.html" class="blog-read-more blog-post-link" data-id="2">Read →</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="blog-card" data-category="business" data-post-id="3" data-likes="58" data-date="2026-03-10">
+              <div class="blog-card-image blog-card-image--sm">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80" alt="Business Growth" loading="lazy" />
+                <span class="blog-card-badge blog-card-badge--gold">Business Growth</span>
+              </div>
+              <div class="blog-card-body">
+                <div class="blog-card-meta">
+                  <div class="blog-author-chip">
+                    <div class="blog-author-avatar" style="background:var(--gold)">CA</div>
+                    <span>Chiamaka (Amy)</span>
+                  </div>
+                  <span class="blog-meta-dot">·</span>
+                  <time>Mar 10, 2026</time>
+                  <span class="blog-meta-dot">·</span>
+                  <span>6 min read</span>
+                </div>
+                <h3 class="blog-card-title">
+                  <a href="blog-post.html" class="blog-post-link" data-id="3">Scaling an SME in Nigeria: 5 Operational Gaps That Stop Growth</a>
+                </h3>
+                <p class="blog-card-excerpt">After working with 50+ businesses across Abuja, these are the five structural gaps we see repeatedly — and exactly how to close them.</p>
+                <div class="blog-card-footer">
+                  <div class="blog-card-reactions">
+                    <button class="reaction-btn" data-post-id="3" data-type="like">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                      <span class="reaction-count">58</span>
+                    </button>
+                    <button class="reaction-btn comment-trigger-btn" data-post-id="3">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                      <span class="reaction-count" id="comment-count-3">18</span>
+                    </button>
+                  </div>
+                  <a href="blog-post.html" class="blog-read-more blog-post-link" data-id="3">Read →</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="blog-card" data-category="compliance" data-post-id="4" data-likes="24" data-date="2026-03-05">
+              <div class="blog-card-image blog-card-image--sm">
+                <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=80" alt="Business Compliance" loading="lazy" />
+                <span class="blog-card-badge blog-card-badge--navy">Compliance</span>
+              </div>
+              <div class="blog-card-body">
+                <div class="blog-card-meta">
+                  <div class="blog-author-chip">
+                    <div class="blog-author-avatar" style="background:var(--navy)">HR</div>
+                    <span>HR Lead</span>
+                  </div>
+                  <span class="blog-meta-dot">·</span>
+                  <time>Mar 5, 2026</time>
+                  <span class="blog-meta-dot">·</span>
+                  <span>7 min read</span>
+                </div>
+                <h3 class="blog-card-title">
+                  <a href="blog-post.html" class="blog-post-link" data-id="4">CAC Registration, PAYE & NHF: A Practical Compliance Checklist for 2026</a>
+                </h3>
+                <p class="blog-card-excerpt">Regulatory compliance in Nigeria is easier than it looks when you have the right checklist. Here's what every Abuja-based business must have in order this year.</p>
+                <div class="blog-card-footer">
+                  <div class="blog-card-reactions">
+                    <button class="reaction-btn" data-post-id="4" data-type="like">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                      <span class="reaction-count">24</span>
+                    </button>
+                    <button class="reaction-btn comment-trigger-btn" data-post-id="4">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                      <span class="reaction-count" id="comment-count-4">9</span>
+                    </button>
+                  </div>
+                  <a href="blog-post.html" class="blog-read-more blog-post-link" data-id="4">Read →</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="blog-card" data-category="hr" data-post-id="5" data-likes="39" data-date="2026-02-28">
+              <div class="blog-card-image blog-card-image--sm">
+                <img src="https://images.unsplash.com/photo-1565688534245-05d6b5be184a?w=600&q=80" alt="Recruitment" loading="lazy" />
+                <span class="blog-card-badge blog-card-badge--purple">HR & People</span>
+              </div>
+              <div class="blog-card-body">
+                <div class="blog-card-meta">
+                  <div class="blog-author-chip">
+                    <div class="blog-author-avatar" style="background:var(--purple)">HR</div>
+                    <span>HR Lead</span>
+                  </div>
+                  <span class="blog-meta-dot">·</span>
+                  <time>Feb 28, 2026</time>
+                  <span class="blog-meta-dot">·</span>
+                  <span>5 min read</span>
+                </div>
+                <h3 class="blog-card-title">
+                  <a href="blog-post.html" class="blog-post-link" data-id="5">How to Write an Employment Contract That Actually Protects Your Business</a>
+                </h3>
+                <p class="blog-card-excerpt">Vague employment letters are one of the biggest legal risks for Nigerian businesses. Here's what a proper contract must include — with plain-language explanations.</p>
+                <div class="blog-card-footer">
+                  <div class="blog-card-reactions">
+                    <button class="reaction-btn" data-post-id="5" data-type="like">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                      <span class="reaction-count">39</span>
+                    </button>
+                    <button class="reaction-btn comment-trigger-btn" data-post-id="5">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                      <span class="reaction-count" id="comment-count-5">15</span>
+                    </button>
+                  </div>
+                  <a href="blog-post.html" class="blog-read-more blog-post-link" data-id="5">Read →</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="blog-card" data-category="cleaning" data-post-id="6" data-likes="19" data-date="2026-02-20">
+              <div class="blog-card-image blog-card-image--sm">
+                <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80" alt="Post Construction Cleaning" loading="lazy" />
+                <span class="blog-card-badge blog-card-badge--teal">Cleaning</span>
+              </div>
+              <div class="blog-card-body">
+                <div class="blog-card-meta">
+                  <div class="blog-author-chip">
+                    <div class="blog-author-avatar" style="background:var(--teal)">OM</div>
+                    <span>Operations Team</span>
+                  </div>
+                  <span class="blog-meta-dot">·</span>
+                  <time>Feb 20, 2026</time>
+                  <span class="blog-meta-dot">·</span>
+                  <span>4 min read</span>
+                </div>
+                <h3 class="blog-card-title">
+                  <a href="blog-post.html" class="blog-post-link" data-id="6">Post-Construction Cleaning: What Developers in Abuja Need to Know Before Handover</a>
+                </h3>
+                <p class="blog-card-excerpt">Construction dust, chemical residues, and debris require specialist handling. Here's what a professional post-construction clean actually involves.</p>
+                <div class="blog-card-footer">
+                  <div class="blog-card-reactions">
+                    <button class="reaction-btn" data-post-id="6" data-type="like">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                      <span class="reaction-count">19</span>
+                    </button>
+                    <button class="reaction-btn comment-trigger-btn" data-post-id="6">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                      <span class="reaction-count" id="comment-count-6">4</span>
+                    </button>
+                  </div>
+                  <a href="blog-post.html" class="blog-read-more blog-post-link" data-id="6">Read →</a>
+                </div>
+              </div>
+            </article>
+
+          </div><!-- /blogGrid -->
+
+          <!-- No results message -->
+          <div class="blog-no-results" id="blogNoResults" style="display:none">
+            <div class="blog-no-results-inner">
+              <span>🔍</span>
+              <h3>No articles found</h3>
+              <p>Try a different search term or filter.</p>
+              <button class="btn btn-secondary" onclick="resetFilters()">Clear Filters</button>
+            </div>
+          </div>
+
+          <!-- Load more -->
+          <div class="blog-load-more" id="loadMoreWrap">
+            <button class="btn btn-secondary" id="loadMoreBtn">Load More Articles</button>
+          </div>
+
+        </div><!-- /blog-posts-col -->
+
+        <!-- RIGHT: SIDEBAR -->
+        <aside class="blog-sidebar">
+
+          <!-- About the blog -->
+          <div class="sidebar-card">
+            <div class="sidebar-card-header">
+              <img src="assets/images/logos/amyserves.png" alt="AmyServes" class="sidebar-logo" />
+            </div>
+            <p class="sidebar-about-text">Practical insights on HR, cleaning, compliance, and business growth — from the AmyServes team in Abuja, Nigeria.</p>
+            <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:16px;">Work With Us →</a>
+          </div>
+
+          <!-- Popular Posts -->
+          <div class="sidebar-card">
+            <h4 class="sidebar-section-title">Popular This Month</h4>
+            <div class="sidebar-popular">
+              <a href="blog-post.html" class="sidebar-popular-item blog-post-link" data-id="3">
+                <span class="sidebar-popular-num">01</span>
+                <div>
+                  <p>Scaling an SME in Nigeria: 5 Operational Gaps</p>
+                  <span>58 likes · 18 comments</span>
+                </div>
+              </a>
+              <a href="blog-post.html" class="sidebar-popular-item blog-post-link" data-id="1">
+                <span class="sidebar-popular-num">02</span>
+                <div>
+                  <p>Why Nigerian SMEs Keep Getting HR Wrong</p>
+                  <span>47 likes · 12 comments</span>
+                </div>
+              </a>
+              <a href="blog-post.html" class="sidebar-popular-item blog-post-link" data-id="5">
+                <span class="sidebar-popular-num">03</span>
+                <div>
+                  <p>How to Write an Employment Contract</p>
+                  <span>39 likes · 15 comments</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Categories -->
+          <div class="sidebar-card">
+            <h4 class="sidebar-section-title">Browse by Topic</h4>
+            <div class="sidebar-categories">
+              <button class="sidebar-cat-btn" data-filter="hr">
+                <span class="filter-dot filter-dot--purple"></span>HR & People
+                <span class="sidebar-cat-count">2</span>
+              </button>
+              <button class="sidebar-cat-btn" data-filter="cleaning">
+                <span class="filter-dot filter-dot--teal"></span>Cleaning & Hygiene
+                <span class="sidebar-cat-count">2</span>
+              </button>
+              <button class="sidebar-cat-btn" data-filter="business">
+                <span class="filter-dot filter-dot--gold"></span>Business Growth
+                <span class="sidebar-cat-count">1</span>
+              </button>
+              <button class="sidebar-cat-btn" data-filter="compliance">
+                <span class="filter-dot filter-dot--navy"></span>Compliance & Legal
+                <span class="sidebar-cat-count">1</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Newsletter -->
+          <div class="sidebar-card sidebar-card--dark">
+            <h4 class="sidebar-newsletter-title">Get Articles in Your Inbox</h4>
+            <p>New posts every week. No spam, ever.</p>
+            <div class="sidebar-newsletter-form" id="newsletterForm">
+              <input type="email" placeholder="your@email.com" id="newsletterEmail" />
+              <button type="button" id="newsletterSubmit">Subscribe →</button>
+            </div>
+            <p class="sidebar-newsletter-success" id="newsletterSuccess" style="display:none">✅ You're subscribed!</p>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ── POST MODAL (Full Article + Comments) ──────── -->
+  <div class="post-modal-overlay" id="postModalOverlay">
+    <div class="post-modal" id="postModal">
+      <button class="post-modal-close" id="postModalClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <!-- Article content -->
+      <div class="post-modal-inner">
+        <div class="post-modal-article" id="postModalArticle">
+          <!-- filled by JS -->
+        </div>
+
+        <!-- Divider -->
+        <div class="post-modal-divider"></div>
+
+        <!-- Share bar -->
+        <div class="post-share-bar">
+          <span class="post-share-label">Share this article:</span>
+          <div class="post-share-btns" id="postShareBtns">
+            <button class="share-social-btn share-facebook" data-platform="facebook" title="Share on Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              Facebook
+            </button>
+            <button class="share-social-btn share-twitter" data-platform="twitter" title="Share on Twitter/X">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              Twitter / X
+            </button>
+            <button class="share-social-btn share-whatsapp" data-platform="whatsapp" title="Share on WhatsApp">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              WhatsApp
+            </button>
+            <button class="share-social-btn share-linkedin" data-platform="linkedin" title="Share on LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </button>
+            <button class="share-social-btn share-copy" data-platform="copy" title="Copy link" id="copyLinkBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              Copy Link
+            </button>
+          </div>
+        </div>
+
+        <!-- Comments section -->
+        <div class="comments-section">
+          <h3 class="comments-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Comments <span class="comments-count-badge" id="commentsBadge">0</span>
+          </h3>
+
+          <!-- Comment input (auth-aware) -->
+          <div class="comment-input-area" id="commentInputArea">
+            <!-- Shown if logged in -->
+            <div class="comment-input-box" id="commentInputBox" style="display:none">
+              <div class="comment-input-avatar" id="commentAvatarDisplay"></div>
+              <div class="comment-input-right">
+                <textarea id="commentTextarea" placeholder="Share your thoughts…" rows="3"></textarea>
+                <div class="comment-input-actions">
+                  <span class="comment-char-count" id="charCount">0 / 500</span>
+                  <button class="btn btn-primary btn-sm" id="submitCommentBtn">Post Comment</button>
+                </div>
+              </div>
+            </div>
+            <!-- Shown if not logged in -->
+            <div class="comment-auth-prompt" id="commentAuthPrompt">
+              <div class="comment-auth-prompt-inner">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <div>
+                  <p><strong>Join the conversation</strong></p>
+                  <p>Sign in to comment, react, and engage with the community.</p>
+                </div>
+                <button class="btn btn-primary btn-sm" id="openAuthFromComment">Sign In / Sign Up</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comments list -->
+          <div class="comments-list" id="commentsList">
+            <!-- injected by JS -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── AUTH MODAL ─────────────────────────────────── -->
+  <div class="auth-modal-overlay" id="authModalOverlay">
+    <div class="auth-modal" id="authModal">
+      <button class="auth-modal-close" id="authModalClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <!-- Tabs -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="signin" id="tabSignin">Sign In</button>
+        <button class="auth-tab" data-tab="signup" id="tabSignup">Create Account</button>
+      </div>
+
+      <!-- SIGN IN panel -->
+      <div class="auth-panel active" id="panelSignin">
+        <div class="auth-brand">
+          <img src="assets/images/logos/amyserves.png" alt="AmyServes" />
+          <h3>Welcome back</h3>
+          <p>Sign in to comment, react, and engage.</p>
+        </div>
+
+        <!-- Social sign-in -->
+        <div class="auth-social-btns">
+          <button class="auth-social-btn auth-google" id="googleSigninBtn">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="blog-post.html4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="blog-post.html34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="blog-post.htmlFBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="blog-post.htmlEA4335"/></svg>
+            Continue with Google
+          </button>
+          <button class="auth-social-btn auth-apple" id="appleSigninBtn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            Continue with Apple
+          </button>
+        </div>
+
+        <div class="auth-divider"><span>or sign in with email</span></div>
+
+        <div class="auth-form" id="signinForm">
+          <div class="auth-field">
+            <label>Email Address</label>
+            <input type="email" id="signinEmail" placeholder="your@email.com" />
+          </div>
+          <div class="auth-field">
+            <label>Password</label>
+            <input type="password" id="signinPassword" placeholder="Your password" />
+            <a href="blog-post.html" class="auth-forgot">Forgot password?</a>
+          </div>
+          <div class="auth-error" id="signinError"></div>
+          <button class="btn btn-primary auth-submit-btn" id="signinSubmitBtn">Sign In →</button>
+        </div>
+
+        <p class="auth-switch">Don't have an account? <button class="auth-switch-link" data-tab="signup">Create one →</button></p>
+      </div>
+
+      <!-- SIGN UP panel -->
+      <div class="auth-panel" id="panelSignup">
+        <div class="auth-brand">
+          <img src="assets/images/logos/amyserves.png" alt="AmyServes" />
+          <h3>Join the community</h3>
+          <p>Create an account to comment and engage.</p>
+        </div>
+
+        <div class="auth-social-btns">
+          <button class="auth-social-btn auth-google" id="googleSignupBtn">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="blog-post.html4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="blog-post.html34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="blog-post.htmlFBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="blog-post.htmlEA4335"/></svg>
+            Sign up with Google
+          </button>
+          <button class="auth-social-btn auth-apple" id="appleSignupBtn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            Sign up with Apple
+          </button>
+        </div>
+
+        <div class="auth-divider"><span>or create account with email</span></div>
+
+        <div class="auth-form" id="signupForm">
+          <div class="auth-form-row">
+            <div class="auth-field">
+              <label>First Name</label>
+              <input type="text" id="signupFirstName" placeholder="First name" />
+            </div>
+            <div class="auth-field">
+              <label>Last Name</label>
+              <input type="text" id="signupLastName" placeholder="Last name" />
+            </div>
+          </div>
+          <div class="auth-field">
+            <label>Email Address</label>
+            <input type="email" id="signupEmail" placeholder="your@email.com" />
+          </div>
+          <div class="auth-field">
+            <label>Phone Number</label>
+            <input type="tel" id="signupPhone" placeholder="+234 000 0000 000" />
+          </div>
+          <div class="auth-field">
+            <label>Password</label>
+            <input type="password" id="signupPassword" placeholder="Min. 8 characters" />
+          </div>
+          <div class="auth-field">
+            <label>Confirm Password</label>
+            <input type="password" id="signupConfirm" placeholder="Repeat password" />
+          </div>
+          <div class="auth-error" id="signupError"></div>
+          <button class="btn btn-primary auth-submit-btn" id="signupSubmitBtn">Create Account →</button>
+          <p class="auth-terms">By signing up you agree to our <a href="blog-post.html">Terms</a> and <a href="blog-post.html">Privacy Policy</a>.</p>
+        </div>
+
+        <p class="auth-switch">Already have an account? <button class="auth-switch-link" data-tab="signin">Sign in →</button></p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── SHARE POPOVER ──────────────────────────────── -->
+  <div class="share-popover" id="sharePopover" style="display:none">
+    <div class="share-popover-inner">
+      <p class="share-popover-title">Share this article</p>
+      <div class="share-popover-btns">
+        <button class="share-pop-btn" data-platform="facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </button>
+        <button class="share-pop-btn" data-platform="twitter">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </button>
+        <button class="share-pop-btn" data-platform="whatsapp">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        </button>
+        <button class="share-pop-btn" data-platform="linkedin">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </button>
+        <button class="share-pop-btn share-copy-pop" data-platform="copy">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TOAST ───────────────────────────────────────── -->
+  <div class="blog-toast" id="blogToast"></div>
+
+  <!-- ── FOOTER ─────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="d-flex align-center gap-8 mb-16">
+            <img src="assets/images/logos/amyserves.png" alt="AmyServes" style="height:40px;width:auto" />
+          </div>
+          <p>Professional cleaning and HR consulting for Abuja's growing businesses. One partner. Two expert brands. Real results.</p>
+          <div class="footer-social">
+            <a href="blog-post.html" aria-label="LinkedIn">in</a>
+            <a href="blog-post.html" aria-label="Facebook">f</a>
+            <a href="blog-post.html" aria-label="Twitter">𝕏</a>
+            <a href="blog-post.html" aria-label="Instagram">ig</a>
+            <a href="blog-post.html" aria-label="TikTok">tk</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>AmyServes</h5>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="auth/login.html">Client Login</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Our Brands</h5>
+          <ul>
+            <li><a href="puraklen/index.html">Pura-Kle'N</a></li>
+            <li><a href="yourfirm/index.html">Yourfirm Consults</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="blog-post.html">Privacy Policy</a></li>
+            <li><a href="blog-post.html">Terms of Service</a></li>
+            <li><a href="blog-post.html">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 AmyServes Group. All rights reserved.</p>
+        <p>Abuja, Nigeria · amyserves.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp float -->
+  <a href="https://wa.me/2349011339978" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </a>
+
+  <script src="js/navbar.js"></script>
+  <script src="js/blog.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account — AmyServes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/auth.css" />
+  </head>
+  <body>
+
+    <div class="auth-page">
+
+      <!-- ── LEFT PANEL ───────────────────────────────── -->
+      <div class="auth-panel">
+        <div class="auth-panel-logo">
+          <a href="../index.html">
+            <img src="../assets/images/logos/amyserves.png" alt="AmyServes" />
+          </a>
+        </div>
+
+        <div class="auth-panel-content">
+          <h2>Join AmyServes as a client</h2>
+          <p>Get access to your personal portal and manage your cleaning or HR services with ease.</p>
+
+          <div class="auth-features">
+            <div class="auth-feature">
+              <div class="auth-feature-icon">⚡</div>
+              <div class="auth-feature-text">
+                <strong>Quick Setup</strong>
+                <span>Your account is ready in under 2 minutes</span>
+              </div>
+            </div>
+            <div class="auth-feature">
+              <div class="auth-feature-icon">🔒</div>
+              <div class="auth-feature-text">
+                <strong>Secure & Private</strong>
+                <span>Your data is protected and never shared</span>
+              </div>
+            </div>
+            <div class="auth-feature">
+              <div class="auth-feature-icon">🇳🇬</div>
+              <div class="auth-feature-text">
+                <strong>Built for Nigeria</strong>
+                <span>Serving businesses across Abuja and beyond</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-panel-footer">
+          <p>© 2026 AmyServes Group · Abuja, Nigeria</p>
+        </div>
+      </div>
+
+      <!-- ── RIGHT PANEL (FORM) ────────────────────────── -->
+      <div class="auth-form-section">
+        <div class="auth-form-box">
+
+          <div class="auth-mobile-logo">
+            <a href="../index.html">
+              <img src="../assets/images/logos/amyserves.png" alt="AmyServes" />
+            </a>
+          </div>
+
+          <h1>Create account</h1>
+          <p class="auth-subtitle">
+            Already have an account? <a href="login.html">Sign in</a>
+          </p>
+
+          <div class="auth-alert error" id="signupAlert"></div>
+          <div class="auth-alert success" id="signupSuccess"></div>
+
+          <div class="form-group">
+            <label for="fullName">Full name</label>
+            <input type="text" id="fullName" placeholder="e.g. Amina Okafor" autocomplete="name" />
+            <span class="field-error" id="nameError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Work email</label>
+            <input type="email" id="email" placeholder="you@company.com" autocomplete="email" />
+            <span class="field-error" id="emailError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" placeholder="e.g. 08012345678" autocomplete="tel" />
+            <span class="field-error" id="phoneError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="service">Primary service interest</label>
+            <select id="service">
+              <option value="">Select a service...</option>
+              <option value="cleaning">Pura-Kle'N — Cleaning Services</option>
+              <option value="hr">Yourfirm — HR Consulting</option>
+              <option value="both">Both services</option>
+            </select>
+            <span class="field-error" id="serviceError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="password" placeholder="Create a strong password" autocomplete="new-password" oninput="checkStrength(this.value)" />
+              <button class="password-toggle" type="button" onclick="togglePassword('password', this)" aria-label="Toggle password">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+            <div class="password-strength">
+              <div class="strength-bar">
+                <span id="s1"></span><span id="s2"></span><span id="s3"></span><span id="s4"></span>
+              </div>
+              <span class="strength-label" id="strengthLabel"></span>
+            </div>
+            <span class="field-error" id="passwordError"></span>
+          </div>
+
+          <div class="terms-check">
+            <input type="checkbox" id="terms" />
+            <label for="terms">
+              I agree to AmyServes' <a href="../#">Terms of Service</a> and <a href="../#">Privacy Policy</a>
+            </label>
+          </div>
+
+          <button class="btn-auth" id="signupBtn" onclick="handleSignup()">
+            <span class="spinner"></span>
+            <span class="btn-text">Create account</span>
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/supabase.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/auth-signup.js"></script>
+  </body>
+</html>

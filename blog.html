@@ -53,6 +53,33 @@
         <a href="contact.html" class="btn-getstarted">
           <span>Get Started</span> →
         </a>
+
+        <!-- Logged OUT state -->
+<div class="navbar-auth" id="navAuthOut" style="display:none">
+  <a href="auth/login.html" class="btn-nav-login">Sign In</a>
+  <a href="auth/signup.html" class="btn-nav-signup">Sign Up</a>
+</div>
+
+<!-- Logged IN state -->
+<div class="navbar-auth" id="navAuthIn" style="display:none; position:relative">
+  <button class="nav-profile-btn" id="navProfileBtn">
+    <div class="nav-profile-avatar" id="navProfileAvatar">--</div>
+    <svg width="10" height="7" viewBox="0 0 10 7" fill="none">
+      <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </button>
+  <div class="nav-profile-dropdown" id="navProfileDropdown">
+    <div class="nav-profile-info">
+      <div class="nav-profile-name" id="navProfileName">User</div>
+      <div class="nav-profile-email" id="navProfileEmail"></div>
+    </div>
+    <div class="nav-profile-divider"></div>
+    <a href="dashboard/client/index.html" class="nav-profile-link">My Dashboard</a>
+    <a href="dashboard/client/profile.html" class="nav-profile-link">My Profile</a>
+    <div class="nav-profile-divider"></div>
+    <button class="nav-profile-signout" id="navSignOutBtn">Sign Out</button>
+  </div>
+</div>
       </div>
       <button class="navbar-toggle" id="navToggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -77,6 +104,19 @@
           </a>
           <a href="contact.html" class="btn-getstarted-mobile">Get Started →</a>
         </div>
+
+        <div class="navbar-mobile-divider"></div>
+
+<!-- Mobile: Logged OUT -->
+<div class="navbar-mobile-auth" id="mobileAuthOut" style="display:none">
+  <a href="auth/login.html" class="btn-mobile-login">Sign In</a>
+  <a href="auth/signup.html" class="btn-mobile-signup">Sign Up</a>
+</div>
+
+<!-- Mobile: Logged IN -->
+<div class="navbar-mobile-auth" id="mobileAuthIn" style="display:none">
+  <a href="dashboard/client/index.html" class="btn-mobile-dashboard">My Dashboard →</a>
+</div>
       </div>
     </div>
   </nav>

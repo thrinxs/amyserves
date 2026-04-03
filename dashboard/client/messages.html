@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Messages — AmyServes Client Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/main.css" />
+  <link rel="stylesheet" href="../../css/dashboard.css" />
+</head>
+<body>
+
+<div class="dash-page">
+  <div id="dashSidebarOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:99"></div>
+
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="dash-sidebar-logo">
+      <img src="../../assets/images/logos/amyserves.png" alt="AmyServes" />
+      <span class="dash-sidebar-role">Client Portal</span>
+    </div>
+    <nav class="dash-nav">
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Overview</span>
+        <a href="index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">My Services</span>
+        <a href="messages.html" class="active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Messages
+        </a>
+        <a href="profile.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          My Profile
+        </a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">AmyServes</span>
+        <a href="../../services.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+          Our Services
+        </a>
+        <a href="../../index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          Back to Website
+        </a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Account</span>
+        <a href="../../auth/login.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sign Out
+        </a>
+      </div>
+    </nav>
+    <div class="dash-sidebar-footer">
+      <div class="dash-user-chip">
+        <div class="dash-user-avatar" id="sidebarAvatar">CL</div>
+        <div>
+          <div class="dash-user-name" id="sidebarName">Client</div>
+          <div class="dash-user-role">Client Account</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="dash-main">
+    <header class="dash-topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="dash-menu-toggle" id="dashMenuToggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <span class="dash-topbar-title">Messages</span>
+      </div>
+      <div class="dash-topbar-actions">
+        <button class="dash-btn dash-btn--primary dash-btn--sm" onclick="openNewMessage()">+ New Message</button>
+      </div>
+    </header>
+
+    <div class="dash-content">
+      <div class="dash-page-header">
+        <h1>Messages</h1>
+        <p>Your conversations with the AmyServes team.</p>
+      </div>
+
+      <!-- Two-pane message layout -->
+      <div class="dash-card" style="display:grid;grid-template-columns:320px 1fr;min-height:520px">
+
+        <!-- Left: message list -->
+        <div style="border-right:1px solid #e8e4de;display:flex;flex-direction:column">
+          <div style="padding:14px 16px;border-bottom:1px solid #e8e4de">
+            <div class="dash-search-wrap" style="flex:1">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              <input type="text" class="dash-search-input" placeholder="Search messages…" id="msgSearch" />
+            </div>
+          </div>
+          <div id="messageList" style="overflow-y:auto;flex:1"></div>
+        </div>
+
+        <!-- Right: message detail -->
+        <div id="messageDetail" style="overflow-y:auto;display:flex;flex-direction:column">
+          <div class="dash-empty" style="padding-top:80px;margin:auto">
+            <span>📩</span>
+            <h4>Select a message</h4>
+            <p>Click any conversation to read it here.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- New Message Modal -->
+<div class="dash-modal-overlay" id="newMsgModal">
+  <div class="dash-modal">
+    <div class="dash-modal-header">
+      <h3>Send a Message</h3>
+      <button class="dash-modal-close" onclick="closeNewMessage()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="dash-modal-body">
+      <div class="dash-form-group">
+        <label>Subject</label>
+        <input type="text" id="newMsgSubject" placeholder="What's this about?" />
+      </div>
+      <div class="dash-form-group">
+        <label>Service (optional)</label>
+        <select id="newMsgService">
+          <option value="">-- Select a service --</option>
+          <option>Office Cleaning</option>
+          <option>Deep Cleaning</option>
+          <option>Post-Construction Cleaning</option>
+          <option>Fumigation</option>
+          <option>HR Audit</option>
+          <option>Employment Contracts</option>
+          <option>Payroll Management</option>
+          <option>Recruitment</option>
+          <option>Business Registration</option>
+          <option>General Enquiry</option>
+        </select>
+      </div>
+      <div class="dash-form-group">
+        <label>Message</label>
+        <textarea id="newMsgBody" rows="5" placeholder="Write your message here…"></textarea>
+      </div>
+    </div>
+    <div class="dash-modal-footer">
+      <button class="dash-btn dash-btn--secondary" onclick="closeNewMessage()">Cancel</button>
+      <button class="dash-btn dash-btn--primary" onclick="sendNewMessage()">Send Message</button>
+    </div>
+  </div>
+</div>
+
+<div class="dash-toast" id="dashToast"></div>
+
+<script src="../../js/dashboard-client.js"></script>
+</body>
+</html>

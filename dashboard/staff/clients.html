@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Clients — AmyServes Staff Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/main.css" />
+  <link rel="stylesheet" href="../../css/dashboard.css" />
+</head>
+<body>
+
+<div class="dash-page">
+  <div id="dashSidebarOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:99"></div>
+
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="dash-sidebar-logo">
+      <img src="../../assets/images/logos/amyserves.png" alt="AmyServes" />
+      <span class="dash-sidebar-role">Staff Portal</span>
+    </div>
+    <nav class="dash-nav">
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Overview</span>
+        <a href="index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Operations</span>
+        <a href="clients.html" class="active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          My Clients
+        </a>
+        <a href="messages.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Messages
+        </a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">System</span>
+        <a href="../../index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          Back to Website
+        </a>
+        <a href="../../auth/login.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sign Out
+        </a>
+      </div>
+    </nav>
+    <div class="dash-sidebar-footer">
+      <div class="dash-user-chip">
+        <div class="dash-user-avatar" id="sidebarAvatar" style="background:var(--teal)">ST</div>
+        <div>
+          <div class="dash-user-name" id="sidebarName">Staff Member</div>
+          <div class="dash-user-role">Staff Account</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="dash-main">
+    <header class="dash-topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="dash-menu-toggle" id="dashMenuToggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <span class="dash-topbar-title">My Clients</span>
+      </div>
+    </header>
+
+    <div class="dash-content">
+      <div class="dash-page-header">
+        <h1>My Clients</h1>
+        <p>All clients assigned to you. Update request statuses and track progress here.</p>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="dash-filter-bar">
+        <div class="dash-search-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" class="dash-search-input" id="clientSearch" placeholder="Search by name, company or service…" />
+        </div>
+        <select class="dash-filter-select" id="statusFilter">
+          <option value="all">All statuses</option>
+          <option value="pending">Pending</option>
+          <option value="in-progress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+        <select class="dash-filter-select" id="brandFilter">
+          <option value="all">All brands</option>
+          <option value="puraklen">Pura-Kle'N</option>
+          <option value="yourfirm">Yourfirm</option>
+        </select>
+      </div>
+
+      <!-- Clients table -->
+      <div class="dash-card">
+        <div class="dash-table-wrap">
+          <table class="dash-table">
+            <thead>
+              <tr>
+                <th>Client</th>
+                <th>Service</th>
+                <th>Brand</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="clientsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Client Detail Modal -->
+<div class="dash-modal-overlay" id="clientDetailModal">
+  <div class="dash-modal" style="max-width:600px">
+    <div class="dash-modal-header">
+      <h3>Client Details</h3>
+      <button class="dash-modal-close" onclick="closeClientModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="dash-modal-body" id="clientDetailBody"></div>
+    <div class="dash-modal-footer">
+      <button class="dash-btn dash-btn--secondary" onclick="closeClientModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="dash-toast" id="dashToast"></div>
+
+<script src="../../js/dashboard-staff.js"></script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Dashboard — AmyServes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/main.css" />
+  <link rel="stylesheet" href="../../css/dashboard.css" />
+</head>
+<body>
+
+<div class="dash-page">
+  <div id="dashSidebarOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:99"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="dash-sidebar-logo">
+      <img src="../../assets/images/logos/amyserves.png" alt="AmyServes" />
+      <span class="dash-sidebar-role">Client Portal</span>
+    </div>
+    <nav class="dash-nav">
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Overview</span>
+        <a href="index.html" class="active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">My Services</span>
+        <a href="messages.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Messages
+          <span class="dash-nav-badge dash-nav-badge--red" id="unreadBadge" style="display:none">0</span>
+        </a>
+        <a href="profile.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          My Profile
+        </a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">AmyServes</span>
+        <a href="../../services.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+          Our Services
+        </a>
+        <a href="../../contact.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Contact Us
+        </a>
+        <a href="../../index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          Back to Website
+        </a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Account</span>
+        <a href="../../auth/login.html" id="signOutLink">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sign Out
+        </a>
+      </div>
+    </nav>
+    <div class="dash-sidebar-footer">
+      <div class="dash-user-chip">
+        <div class="dash-user-avatar" id="sidebarAvatar">CL</div>
+        <div>
+          <div class="dash-user-name" id="sidebarName">Client</div>
+          <div class="dash-user-role">Client Account</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="dash-main">
+    <header class="dash-topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="dash-menu-toggle" id="dashMenuToggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <span class="dash-topbar-title">My Dashboard</span>
+      </div>
+      <div class="dash-topbar-actions">
+        <a href="../../services.html" class="dash-btn dash-btn--primary dash-btn--sm">+ New Request</a>
+        <a href="../../auth/login.html" class="dash-topbar-btn" title="Sign out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        </a>
+      </div>
+    </header>
+
+    <div class="dash-content">
+
+      <!-- Welcome Banner -->
+      <div style="background:linear-gradient(135deg,var(--navy-dark),#1e3a5f);border-radius:14px;padding:28px 32px;margin-bottom:28px;position:relative;overflow:hidden">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(200,148,26,0.15) 0%,transparent 60%);pointer-events:none"></div>
+        <div style="position:relative;z-index:1">
+          <p style="color:rgba(255,255,255,0.55);font-size:.82rem;margin-bottom:4px">Welcome back 👋</p>
+          <h1 style="color:#fff;font-size:1.4rem;margin-bottom:8px" id="welcomeName">Good to see you</h1>
+          <p style="color:rgba(255,255,255,0.6);font-size:.875rem;margin-bottom:20px">Here's a summary of your account and active services with AmyServes.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <a href="../../services.html" class="dash-btn dash-btn--primary dash-btn--sm" style="background:var(--gold);color:var(--navy-dark);border-color:var(--gold)">Request a Service</a>
+            <a href="messages.html" class="dash-btn dash-btn--sm" style="background:rgba(255,255,255,0.1);color:#fff;border:1.5px solid rgba(255,255,255,0.2)">View Messages</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="dash-stats-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon dash-stat-icon--navy">📋</div>
+          <div class="dash-stat-value" id="statTotal">0</div>
+          <div class="dash-stat-label">Total Requests</div>
+          <div class="dash-stat-change dash-stat-change--neu">All time</div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon dash-stat-icon--gold">🔄</div>
+          <div class="dash-stat-value" id="statActive">0</div>
+          <div class="dash-stat-label">Active / In Progress</div>
+          <div class="dash-stat-change dash-stat-change--up">Currently running</div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon dash-stat-icon--teal">✅</div>
+          <div class="dash-stat-value" id="statDone">0</div>
+          <div class="dash-stat-label">Completed</div>
+          <div class="dash-stat-change dash-stat-change--up">Services delivered</div>
+        </div>
+      </div>
+
+      <!-- Two columns -->
+      <div class="dash-grid-2">
+
+        <!-- My Requests -->
+        <div class="dash-card" style="grid-column:1 / -1">
+          <div class="dash-card-header">
+            <h3>My Service Requests</h3>
+            <a href="../../services.html" class="dash-btn dash-btn--secondary dash-btn--sm">+ New Request</a>
+          </div>
+          <div class="dash-table-wrap">
+            <table class="dash-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Service</th>
+                  <th>Brand</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="requestsBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Two columns bottom -->
+      <div class="dash-grid-2">
+
+        <!-- Recent Messages -->
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <h3>Recent Messages</h3>
+            <a href="messages.html" class="dash-btn dash-btn--secondary dash-btn--sm">View All</a>
+          </div>
+          <div id="recentMessages" style="padding:16px 24px">
+            <div class="dash-empty" style="padding:24px 0">
+              <span>📭</span>
+              <h4>No messages yet</h4>
+              <p>Messages from the AmyServes team will appear here.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="dash-card">
+          <div class="dash-card-header"><h3>Quick Actions</h3></div>
+          <div class="dash-card-body" style="display:flex;flex-direction:column;gap:10px">
+
+            <a href="../../puraklen/index.html" class="dash-btn dash-btn--secondary" style="width:100%;justify-content:flex-start;gap:12px">
+              <span style="width:32px;height:32px;border-radius:8px;background:rgba(15,110,86,0.1);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">🧹</span>
+              Book a Cleaning Service
+            </a>
+
+            <a href="../../yourfirm/index.html" class="dash-btn dash-btn--secondary" style="width:100%;justify-content:flex-start;gap:12px">
+              <span style="width:32px;height:32px;border-radius:8px;background:rgba(60,52,137,0.1);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">💼</span>
+              HR Consultation
+            </a>
+
+            <a href="https://wa.me/2349011339978" target="_blank" class="dash-btn dash-btn--secondary" style="width:100%;justify-content:flex-start;gap:12px">
+              <span style="width:32px;height:32px;border-radius:8px;background:rgba(37,211,102,0.1);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">💬</span>
+              Chat on WhatsApp
+            </a>
+
+            <a href="profile.html" class="dash-btn dash-btn--secondary" style="width:100%;justify-content:flex-start;gap:12px">
+              <span style="width:32px;height:32px;border-radius:8px;background:rgba(26,60,94,0.1);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">👤</span>
+              Update My Profile
+            </a>
+
+            <a href="../../contact.html" class="dash-btn dash-btn--secondary" style="width:100%;justify-content:flex-start;gap:12px">
+              <span style="width:32px;height:32px;border-radius:8px;background:rgba(200,148,26,0.1);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">📞</span>
+              Contact AmyServes
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="dash-toast" id="dashToast"></div>
+
+<script src="../../js/dashboard-client.js"></script>
+</body>
+</html>

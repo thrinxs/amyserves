@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Users — Admin | AmyServes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/main.css" />
+  <link rel="stylesheet" href="../../css/dashboard.css" />
+</head>
+<body>
+<div class="dash-page">
+  <div id="dashSidebarOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:99"></div>
+
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="dash-sidebar-logo">
+      <img src="../../assets/images/logos/amyserves.png" alt="AmyServes" />
+      <span class="dash-sidebar-role">Admin Portal</span>
+    </div>
+    <nav class="dash-nav">
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Overview</span>
+        <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Operations</span>
+        <a href="messages.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Messages</a>
+        <a href="requests.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>Service Requests</a>
+        <a href="users.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Users</a>
+        <a href="team.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Team</a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Content</span>
+        <a href="blog.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Blog</a>
+        <a href="content.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>Content</a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">System</span>
+        <a href="settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</a>
+        <a href="../../index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Back to Website</a>
+      </div>
+    </nav>
+    <div class="dash-sidebar-footer">
+      <div class="dash-user-chip">
+        <div class="dash-user-avatar">CA</div>
+        <div><div class="dash-user-name">Chiamaka (Amy)</div><div class="dash-user-role">Administrator</div></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="dash-main">
+    <header class="dash-topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="dash-menu-toggle" id="dashMenuToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+        <span class="dash-topbar-title">Users</span>
+      </div>
+      <div class="dash-topbar-actions">
+        <a href="../../auth/login.html" class="dash-topbar-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></a>
+      </div>
+    </header>
+
+    <div class="dash-content">
+      <div class="dash-page-header">
+        <h1>Users</h1>
+        <p>Registered client accounts on the AmyServes portal.</p>
+      </div>
+
+      <div class="dash-filter-bar">
+        <div class="dash-search-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" class="dash-search-input" id="userSearch" placeholder="Search users…" oninput="filterUsers(this.value)" />
+        </div>
+        <select class="dash-filter-select" onchange="filterUsersByRole(this.value)">
+          <option value="all">All roles</option>
+          <option value="client">Clients</option>
+          <option value="staff">Staff</option>
+          <option value="admin">Admins</option>
+        </select>
+      </div>
+
+      <div class="dash-card">
+        <div class="dash-table-wrap">
+          <table class="dash-table" id="usersTable">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Service Interest</th>
+                <th>Role</th>
+                <th>Joined</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dash-toast" id="dashToast"></div>
+
+<script>
+var mockUsers = [
+  { id: 1, name: 'Emeka Nwosu', email: 'emeka@techstart.ng', phone: '+234 801 234 5678', service: 'Cleaning', role: 'client', joined: '1 Apr 2026', avatar: '#0F6E56' },
+  { id: 2, name: 'Fatima Abdullahi', email: 'fatima@farmco.ng', phone: '+234 802 345 6789', service: 'HR Consulting', role: 'client', joined: '30 Mar 2026', avatar: '#3C3489' },
+  { id: 3, name: 'David Okonkwo', email: 'david@okonkwo.ng', phone: '+234 803 456 7890', service: 'Payroll', role: 'client', joined: '28 Mar 2026', avatar: '#1A3C5E' },
+  { id: 4, name: 'Ngozi Eze', email: 'ngozi@ezeproperties.ng', phone: '+234 804 567 8901', service: 'Cleaning', role: 'client', joined: '27 Mar 2026', avatar: '#C8941A' },
+  { id: 5, name: 'HR Lead', email: 'hr@amyserves.com', phone: '+234 901 133 9978', service: 'Internal', role: 'staff', joined: '1 Jan 2026', avatar: '#3C3489' },
+  { id: 6, name: 'Chiamaka (Amy)', email: 'hello@amyserves.com', phone: '+234 901 133 9978', service: 'Internal', role: 'admin', joined: '1 Jan 2025', avatar: '#1A3C5E' }
+];
+
+var filtered = mockUsers.slice();
+
+function getInitials(name) {
+  return name.split(' ').map(function(w){return w[0];}).join('').slice(0,2).toUpperCase();
+}
+
+function roleBadge(role) {
+  var map = { admin: 'navy', staff: 'teal', client: 'grey' };
+  return '<span class="dash-badge dash-badge--' + (map[role]||'grey') + '">' + role.charAt(0).toUpperCase() + role.slice(1) + '</span>';
+}
+
+function renderUsers() {
+  var tbody = document.getElementById('usersTableBody');
+  if (filtered.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7"><div class="dash-empty"><span>👤</span><h4>No users found</h4></div></td></tr>';
+    return;
+  }
+  tbody.innerHTML = filtered.map(function(u) {
+    return '<tr>'
+      + '<td><div style="display:flex;align-items:center;gap:10px"><div style="width:32px;height:32px;border-radius:50%;background:'+u.avatar+';display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#fff;flex-shrink:0">'+getInitials(u.name)+'</div><strong>'+u.name+'</strong></div></td>'
+      + '<td style="font-size:.82rem">'+u.email+'</td>'
+      + '<td style="font-size:.82rem">'+u.phone+'</td>'
+      + '<td><span class="dash-badge dash-badge--grey">'+u.service+'</span></td>'
+      + '<td>'+roleBadge(u.role)+'</td>'
+      + '<td style="font-size:.82rem;color:var(--warm-grey)">'+u.joined+'</td>'
+      + '<td><button class="dash-btn dash-btn--secondary dash-btn--sm" onclick="showToast(\'Feature coming with Supabase integration.\',\'info\')">Edit</button></td>'
+      + '</tr>';
+  }).join('');
+}
+
+function filterUsers(q) {
+  var lq = q.toLowerCase();
+  filtered = mockUsers.filter(function(u){ return !lq || u.name.toLowerCase().indexOf(lq)>-1 || u.email.toLowerCase().indexOf(lq)>-1; });
+  renderUsers();
+}
+
+function filterUsersByRole(role) {
+  filtered = role==='all' ? mockUsers.slice() : mockUsers.filter(function(u){return u.role===role;});
+  renderUsers();
+}
+
+var toastTimer;
+function showToast(msg, type) {
+  var t = document.getElementById('dashToast');
+  t.textContent = msg;
+  t.className = 'dash-toast show dash-toast--'+(type||'info');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){t.classList.remove('show');}, 3000);
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  renderUsers();
+  document.getElementById('dashMenuToggle').addEventListener('click', function(){
+    document.getElementById('dashSidebar').classList.toggle('open');
+  });
+});
+</script>
+</body>
+</html>

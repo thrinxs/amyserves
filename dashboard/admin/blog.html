@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Admin | AmyServes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/main.css" />
+  <link rel="stylesheet" href="../../css/dashboard.css" />
+</head>
+<body>
+<div class="dash-page">
+  <div id="dashSidebarOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:99"></div>
+
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="dash-sidebar-logo">
+      <img src="../../assets/images/logos/amyserves.png" alt="AmyServes" />
+      <span class="dash-sidebar-role">Admin Portal</span>
+    </div>
+    <nav class="dash-nav">
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Overview</span>
+        <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Operations</span>
+        <a href="messages.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Messages</a>
+        <a href="requests.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>Service Requests</a>
+        <a href="users.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Users</a>
+        <a href="team.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Team</a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Content</span>
+        <a href="blog.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Blog</a>
+        <a href="content.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>Content</a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">System</span>
+        <a href="settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</a>
+        <a href="../../index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Back to Website</a>
+      </div>
+    </nav>
+    <div class="dash-sidebar-footer">
+      <div class="dash-user-chip">
+        <div class="dash-user-avatar">CA</div>
+        <div><div class="dash-user-name">Chiamaka (Amy)</div><div class="dash-user-role">Administrator</div></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="dash-main">
+    <header class="dash-topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="dash-menu-toggle" id="dashMenuToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+        <span class="dash-topbar-title">Blog Management</span>
+      </div>
+      <div class="dash-topbar-actions">
+        <a href="../../blog.html" target="_blank" class="dash-btn dash-btn--secondary dash-btn--sm">View Live Blog →</a>
+        <button class="dash-btn dash-btn--primary dash-btn--sm" onclick="openNewPostModal()">+ New Post</button>
+      </div>
+    </header>
+
+    <div class="dash-content">
+      <div class="dash-page-header">
+        <h1>Blog Posts</h1>
+        <p>Manage all published and draft articles. Editing and publishing connects to your blog data in Phase 5.</p>
+      </div>
+
+      <div class="dash-card">
+        <div class="dash-table-wrap">
+          <table class="dash-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Author</th>
+                <th>Date</th>
+                <th>Likes</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="blogTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- New Post Modal -->
+<div class="dash-modal-overlay" id="newPostModal">
+  <div class="dash-modal" style="max-width:600px">
+    <div class="dash-modal-header">
+      <h3>New Blog Post</h3>
+      <button class="dash-modal-close" onclick="closeNewPostModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="dash-modal-body">
+      <div class="dash-form-group"><label>Post Title</label><input type="text" placeholder="Article title…" /></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="dash-form-group"><label>Category</label>
+          <select><option>HR & People</option><option>Cleaning & Hygiene</option><option>Business Growth</option><option>Compliance & Legal</option></select>
+        </div>
+        <div class="dash-form-group"><label>Author</label><input type="text" value="Chiamaka (Amy)" /></div>
+      </div>
+      <div class="dash-form-group"><label>Content (HTML)</label><textarea rows="8" placeholder="Article content goes here…"></textarea></div>
+      <p style="font-size:.82rem;color:var(--warm-grey);margin-top:8px">Full rich-text editor will be available in Phase 5 with Supabase integration.</p>
+    </div>
+    <div class="dash-modal-footer">
+      <button class="dash-btn dash-btn--secondary" onclick="closeNewPostModal()">Cancel</button>
+      <button class="dash-btn dash-btn--primary" onclick="showToast('Post saved as draft. Publishing requires Supabase.','info');closeNewPostModal()">Save Draft</button>
+    </div>
+  </div>
+</div>
+
+<div class="dash-toast" id="dashToast"></div>
+
+<script>
+var posts = [
+  { title: 'Why Nigerian SMEs Keep Getting HR Wrong', category: 'HR & People', author: 'Chiamaka (Amy)', date: 'Mar 20, 2026', likes: 47, status: 'published' },
+  { title: 'The Hidden Cost of a Dirty Office', category: 'Cleaning & Hygiene', author: 'Operations Team', date: 'Mar 15, 2026', likes: 31, status: 'published' },
+  { title: 'Scaling an SME in Nigeria: 5 Operational Gaps', category: 'Business Growth', author: 'Chiamaka (Amy)', date: 'Mar 10, 2026', likes: 58, status: 'published' },
+  { title: 'CAC Registration, PAYE & NHF: Compliance Checklist', category: 'Compliance & Legal', author: 'HR Lead', date: 'Mar 5, 2026', likes: 24, status: 'published' },
+  { title: 'How to Write an Employment Contract', category: 'HR & People', author: 'HR Lead', date: 'Feb 28, 2026', likes: 39, status: 'published' },
+  { title: 'Post-Construction Cleaning Before Handover', category: 'Cleaning & Hygiene', author: 'Operations Team', date: 'Feb 20, 2026', likes: 19, status: 'published' }
+];
+
+var catMap = { 'HR & People': 'purple', 'Cleaning & Hygiene': 'teal', 'Business Growth': 'gold', 'Compliance & Legal': 'navy' };
+
+function renderBlog() {
+  var tbody = document.getElementById('blogTableBody');
+  tbody.innerHTML = posts.map(function(p, i) {
+    return '<tr>'
+      + '<td style="max-width:280px"><strong style="font-size:.875rem">'+p.title+'</strong></td>'
+      + '<td><span class="dash-badge dash-badge--'+(catMap[p.category]||'grey')+'">'+p.category+'</span></td>'
+      + '<td style="font-size:.82rem">'+p.author+'</td>'
+      + '<td style="font-size:.82rem;color:var(--warm-grey)">'+p.date+'</td>'
+      + '<td style="font-size:.82rem">♥ '+p.likes+'</td>'
+      + '<td><span class="dash-badge dash-badge--green">Published</span></td>'
+      + '<td><div style="display:flex;gap:6px">'
+        + '<a href="../../blog-post.html?id='+(i+1)+'" target="_blank" class="dash-btn dash-btn--secondary dash-btn--sm">View</a>'
+        + '<button class="dash-btn dash-btn--secondary dash-btn--sm" onclick="showToast(\'Edit mode coming in Phase 5.\',\'info\')">Edit</button>'
+      + '</div></td>'
+      + '</tr>';
+  }).join('');
+}
+
+function openNewPostModal() { document.getElementById('newPostModal').classList.add('open'); }
+function closeNewPostModal() { document.getElementById('newPostModal').classList.remove('open'); }
+
+var toastTimer;
+function showToast(msg, type) {
+  var t = document.getElementById('dashToast');
+  t.textContent = msg;
+  t.className = 'dash-toast show dash-toast--'+(type||'info');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){t.classList.remove('show');}, 3000);
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  renderBlog();
+  document.getElementById('dashMenuToggle').addEventListener('click', function(){
+    document.getElementById('dashSidebar').classList.toggle('open');
+  });
+});
+</script>
+</body>
+</html>

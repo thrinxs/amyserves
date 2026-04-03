@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Messages — Admin | AmyServes</title>
+  <title>Service Requests — Admin | AmyServes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -30,14 +30,14 @@
       </div>
       <div class="dash-nav-section">
         <span class="dash-nav-label">Operations</span>
-        <a href="messages.html" class="active">
+        <a href="messages.html">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           Messages
-          <span class="dash-nav-badge dash-nav-badge--red">2</span>
         </a>
-        <a href="requests.html">
+        <a href="requests.html" class="active">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
           Service Requests
+          <span class="dash-nav-badge">3</span>
         </a>
         <a href="users.html">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
@@ -88,13 +88,13 @@
         <button class="dash-menu-toggle" id="dashMenuToggle">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
-        <span class="dash-topbar-title">Messages</span>
+        <span class="dash-topbar-title">Service Requests</span>
       </div>
       <div class="dash-topbar-actions">
-        <a href="../../index.html" class="dash-topbar-btn" title="View website">
+        <a href="../../index.html" class="dash-topbar-btn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         </a>
-        <a href="../../auth/login.html" class="dash-topbar-btn" title="Sign out">
+        <a href="../../auth/login.html" class="dash-topbar-btn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
         </a>
       </div>
@@ -102,68 +102,64 @@
 
     <div class="dash-content">
       <div class="dash-page-header">
-        <h1>Messages</h1>
-        <p>Client and enquiry messages from the website contact form.</p>
+        <h1>Service Requests</h1>
+        <p>All quote requests and service enquiries submitted through the website.</p>
       </div>
 
-      <!-- Filter bar -->
       <div class="dash-filter-bar">
         <div class="dash-search-wrap">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          <input type="text" class="dash-search-input" id="msgSearch" placeholder="Search messages…" />
+          <input type="text" class="dash-search-input" id="reqSearch" placeholder="Search by client, company or service…" />
         </div>
-        <select class="dash-filter-select" id="msgBrandFilter">
+        <select class="dash-filter-select" id="reqStatusFilter">
+          <option value="all">All statuses</option>
+          <option value="pending">Pending</option>
+          <option value="in-progress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+        <select class="dash-filter-select" id="reqBrandFilter">
           <option value="all">All brands</option>
           <option value="puraklen">Pura-Kle'N</option>
           <option value="yourfirm">Yourfirm</option>
         </select>
       </div>
 
-      <!-- Two-pane layout -->
-      <div class="dash-card" style="display:grid;grid-template-columns:340px 1fr;min-height:500px">
-        <div style="border-right:1px solid #e8e4de;overflow-y:auto">
-          <div class="dash-msg-list" id="messagesList">
-            <div style="padding:24px;color:var(--warm-grey);font-size:.875rem">Loading…</div>
-          </div>
-        </div>
-        <div id="messageDetail" style="overflow-y:auto">
-          <div class="dash-empty" style="padding-top:80px">
-            <span>📩</span>
-            <h4>Select a message</h4>
-            <p>Click any message on the left to read it here.</p>
-          </div>
+      <div class="dash-card">
+        <div class="dash-table-wrap">
+          <table class="dash-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Client</th>
+                <th>Service</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="requestsTableBody">
+              <tr><td colspan="7" style="text-align:center;padding:24px;color:var(--warm-grey)">Loading…</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Reply Modal -->
-<div class="dash-modal-overlay" id="replyModal">
-  <div class="dash-modal">
+<!-- Request Detail Modal -->
+<div class="dash-modal-overlay" id="requestDetailModal">
+  <div class="dash-modal" style="max-width:620px">
     <div class="dash-modal-header">
-      <h3>Reply to Message</h3>
-      <button class="dash-modal-close" onclick="closeReplyModal()">
+      <h3>Request Details</h3>
+      <button class="dash-modal-close" onclick="closeRequestModal()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
-    <div class="dash-modal-body">
-      <div class="dash-form-group">
-        <label>To</label>
-        <input type="text" id="replyTo" readonly style="background:#f8f7f4" />
-      </div>
-      <div class="dash-form-group">
-        <label>Subject</label>
-        <input type="text" id="replySubject" />
-      </div>
-      <div class="dash-form-group">
-        <label>Message</label>
-        <textarea id="replyBody" placeholder="Write your reply…" rows="6"></textarea>
-      </div>
-    </div>
+    <div class="dash-modal-body" id="requestDetailBody"></div>
     <div class="dash-modal-footer">
-      <button class="dash-btn dash-btn--secondary" onclick="closeReplyModal()">Cancel</button>
-      <button class="dash-btn dash-btn--primary" onclick="sendReply()">Send Reply</button>
+      <button class="dash-btn dash-btn--secondary" onclick="closeRequestModal()">Close</button>
     </div>
   </div>
 </div>

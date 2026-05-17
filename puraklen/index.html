@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Pura-Kle'N — Professional cleaning services in Abuja. Office cleaning, deep cleaning, post-construction, fumigation, and residential cleaning by trained, vetted teams."
+  />
+  <meta
+    name="keywords"
+    content="cleaning services Abuja, office cleaning Abuja, deep cleaning Nigeria, fumigation Abuja, Pura-Kle'N, AmyServes"
+  />
+  <title>Pura-Kle'N — Professional Cleaning Services | AmyServes Abuja</title>n<link rel="icon" type="image/png" href="assets/images/favicon.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/puraklen.css" />
+
+<link rel="icon" href="/assets/images/favicon.png?v=1" />n<link rel="apple-touch-icon" href="/assets/images/favicon.png" />n<meta name="theme-color" content="#1A3C5E" />n</head>
+
+<body>
+
+  <!-- ── NAVBAR ──────────────────────────────────────── -->
+  <nav class="navbar navbar--teal" id="navbar">
+
+    <!-- Row 1: Logo + Links + CTA + Hamburger -->
+    <div class="container">
+
+            <!-- Logo: Pura-Kle'N + back link -->
+            <div class="navbar-logo-group">
+              <a href="index.html" class="navbar-logo">
+                <img src="../assets/images/logos/puraklen.png" alt="Pura-Kle'N" />
+              </a>
+              <a href="../index.html" class="navbar-back-link">
+                ← AmyServes
+              </a>
+            </div>
+
+           <!-- Desktop Links -->
+           <ul class="navbar-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#process">How It Works</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+          </ul>
+
+      <!-- Get a Quote button -->
+      <div class="navbar-cta navbar-cta--top">
+        <a href="#get-a-quote" class="btn-getstarted">
+          <span>Get a Quote</span> →
+        </a>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="navbar-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+
+    <!-- Row 2: Auth (desktop only, right-aligned) -->
+    <div class="navbar-auth-row">
+      <div class="container">
+        <div class="navbar-auth-wrap">
+
+          <!-- Loading skeleton -->
+          <div class="navbar-auth-loading" id="navAuthLoading">
+            <div class="nav-auth-skeleton"></div>
+          </div>
+
+          <!-- Logged OUT -->
+          <div class="navbar-auth" id="navAuthOut" style="display:none">
+            <a href="../auth/login.html" class="btn-nav-login">Sign In</a>
+            <a href="../auth/signup.html" class="btn-nav-signup">Sign Up</a>
+          </div>
+
+          <!-- Logged IN -->
+          <div class="navbar-auth" id="navAuthIn" style="display:none">
+            <button class="nav-profile-btn" id="navProfileBtn">
+              <div class="nav-profile-avatar" id="navProfileAvatar">--</div>
+              <svg width="10" height="7" viewBox="0 0 10 7" fill="none">
+                <path d="M1 1l4 4 4-4" stroke="currentColor"
+                      stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </button>
+            <div class="nav-profile-dropdown" id="navProfileDropdown">
+              <div class="nav-profile-info">
+                <div class="nav-profile-name" id="navProfileName">User</div>
+                <div class="nav-profile-email" id="navProfileEmail"></div>
+              </div>
+              <div class="nav-profile-divider"></div>
+              <a href="../dashboard/client/index.html" class="nav-profile-link">
+                My Dashboard
+              </a>
+              <a href="../dashboard/client/profile.html" class="nav-profile-link">
+                My Profile
+              </a>
+              <div class="nav-profile-divider"></div>
+              <button class="nav-profile-signout" id="navSignOutBtn">
+                Sign Out
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="navbar-mobile" id="navMobile">
+      <div class="navbar-mobile-inner">
+        <a href="#hero" class="nav-link">Home</a>
+        <a href="#why-us" class="nav-link">Why Us</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#process" class="nav-link">How It Works</a>
+        <a href="#testimonials" class="nav-link">Reviews</a>
+        <a href="../index.html" class="nav-link">← Back to AmyServes</a>
+        <div class="navbar-mobile-divider"></div>
+        <div class="navbar-mobile-actions">
+          <a
+            href="https://wa.me/09098104610?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20Pura-Kle%27N%20cleaning%20services"
+            target="_blank"
+            class="btn-whatsapp-mobile"
+          >
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            WhatsApp Us
+          </a>
+          <a href="#get-a-quote" class="btn-getstarted-mobile">
+            Get a Quote →
+          </a>
+        </div>
+        <div class="navbar-mobile-divider"></div>
+
+        <!-- Mobile: Logged OUT -->
+        <div class="navbar-mobile-auth" id="mobileAuthOut" style="display:flex">
+          <a href="../auth/login.html" class="btn-mobile-login">Sign In</a>
+          <a href="../auth/signup.html" class="btn-mobile-signup">Sign Up</a>
+        </div>
+
+        <!-- Mobile: Logged IN -->
+        <div class="navbar-mobile-auth" id="mobileAuthIn" style="display:none">
+          <a href="../dashboard/client/index.html" class="btn-mobile-dashboard">
+            My Dashboard →
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </nav>
+
+
+  <!-- ── HERO ────────────────────────────────────────── -->
+  <section class="pk-hero" id="hero">
+    <div class="pk-slideshow">
+      <div class="pk-slide active" style="background-image:url('https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=1400&q=80')"></div>
+      <div class="pk-slide" style="background-image:url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1400&q=80')"></div>
+      <div class="pk-slide" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=80')"></div>
+      <div class="pk-slide" style="background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80')"></div>
+      <div class="pk-hero-overlay"></div>
+    </div>
+
+    <div class="container">
+      <div class="pk-hero-content">
+        <div class="pk-hero-left">
+          <div class="pk-hero-badge">
+            <img src="../assets/images/logos/puraklen.png" alt="Pura-Kle'N" class="pk-badge-logo" />
+            <span>Professional Cleaning Services in Nigeria</span>
+          </div>
+          <h1 class="pk-hero-title">
+            Spotless Spaces.<br>
+            <span class="pk-hero-accent">Reliable Teams.</span><br>
+            Every Time.
+          </h1>
+          <p class="pk-hero-subtitle">
+            Trained, vetted, and uniformed cleaning professionals serving
+            offices, homes, and commercial spaces nationwide.
+            When we leave, it shows.
+          </p>
+          <div class="pk-hero-actions">
+            <a href="#get-a-quote" class="pk-btn pk-btn-teal">Get a Free Quote</a>
+            <a
+              href="https://wa.me/09098104610?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20Pura-Kle%27N%20cleaning%20services"
+              target="_blank"
+              class="pk-btn pk-btn-ghost"
+            >
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              </svg>
+              Chat on WhatsApp
+            </a>
+          </div>
+          <div class="pk-hero-stats">
+            <div class="pk-stat">
+              <span class="pk-stat-num" data-target="500">0</span>
+              <span class="pk-stat-plus">+</span>
+              <span class="pk-stat-label">Cleans Done</span>
+            </div>
+            <div class="pk-stat-divider"></div>
+            <div class="pk-stat">
+              <span class="pk-stat-num" data-target="4">0</span>
+              <span class="pk-stat-plus">+</span>
+              <span class="pk-stat-label">Years Active</span>
+            </div>
+            <div class="pk-stat-divider"></div>
+            <div class="pk-stat">
+              <span class="pk-stat-num" data-target="100">0</span>
+              <span class="pk-stat-plus">%</span>
+              <span class="pk-stat-label">Professional Staff</span>
+            </div>
+          </div>
+        </div>
+        <div class="pk-dots">
+          <span class="pk-dot active" data-index="0"></span>
+          <span class="pk-dot" data-index="1"></span>
+          <span class="pk-dot" data-index="2"></span>
+          <span class="pk-dot" data-index="3"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── WHY PURA-KLE'N ──────────────────────────────── -->
+  <section class="pk-section pk-section-light" id="why-us">
+    <div class="container">
+      <div class="pk-section-header">
+        <span class="pk-eyebrow">Why Pura-Kle'N</span>
+        <h2>Cleaning You Can Actually Trust</h2>
+        <p>We know what it takes to keep a professional environment spotless — and what unreliable cleaning costs your business.</p>
+      </div>
+      <div class="pk-why-grid">
+        <div class="pk-why-card">
+          <div class="pk-why-icon">✅</div>
+          <h4>Vetted & Uniformed Staff</h4>
+          <p>Every operative is background-checked, trained to our standard, and arrives in uniform with ID.</p>
+        </div>
+        <div class="pk-why-card">
+          <div class="pk-why-icon">🕐</div>
+          <h4>Always On Time</h4>
+          <p>Punctuality is non-negotiable. We show up when we say we will — and don't leave until the job is done.</p>
+        </div>
+        <div class="pk-why-card">
+          <div class="pk-why-icon">📋</div>
+          <h4>Supervisor on Every Job</h4>
+          <p>Each engagement has a dedicated site supervisor. Quality is checked — not just assumed.</p>
+        </div>
+        <div class="pk-why-card">
+          <div class="pk-why-icon">🔄</div>
+          <h4>Flexible Scheduling</h4>
+          <p>Daily, weekly, fortnightly, monthly, or one-time. We work around your business hours.</p>
+        </div>
+        <div class="pk-why-card">
+          <div class="pk-why-icon">🧪</div>
+          <h4>Professional-Grade Products</h4>
+          <p>Industry-standard, safe cleaning agents appropriate for each surface and environment.</p>
+        </div>
+        <div class="pk-why-card">
+          <div class="pk-why-icon">📞</div>
+          <h4>Responsive Service</h4>
+          <p>Issues are rare. But when you call, we answer — within the same business day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── SERVICES ─────────────────────────────────────── -->
+  <section class="pk-section pk-section-cream" id="services">
+    <div class="container">
+      <div class="pk-section-header">
+        <span class="pk-eyebrow">What We Offer</span>
+        <h2>Our Cleaning Services</h2>
+        <p>From daily office maintenance to one-off deep cleans — we cover every type of space.</p>
+      </div>
+      <div class="pk-services-grid">
+
+        <div class="pk-svc-card">
+          <div class="pk-svc-image">
+            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=700&q=80" alt="Standard Cleaning" loading="lazy" />
+            <div class="pk-svc-image-overlay"></div>
+          </div>
+          <div class="pk-svc-body">
+            <h4>Standard Cleaning Service</h4>
+            <p>Routine cleaning for homes, offices, and commercial spaces — keeping your environment fresh and hygienic.</p>
+          </div>
+          <button class="pk-svc-toggle" onclick="toggleCard(this.closest('.pk-svc-card'))" aria-expanded="false">
+            <span class="pk-toggle-label">See what's included</span>
+            <span class="pk-toggle-icon">+</span>
+          </button>
+          <div class="pk-svc-drawer">
+            <div class="pk-svc-drawer-inner">
+              <p class="pk-includes-label">What's included</p>
+              <ul class="pk-includes-list">
+                <li>Dusting of surfaces, furniture, and fixtures</li>
+                <li>Floor sweeping, mopping, and vacuuming</li>
+                <li>Kitchen surface cleaning and sink wash</li>
+                <li>Bathroom cleaning and sanitisation</li>
+                <li>Trash collection and disposal</li>
+                <li>Flexible scheduling — daily, weekly, or monthly</li>
+              </ul>
+              <div class="pk-svc-cta">
+                <a href="#get-a-quote" class="pk-svc-btn" onclick="preSelect('Standard Cleaning Service')">Get a Quote</a>
+                <a href="https://wa.me/09098104610?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20Standard%20Cleaning" target="_blank" class="pk-svc-btn pk-svc-btn-ghost">WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pk-svc-card">
+          <div class="pk-svc-image">
+            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=80" alt="Deep Cleaning" loading="lazy" />
+            <div class="pk-svc-image-overlay"></div>
+          </div>
+          <div class="pk-svc-body">
+            <h4>Deep Cleaning Service</h4>
+            <p>An intensive, top-to-bottom cleaning targeting hidden dirt and buildup — perfect for periodic resets.</p>
+          </div>
+          <button class="pk-svc-toggle" onclick="toggleCard(this.closest('.pk-svc-card'))" aria-expanded="false">
+            <span class="pk-toggle-label">See what's included</span>
+            <span class="pk-toggle-icon">+</span>
+          </button>
+          <div class="pk-svc-drawer">
+            <div class="pk-svc-drawer-inner">
+              <p class="pk-includes-label">What's included</p>
+              <ul class="pk-includes-list">
+                <li>Full scrub-down of all surfaces and fixtures</li>
+                <li>Behind and under furniture cleaning</li>
+                <li>Kitchen appliances inside and out</li>
+                <li>Tile, grout, and stain removal</li>
+                <li>Ceiling fans, vents, and fittings</li>
+                <li>Ideal for homes, offices, and commercial spaces</li>
+              </ul>
+              <div class="pk-svc-cta">
+                <a href="#get-a-quote" class="pk-svc-btn" onclick="preSelect('Deep Cleaning Service')">Get a Quote</a>
+                <a href="https://wa.me/09098104610?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20Deep%20Cleaning" target="_blank" class="pk-svc-btn pk-svc-btn-ghost">WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pk-svc-card">
+          <div class="pk-svc-image">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=80" alt="Moving Cleaning" loading="lazy" />
+            <div class="pk-svc-image-overlay"></div>
+          </div>
+          <div class="pk-svc-body">
+            <h4>Moving Cleaning Service</h4>
+            <p>Detailed cleaning for move-ins and move-outs — spaces spotless and ready for the next occupant.</p>
+          </div>
+          <button class="pk-svc-toggle" onclick="toggleCard(this.closest('.pk-svc-card'))" aria-expanded="false">
+            <span class="pk-toggle-label">See what's included</span>
+            <span class="pk-toggle-icon">+</span>
+          </button>
+          <div class="pk-svc-drawer">
+            <div class="pk-svc-drawer-inner">
+              <p class="pk-includes-label">What's included</p>
+              <ul class="pk-includes-list">
+                <li>Complete empty-space deep cleaning</li>
+                <li>Cabinets, wardrobes, and storage areas</li>
+                <li>Kitchen and bathroom sanitisation</li>
+                <li>Wall spot cleaning and stain removal</li>
+                <li>Floor polishing and finishing</li>
+                <li>Move-in ready presentation</li>
+              </ul>
+              <div class="pk-svc-cta">
+                <a href="#get-a-quote" class="pk-svc-btn" onclick="preSelect('Moving Cleaning Service')">Get a Quote</a>
+                <a href="https://wa.me/09098104610?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20Moving%20Cleaning" target="_blank" class="pk-svc-btn pk-svc-btn-ghost">WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pk-svc-card">
+          <div class="pk-svc-image">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80" alt="Post-Construction" loading="lazy" />
+            <div class="pk-svc-image-overlay"></div>
+          </div>
+          <div class="pk-svc-body">
+            <h4>Post-Construction Cleaning</h4>
+            <p>Specialised cleaning after construction or renovation — removing dust, debris, and residue.</p>
+          </div>
+          <button class="pk-svc-toggle" onclick="toggleCard(this.closest('.pk-svc-card'))" aria-expanded="false">
+            <span class="pk-toggle-label">See what's included</span>
+            <span class="pk-toggle-icon">+</span>
+          </button>
+          <div class="pk-svc-drawer">
+            <div class="pk-svc-drawer-inner">
+              <p class="pk-includes-label">What's included</p>
+              <ul class="pk-includes-list">
+                <li>Dust and debris removal throughout</li>
+                <li>Paint, plaster, and adhesive cleanup</li>
+                <li>Window, glass, and frame polishing</li>
+                <li>Floor scrubbing and finishing</li>
+                <li>Fixture and fitting cleaning</li>
+                <li>Final inspection-ready detailing</li>
+              </ul>
+              <div class="pk-svc-cta">
+                <a href="#get-a-quote" class="pk-svc-btn" onclick="preSelect('Post-Construction Cleaning')">Get a Quote</a>
+                <a href="https://wa.me/09098104610?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20Post-Construction%20Cleaning" target="_blank" class="pk-svc-btn pk-svc-btn-ghost">WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pk-svc-card">
+          <div class="pk-svc-image">
+            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=700&q=80" alt="Retainer Service" loading="lazy" />
+            <div class="pk-svc-image-overlay"></div>
+          </div>
+          <div class="pk-svc-body">
+            <h4>Retainer Service</h4>
+            <p>A dedicated cleaning team on contract — ideal for businesses requiring consistent maintenance.</p>
+          </div>
+          <button class="pk-svc-toggle" onclick="toggleCard(this.closest('.pk-svc-card'))" aria-expanded="false">
+            <span class="pk-toggle-label">See what's included</span>
+            <span class="pk-toggle-icon">+</span>
+          </button>
+          <div class="pk-svc-drawer">
+            <div class="pk-svc-drawer-inner">
+              <p class="pk-includes-label">What's included</p>
+              <ul class="pk-includes-list">
+                <li>Dedicated cleaning staff assigned to your site</li>
+                <li>Custom cleaning schedule and checklist</li>
+                <li>Regular supervision and quality control</li>
+                <li>All cleaning supplies and equipment provided</li>
+                <li>Priority service and rapid response support</li>
+                <li>Ideal for offices, estates, and facilities</li>
+              </ul>
+              <div class="pk-svc-cta">
+                <a href="#get-a-quote" class="pk-svc-btn" onclick="preSelect('Retainer Service')">Get a Quote</a>
+                <a href="https://wa.me/09098104610?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20Retainer%20Service" target="_blank" class="pk-svc-btn pk-svc-btn-ghost">WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pk-svc-card">
+          <div class="pk-svc-image">
+            <img src="https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=700&q=80" alt="Laundry Service" loading="lazy" />
+            <div class="pk-svc-image-overlay"></div>
+          </div>
+          <div class="pk-svc-body">
+            <h4>Laundry Service</h4>
+            <p>Convenient and professional laundry solutions — washing, drying, and ironing handled with care.</p>
+          </div>
+          <button class="pk-svc-toggle" onclick="toggleCard(this.closest('.pk-svc-card'))" aria-expanded="false">
+            <span class="pk-toggle-label">See what's included</span>
+            <span class="pk-toggle-icon">+</span>
+          </button>
+          <div class="pk-svc-drawer">
+            <div class="pk-svc-drawer-inner">
+              <p class="pk-includes-label">What's included</p>
+              <ul class="pk-includes-list">
+                <li>Washing, drying, and folding</li>
+                <li>Ironing and garment finishing</li>
+                <li>Sorting by fabric type and colour</li>
+                <li>Care for delicate and special fabrics</li>
+                <li>Pickup and delivery options available</li>
+                <li>Suitable for homes and businesses</li>
+              </ul>
+              <div class="pk-svc-cta">
+                <a href="#get-a-quote" class="pk-svc-btn" onclick="preSelect('Laundry Service')">Get a Quote</a>
+                <a href="https://wa.me/09098104610?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20Laundry%20Service" target="_blank" class="pk-svc-btn pk-svc-btn-ghost">WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pk-svc-card">
+          <div class="pk-svc-image">
+            <img src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=700&q=80" alt="Fumigation" loading="lazy" />
+            <div class="pk-svc-image-overlay"></div>
+          </div>
+          <div class="pk-svc-body">
+            <h4>Fumigation Service</h4>
+            <p>Effective pest control for homes, offices, and commercial spaces — safe and professionally handled.</p>
+          </div>
+          <button class="pk-svc-toggle" onclick="toggleCard(this.closest('.pk-svc-card'))" aria-expanded="false">
+            <span class="pk-toggle-label">See what's included</span>
+            <span class="pk-toggle-icon">+</span>
+          </button>
+          <div class="pk-svc-drawer">
+            <div class="pk-svc-drawer-inner">
+              <p class="pk-includes-label">What's included</p>
+              <ul class="pk-includes-list">
+                <li>Site inspection and pest assessment</li>
+                <li>Cockroach, rodent, and insect control</li>
+                <li>Safe and approved treatment methods</li>
+                <li>Full property coverage</li>
+                <li>Post-treatment safety guidance</li>
+                <li>Follow-up service if required</li>
+              </ul>
+              <div class="pk-svc-cta">
+                <a href="#get-a-quote" class="pk-svc-btn" onclick="preSelect('Fumigation Service')">Get a Quote</a>
+                <a href="https://wa.me/09098104610?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20Fumigation" target="_blank" class="pk-svc-btn pk-svc-btn-ghost">WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── HOW IT WORKS ─────────────────────────────────── -->
+  <section class="pk-section pk-section-dark" id="process">
+    <div class="container">
+      <div class="pk-section-header pk-section-header--light">
+        <span class="pk-eyebrow pk-eyebrow--gold">How It Works</span>
+        <h2 class="text-white">From Enquiry to Spotless — In 4 Steps</h2>
+        <p class="text-muted">Simple. Professional. No surprises.</p>
+      </div>
+      <div class="pk-process-grid">
+        <div class="pk-process-step">
+          <div class="pk-process-num">01</div>
+          <div class="pk-process-content">
+            <h4>You Reach Out</h4>
+            <p>Fill in our quote form or send us a WhatsApp message. Takes under 2 minutes.</p>
+          </div>
+        </div>
+        <div class="pk-process-connector"></div>
+        <div class="pk-process-step">
+          <div class="pk-process-num">02</div>
+          <div class="pk-process-content">
+            <h4>We Assess & Quote</h4>
+            <p>We respond within 24 hours with a clear, itemised quote — no hidden charges.</p>
+            <p>See <a href="javascript:void(0)" onclick="openTerms()">Terms & Conditions</a></p>
+          </div>
+        </div>
+        <div class="pk-process-connector"></div>
+        <div class="pk-process-step">
+          <div class="pk-process-num">03</div>
+          <div class="pk-process-content">
+            <h4>We Show Up</h4>
+            <p>Our team arrives uniformed, equipped, and on time. You don't have to manage anything.</p>
+          </div>
+        </div>
+        <div class="pk-process-connector"></div>
+        <div class="pk-process-step">
+          <div class="pk-process-num">04</div>
+          <div class="pk-process-content">
+            <h4>You Inspect & Approve</h4>
+            <p>We do a walkthrough with you before we leave. Your satisfaction is the sign-off.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── OUR CLIENTS ──────────────────────────────────── -->
+  <section class="pk-section pk-section-cream" id="clients">
+    <div class="container">
+      <div class="pk-section-header">
+        <span class="pk-eyebrow">Our Clients</span>
+        <h2>Trusted by Businesses & Organizations</h2>
+        <p>Serving corporate, industrial, and residential clients across Nigeria</p>
+      </div>
+      <div class="pk-clients-grid">
+        <div class="pk-client">C & G Vertex Limited</div>
+        <div class="pk-client">Melgo Integrated Services Ltd</div>
+        <div class="pk-client">Silgan International Nigeria Ltd</div>
+        <div class="pk-client">Sandtech International Services Ltd</div>
+        <div class="pk-client">Emuddy Global Limited</div>
+        <div class="pk-client">Crystal Urban and Rural Projects Ltd</div>
+        <div class="pk-client">Alvij International Nigeria Limited</div>
+        <div class="pk-client">Jumatech Innovations Limited</div>
+        <div class="pk-client">Clearbridge Investments Limited</div>
+        <div class="pk-client">Sterling Engineering Consultancy Services Ltd</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── TESTIMONIALS ─────────────────────────────────── -->
+  <section class="pk-section pk-section-light" id="testimonials">
+    <div class="container">
+      <div class="pk-section-header">
+        <span class="pk-eyebrow">What Clients Say</span>
+        <h2>Results Speak for Themselves</h2>
+      </div>
+      <div class="pk-testimonials-grid">
+        <div class="pk-testimonial">
+          <div class="pk-stars">★★★★★</div>
+          <p>"The Pura-Kle'N team transformed our office. Always on time, always thorough — the supervisor makes sure the standard doesn't slip."</p>
+          <div class="pk-testimonial-author">
+            <div class="pk-avatar" style="background:var(--teal)">MB</div>
+            <div>
+              <strong>Mr. Bassey</strong>
+              <span>CEO, Tech Firm · Abuja</span>
+            </div>
+          </div>
+        </div>
+        <div class="pk-testimonial pk-testimonial--featured">
+          <div class="pk-stars">★★★★★</div>
+          <p>"Post-construction clean after our office renovation was handled perfectly. The level of detail — getting into every corner, every fixture — was impressive."</p>
+          <div class="pk-testimonial-author">
+            <div class="pk-avatar" style="background:var(--navy)">AO</div>
+            <div>
+              <strong>Adaeze Okafor</strong>
+              <span>Operations Manager · Maitama, Abuja</span>
+            </div>
+          </div>
+        </div>
+        <div class="pk-testimonial">
+          <div class="pk-stars">★★★★★</div>
+          <p>"We've been on a monthly retainer for over a year. Reliable, professional, and always responsive. The team feels like part of our building now."</p>
+          <div class="pk-testimonial-author">
+            <div class="pk-avatar" style="background:var(--gold)">FK</div>
+            <div>
+              <strong>Funke Kola</strong>
+              <span>Facilities Manager · Wuse II, Abuja</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── RETAINER BANNER ──────────────────────────────── -->
+  <div class="pk-retainer-banner">
+    <div class="container">
+      <div class="pk-retainer-inner">
+        <div>
+          <span class="pk-eyebrow pk-eyebrow--gold">Corporate Retainer</span>
+          <h2>Need Regular Cleaning?<br>Get on a Monthly Retainer.</h2>
+          <p>One invoice. One contact. Consistent standard — every visit.</p>
+          <div class="pk-retainer-badges">
+            <span class="pk-rbadge">✓ Priority scheduling</span>
+            <span class="pk-rbadge">✓ Dedicated supervisor</span>
+            <span class="pk-rbadge">✓ One monthly invoice</span>
+            <span class="pk-rbadge">✓ Discounted rates</span>
+          </div>
+        </div>
+        <div class="pk-retainer-cta">
+          <a href="#get-a-quote" class="pk-btn pk-btn-gold">Ask About Retainers</a>
+          <a
+            href="https://wa.me/09098104610?text=Hi%2C%20I%27d%20like%20to%20know%20about%20your%20cleaning%20retainer%20packages"
+            target="_blank"
+            class="pk-btn pk-btn-ghost-light"
+          >Chat on WhatsApp</a>
+          <span class="pk-retainer-note">We respond within 24 hours</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── QUOTE FORM ───────────────────────────────────── -->
+  <section class="pk-quote-section" id="get-a-quote">
+    <div class="container">
+      <div class="pk-quote-header">
+        <span class="pk-eyebrow pk-eyebrow--gold">Get a Quote</span>
+        <h2 class="text-white">Tell Us About Your Space</h2>
+        <p class="text-muted">Fill in the details and we'll send you a tailored quote within 24 hours.</p>
+      </div>
+      <div class="pk-quote-card">
+
+        <!-- Success state -->
+        <div class="pk-success" id="pkSuccess">
+          <div class="pk-success-icon">✓</div>
+          <h3>Enquiry Received — Thank You!</h3>
+          <p>We'll respond within 24 hours. WhatsApp us if you need a faster response.</p>
+          <a href="https://wa.me/09098104610" target="_blank" class="pk-btn pk-btn-teal" style="margin-top:8px">
+            Open WhatsApp
+          </a>
+        </div>
+
+        <!-- Form -->
+        <form id="pkQuoteForm" action="https://formspree.io/f/xdapnwzd" method="POST">
+          <input type="hidden" name="brand" value="Pura-Kle'N — Cleaning" />
+
+          <div class="pk-form-body">
+
+            <div class="pk-form-section-title">1 — Which service do you need?</div>
+            <div class="pk-service-tags" id="pkServiceTags">
+              <span class="pk-tag" data-service="Standard Cleaning Service">🧹 Standard Cleaning</span>
+              <span class="pk-tag" data-service="Deep Cleaning Service">✨ Deep Cleaning</span>
+              <span class="pk-tag" data-service="Moving Cleaning Service">🚚 Moving Cleaning</span>
+              <span class="pk-tag" data-service="Post-Construction Cleaning">🏗️ Post-Construction</span>
+              <span class="pk-tag" data-service="Retainer Service">📅 Retainer Service</span>
+              <span class="pk-tag" data-service="Laundry Service">🧺 Laundry</span>
+              <span class="pk-tag" data-service="Fumigation Service">🛡️ Fumigation</span>
+            </div>
+            <input type="hidden" name="services_selected" id="pkServicesInput" value="" />
+
+            <div class="pk-form-section-title">2 — Your contact details</div>
+            <div class="pk-form-row pk-row-2">
+              <div class="pk-form-field">
+                <label for="pkFullName">Full name <span class="pk-req">*</span></label>
+                <input type="text" id="pkFullName" name="full_name" placeholder="Your full name" required />
+              </div>
+              <div class="pk-form-field">
+                <label for="pkPhone">Phone number <span class="pk-req">*</span></label>
+                <input type="tel" id="pkPhone" name="phone" placeholder="09098104610" required />
+              </div>
+            </div>
+            <div class="pk-form-row pk-row-2">
+              <div class="pk-form-field">
+                <label for="pkEmail">Email address <span class="pk-req">*</span></label>
+                <input type="email" id="pkEmail" name="email" placeholder="your@email.com" required />
+              </div>
+              <div class="pk-form-field">
+                <label for="pkLocation">Location / area <span class="pk-req">*</span></label>
+                <input type="text" id="pkLocation" name="location" placeholder="e.g. Maitama, Abuja" required />
+              </div>
+            </div>
+
+            <div class="pk-form-section-title">3 — About your space</div>
+            <div class="pk-form-row pk-row-3">
+              <div class="pk-form-field">
+                <label for="pkSpaceType">Space type <span class="pk-req">*</span></label>
+                <select id="pkSpaceType" name="space_type" required>
+                  <option value="" disabled selected>Select type</option>
+                  <option>Office / Corporate</option>
+                  <option>Residential Home</option>
+                  <option>Construction Site</option>
+                  <option>Event Venue</option>
+                  <option>Industrial / Warehouse</option>
+                  <option>Retail / Shop</option>
+                  <option>School / Institution</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="pk-form-field">
+                <label for="pkFrequency">Frequency</label>
+                <select id="pkFrequency" name="frequency">
+                  <option value="" disabled selected>How often?</option>
+                  <option>One-time only</option>
+                  <option>Daily</option>
+                  <option>Weekly</option>
+                  <option>Fortnightly</option>
+                  <option>Monthly</option>
+                  <option>Not sure yet</option>
+                </select>
+              </div>
+              <div class="pk-form-field">
+                <label for="pkUrgency">When do you need it?</label>
+                <select id="pkUrgency" name="urgency">
+                  <option value="" disabled selected>Timeframe</option>
+                  <option>As soon as possible</option>
+                  <option>Within 1 week</option>
+                  <option>Within 2–4 weeks</option>
+                  <option>Next month</option>
+                  <option>Just exploring</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="pk-form-section-title">4 — Briefly describe your needs</div>
+            <div class="pk-form-field" style="margin-bottom:24px">
+              <label for="pkBrief">Additional details <span class="pk-req">*</span></label>
+              <textarea
+                id="pkBrief"
+                name="brief"
+                placeholder="Describe the space — size, number of rooms, any specific requirements..."
+                required
+              ></textarea>
+            </div>
+
+            <div class="pk-form-checks">
+              <label class="pk-check-row">
+                <input type="checkbox" name="send_copy" value="Yes" checked />
+                <div class="pk-check-text">
+                  <strong>Send me a copy of this enquiry</strong>
+                  <span>A confirmation email will be sent to you</span>
+                </div>
+              </label>
+              <label class="pk-check-row">
+                <input type="checkbox" name="open_to_retainer" value="Yes" />
+                <div class="pk-check-text">
+                  <strong>I'm interested in a monthly retainer</strong>
+                  <span>Regular cleaning on a fixed schedule — one invoice</span>
+                </div>
+              </label>
+              <label class="pk-check-row">
+                <input type="checkbox" id="pkTermsCheckbox" />
+                <div class="pk-check-text">
+                  <strong>I've read the
+                    <a href="javascript:void(0)" onclick="openTerms()">
+                      Terms and Conditions
+                    </a>
+                  </strong>
+                </div>
+              </label>
+            </div>
+
+            <div class="pk-form-error" id="pkFormError">
+              Please fill in all required fields and select at least one service.
+            </div>
+
+            <div class="pk-form-footer">
+              <div class="pk-form-footer-note">
+                Response within <strong>24 hours</strong><br>
+                <span>yourfirmci@gmail.com · 09098104610</span>
+              </div>
+              <button type="submit" class="pk-submit" id="pkSubmit" disabled>
+                Get My Quote →
+              </button>
+            </div>
+
+          </div>
+
+          <input type="hidden" name="_replyto" id="pkReplyto" value="" />
+          <input type="hidden" name="_subject" value="New Cleaning Quote — Pura-Kle'N" />
+
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── FOOTER ───────────────────────────────────────── -->
+  <footer class="pk-footer">
+    <div class="container">
+      <div class="pk-footer-top">
+        <div class="pk-footer-brand">
+          <img src="../assets/images/logos/puraklen.png" alt="Pura-Kle'N" class="pk-footer-logo" />
+          <p>Professional cleaning and fumigation services for offices, homes, and industrial spaces across Abuja. A brand of AmyServes Group.</p>
+          <a href="../index.html" class="pk-footer-back">← Back to AmyServes</a>
+        </div>
+        <div class="pk-footer-col">
+          <h5>Our Services</h5>
+          <ul>
+            <li><a href="#services">Office Cleaning</a></li>
+            <li><a href="#services">Deep Cleaning</a></li>
+            <li><a href="#services">Post-Construction</a></li>
+            <li><a href="#services">Residential</a></li>
+            <li><a href="#services">Fumigation</a></li>
+          </ul>
+        </div>
+        <div class="pk-footer-col">
+          <h5>AmyServes</h5>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../about.html">About Us</a></li>
+            <li><a href="../services.html">All Services</a></li>
+            <li><a href="../yourfirm/index.html">Yourfirm Consults</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="pk-footer-col">
+          <h5>Contact</h5>
+          <ul class="pk-footer-contact">
+            <li><span>📍</span><span>Gwarimpa, Abuja, FCT — Nigeria</span></li>
+            <li><span>📞</span><a href="tel:09098104610">09098104610</a></li>
+            <li><span>✉️</span><a href="mailto:yourfirmci@gmail.com">yourfirmci@gmail.com</a></li>
+            <li><span>🕐</span><span>Mon – Fri: 8am – 6pm WAT</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pk-footer-bottom">
+        <p>© 2026 Pura-Kle'N · AmyServes Group. All rights reserved.</p>
+        <p>Abuja, Nigeria · amyserves.com/puraklen</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ── WHATSAPP FLOAT ────────────────────────────────── -->
+  <a
+    href="https://wa.me/09098104610?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20Pura-Kle%27N%20cleaning%20services"
+    target="_blank"
+    class="pk-wa-float"
+    aria-label="Chat on WhatsApp"
+  >
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </a>
+
+
+  <!-- ── TERMS MODAL ───────────────────────────────────── -->
+  <div id="termsModal" class="pk-modal">
+    <div class="pk-modal-backdrop" onclick="closeTerms()"></div>
+    <div class="pk-modal-content">
+      <button class="pk-modal-close" onclick="closeTerms()">×</button>
+      <div class="pk-modal-body">
+        <h2>Terms & Conditions</h2>
+        <p class="pk-modal-intro">Please read these terms carefully before engaging our services.</p>
+        <h4>1. Introduction</h4>
+        <p>These Terms & Conditions govern all services provided by <strong>Pura-Kle'N</strong>. By booking any of our services, you agree to these terms.</p>
+        <h4>2. Service Agreement</h4>
+        <p>All services begin with a signed agreement outlining scope, timelines, and cost.</p>
+        <h4>3. Booking & Payment</h4>
+        <p>A <strong>50% deposit</strong> is required to confirm booking. The balance is due upon completion.</p>
+        <h4>4. Service Execution</h4>
+        <p>Pura-Kle'N will deploy trained staff to execute agreed services professionally.</p>
+        <h4>5. Client Responsibilities</h4>
+        <ul>
+          <li>Provide accurate information</li>
+          <li>Ensure access to the site</li>
+          <li>Secure valuables before our team arrives</li>
+        </ul>
+        <h4>6. Inspection & Completion</h4>
+        <p>Clients must inspect work upon completion. Issues should be raised immediately.</p>
+        <h4>7. Cancellations</h4>
+        <p>24-hour notice required. Deposits may be non-refundable for late cancellations.</p>
+        <h4>8. Liability</h4>
+        <p>Pura-Kle'N is not liable for pre-existing damage or unsecured valuables.</p>
+        <h4>9. Health & Safety</h4>
+        <p>Safe and approved cleaning methods are used at all times.</p>
+        <h4>10. Updates</h4>
+        <p>Terms may be updated at any time on this website.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── SCRIPTS ───────────────────────────────────────── -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/supabase.js"></script>
+  <script src="../js/navbar.js"></script>
+  <script src="puraklen.js"></script>
+  <script src="../js/quote-form.js"></script>
+
+  <script>
+    // Enable submit only when Terms are checked
+    const termsCheckbox = document.getElementById('pkTermsCheckbox');
+    const submitBtn     = document.getElementById('pkSubmit');
+    if (termsCheckbox && submitBtn) {
+      termsCheckbox.addEventListener('change', () => {
+        submitBtn.disabled = !termsCheckbox.checked;
+      });
+    }
+
+    // Terms modal
+    function openTerms() {
+      document.getElementById('termsModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeTerms() {
+      document.getElementById('termsModal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeTerms();
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile — AmyServes Staff Portal</title>n<link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/main.css" />
+  <link rel="stylesheet" href="../../css/dashboard.css" />
+  <style>
+    body { opacity: 0; transition: opacity 0.3s ease; }
+    body.auth-ready { opacity: 1; }
+
+    /* ── PROFILE HERO ── */
+    .profile-hero {
+      background: linear-gradient(135deg, #083325, #0f6e56);
+      border-radius: 14px;
+      padding: 32px;
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(255,255,255,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .profile-hero-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .profile-avatar-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .profile-avatar-large {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      border: 3px solid rgba(255,255,255,0.3);
+      overflow: hidden;
+    }
+
+    .profile-avatar-large img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-avatar-upload {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+
+    .profile-avatar-upload:hover { transform: scale(1.1); }
+    .profile-avatar-upload svg { color: #0F6E56; }
+
+    .profile-hero-info { flex: 1; }
+    .profile-hero-name { color: #fff; font-size: 1.4rem; font-weight: 700; margin-bottom: 4px; }
+    .profile-hero-role { color: rgba(255,255,255,0.7); font-size: .875rem; margin-bottom: 12px; }
+
+    .profile-hero-stats {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .profile-hero-stat {
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 8px 16px;
+      text-align: center;
+    }
+
+    .profile-hero-stat-value {
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: block;
+    }
+
+    .profile-hero-stat-label {
+      color: rgba(255,255,255,0.6);
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    /* ── PROFILE SECTIONS ── */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .profile-grid { grid-template-columns: 1fr; }
+    }
+
+    .profile-section {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #e8e4de;
+      overflow: hidden;
+    }
+
+    .profile-section-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid #f0ede8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .profile-section-header h3 {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 0;
+    }
+
+    .profile-section-body { padding: 24px; }
+
+    /* ── FORM FIELDS ── */
+    .profile-field {
+      margin-bottom: 18px;
+    }
+
+    .profile-field:last-child { margin-bottom: 0; }
+
+    .profile-field label {
+      display: block;
+      font-size: .78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: var(--warm-grey);
+      margin-bottom: 6px;
+    }
+
+    .profile-field input,
+    .profile-field select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid #e0dbd4;
+      border-radius: 8px;
+      font-size: .9rem;
+      font-family: inherit;
+      color: var(--navy);
+      background: #fff;
+      transition: border-color 0.2s;
+    }
+
+    .profile-field input:focus,
+    .profile-field select:focus {
+      outline: none;
+      border-color: var(--teal);
+    }
+
+    .profile-field input[readonly] {
+      background: #f8f7f4;
+      color: var(--warm-grey);
+      cursor: not-allowed;
+    }
+
+    .profile-field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 480px) {
+      .profile-field-row { grid-template-columns: 1fr; }
+    }
+
+    /* ── ROLE BADGE ── */
+    .role-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: .85rem;
+      font-weight: 600;
+      background: #e8f5e9;
+      color: #0F6E56;
+      border: 1.5px solid #c8e6c9;
+    }
+
+    /* ── PASSWORD STRENGTH ── */
+    .pw-strength-bar {
+      display: flex;
+      gap: 4px;
+      margin-top: 8px;
+    }
+
+    .pw-strength-bar span {
+      flex: 1;
+      height: 3px;
+      border-radius: 2px;
+      background: #e0dbd4;
+      transition: background 0.3s;
+    }
+
+    .pw-strength-bar span.active { background: var(--teal); }
+
+    .pw-strength-label {
+      font-size: .75rem;
+      margin-top: 4px;
+      color: var(--warm-grey);
+    }
+
+    /* ── NOTIFICATION PREFS ── */
+    .notif-pref-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0ede8;
+    }
+
+    .notif-pref-item:last-child { border-bottom: none; }
+
+    .notif-pref-label { font-size: .88rem; color: var(--navy); font-weight: 500; }
+    .notif-pref-desc  { font-size: .78rem; color: var(--warm-grey); margin-top: 2px; }
+
+    /* Toggle Switch */
+    .toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      inset: 0;
+      background: #e0dbd4;
+      border-radius: 24px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .toggle-slider:before {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      left: 3px;
+      top: 3px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+
+    .toggle-switch input:checked + .toggle-slider { background: var(--teal); }
+    .toggle-switch input:checked + .toggle-slider:before { transform: translateX(20px); }
+
+    /* ── DANGER ZONE ── */
+    .danger-zone {
+      border: 1.5px solid #fecaca;
+      border-radius: 12px;
+      padding: 20px 24px;
+      background: #fff5f5;
+    }
+
+    .danger-zone h4 { color: #dc2626; font-size: .9rem; margin: 0 0 8px; }
+    .danger-zone p  { font-size: .82rem; color: #666; margin: 0 0 16px; }
+  </style>
+<link rel="icon" href="/assets/images/favicon.png?v=1" />n<link rel="apple-touch-icon" href="/assets/images/favicon.png" />n<meta name="theme-color" content="#1A3C5E" />n</head>
+<body>
+
+<div id="dashSidebarOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:99"></div>
+
+<div class="dash-page">
+
+  <!-- SIDEBAR -->
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="dash-sidebar-logo">
+      <img src="../../assets/images/logos/amyserves.png" alt="AmyServes" />
+      <span class="dash-sidebar-role">Staff Portal</span>
+    </div>
+    <nav class="dash-nav">
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Overview</span>
+        <a href="index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Operations</span>
+        <a href="clients.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          My Clients
+          <span class="dash-nav-badge" id="pendingBadge" style="display:none">0</span>
+        </a>
+        <a href="requests.html" id="navRequests">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Service Requests
+        </a>
+        <a href="messages.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Messages
+          <span class="dash-nav-badge dash-nav-badge--red" id="unreadBadge" style="display:none">0</span>
+        </a>
+        <a href="notifications.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          Notifications
+          <span class="dash-nav-badge dash-nav-badge--red" id="notifNavBadge" style="display:none">0</span>
+        </a>
+        <a href="profile.html" class="active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          My Profile
+        </a>
+      </div>
+      <div class="dash-nav-section" id="navPayments" style="display:none">
+        <span class="dash-nav-label">Finance</span>
+        <a href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          Billing & Payments
+        </a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">AmyServes</span>
+        <a href="../../index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          Back to Website
+        </a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Account</span>
+        <button id="sidebarSignOutBtn" class="dash-nav-signout-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sign Out
+        </button>
+      </div>
+    </nav>
+    <div class="dash-sidebar-footer">
+      <div class="dash-user-chip">
+        <div class="dash-user-avatar" id="sidebarAvatar">ST</div>
+        <div>
+          <div class="dash-user-name" id="sidebarName">Staff Member</div>
+          <div class="dash-user-role" id="sidebarRole">Staff Account</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="dash-main">
+
+    <!-- TOPBAR -->
+    <header class="dash-topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="dash-menu-toggle" id="dashMenuToggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <span class="dash-topbar-title">My Profile</span>
+      </div>
+      <div class="dash-topbar-actions">
+        <div class="dash-notif-wrapper">
+          <button class="dash-topbar-btn dash-notif-btn" id="notifBellBtn" title="Notifications">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="dash-notif-badge" id="notifBadge" style="display:none">0</span>
+          </button>
+          <div class="dash-notif-dropdown" id="notifDropdown">
+            <div class="dash-notif-header">
+              <span>Notifications</span>
+              <button id="markAllRead" class="dash-notif-mark-read">Mark all read</button>
+            </div>
+            <div class="dash-notif-list" id="notifList">
+              <div class="dash-notif-empty">No notifications yet</div>
+            </div>
+            <a href="notifications.html" class="dash-notif-footer">View All</a>
+          </div>
+        </div>
+        <button id="topbarSignOutBtn" class="dash-topbar-btn" title="Sign out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="dash-content">
+
+      <!-- Profile Hero -->
+      <div class="profile-hero">
+        <div class="profile-hero-inner">
+          <!-- Avatar -->
+          <div class="profile-avatar-wrap">
+            <div class="profile-avatar-large" id="profileAvatarLarge" style="background:#0F6E56">
+              ST
+            </div>
+            <label class="profile-avatar-upload" id="avatarUploadBtn" title="Change photo" for="avatarFileInput" style="cursor:pointer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            </label>
+            <input type="file" id="avatarFileInput" accept="image/*" style="display:none" />
+          </div>
+
+          <!-- Info -->
+          <div class="profile-hero-info">
+            <div class="profile-hero-name" id="profileHeroName">Staff Member</div>
+            <div class="profile-hero-role" id="profileHeroRole">General Inquiry</div>
+            <div class="profile-hero-stats">
+              <div class="profile-hero-stat">
+                <span class="profile-hero-stat-value" id="profileStatClients">0</span>
+                <span class="profile-hero-stat-label">Clients</span>
+              </div>
+              <div class="profile-hero-stat">
+                <span class="profile-hero-stat-value" id="profileStatRequests">0</span>
+                <span class="profile-hero-stat-label">Requests</span>
+              </div>
+              <div class="profile-hero-stat">
+                <span class="profile-hero-stat-value" id="profileStatMessages">0</span>
+                <span class="profile-hero-stat-label">Messages</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Grid -->
+      <div class="profile-grid">
+
+        <!-- Personal Information -->
+        <div class="profile-section">
+          <div class="profile-section-header">
+            <h3>Personal Information</h3>
+            <button class="dash-btn dash-btn--primary dash-btn--sm" onclick="saveStaffProfile()">
+              Save Changes
+            </button>
+          </div>
+          <div class="profile-section-body">
+            <div class="profile-field-row">
+              <div class="profile-field">
+                <label>Full Name</label>
+                <input type="text" id="pfFullName" placeholder="Your full name" />
+              </div>
+              <div class="profile-field">
+                <label>Phone Number</label>
+                <input type="tel" id="pfPhone" placeholder="+234 000 0000 000" />
+              </div>
+            </div>
+            <div class="profile-field">
+              <label>Email Address</label>
+              <input type="email" id="pfEmail" readonly />
+            </div>
+            <div class="profile-field">
+              <label>Department</label>
+              <input type="text" id="pfDepartment" placeholder="e.g. Operations, HR, Tech…" />
+            </div>
+            <div class="profile-field">
+              <label>Bio / Notes</label>
+              <input type="text" id="pfBio" placeholder="A short description about yourself…" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Work Information -->
+        <div class="profile-section">
+          <div class="profile-section-header">
+            <h3>Work Information</h3>
+          </div>
+          <div class="profile-section-body">
+            <div class="profile-field">
+              <label>Service Role</label>
+              <div style="margin-top:4px">
+                <span class="role-badge" id="pfServiceRoleBadge">
+                  <span id="pfServiceRoleIcon">💬</span>
+                  <span id="pfServiceRoleLabel">General Inquiry</span>
+                </span>
+                <p style="font-size:.75rem;color:var(--warm-grey);margin-top:8px">
+                  ⚠️ Your service role can only be changed by an Admin.
+                </p>
+              </div>
+            </div>
+            <div class="profile-field">
+              <label>Employee ID</label>
+              <input type="text" id="pfEmployeeId" readonly />
+            </div>
+            <div class="profile-field">
+              <label>Account Type</label>
+              <input type="text" id="pfAccountType" value="Staff Account" readonly />
+            </div>
+            <div class="profile-field">
+              <label>Member Since</label>
+              <input type="text" id="pfJoinDate" readonly />
+            </div>
+          </div>
+        </div>
+
+        <!-- Change Password -->
+        <div class="profile-section">
+          <div class="profile-section-header">
+            <h3>Change Password</h3>
+          </div>
+          <div class="profile-section-body">
+            <div class="profile-field">
+              <label>Current Password</label>
+              <input type="password" id="pfCurrentPw" placeholder="Enter current password" />
+            </div>
+            <div class="profile-field">
+              <label>New Password</label>
+              <input type="password" id="pfNewPw" placeholder="Min. 8 characters" />
+              <div class="pw-strength-bar">
+                <span id="ps1"></span>
+                <span id="ps2"></span>
+                <span id="ps3"></span>
+                <span id="ps4"></span>
+              </div>
+              <div class="pw-strength-label" id="pwStrengthLabel"></div>
+            </div>
+            <div class="profile-field">
+              <label>Confirm New Password</label>
+              <input type="password" id="pfConfirmPw" placeholder="Repeat new password" />
+            </div>
+            <button class="dash-btn dash-btn--primary" style="width:100%;justify-content:center" onclick="changeStaffPassword()">
+              Update Password
+            </button>
+          </div>
+        </div>
+
+        <!-- Notification Preferences -->
+        <div class="profile-section">
+          <div class="profile-section-header">
+            <h3>Notification Preferences</h3>
+            <button class="dash-btn dash-btn--secondary dash-btn--sm" onclick="saveNotifPrefs()">
+              Save
+            </button>
+          </div>
+          <div class="profile-section-body">
+            <div class="notif-pref-item">
+              <div>
+                <div class="notif-pref-label">New Service Requests</div>
+                <div class="notif-pref-desc">Get notified when a client submits a new request</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="notifRequests" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="notif-pref-item">
+              <div>
+                <div class="notif-pref-label">New Messages</div>
+                <div class="notif-pref-desc">Get notified when a client sends a message</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="notifMessages" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="notif-pref-item">
+              <div>
+                <div class="notif-pref-label">Client Login Activity</div>
+                <div class="notif-pref-desc">Get notified when a client logs in</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="notifLogins" />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="notif-pref-item">
+              <div>
+                <div class="notif-pref-label">Status Updates</div>
+                <div class="notif-pref-desc">Get notified when a request status changes</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="notifStatus" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="notif-pref-item">
+              <div>
+                <div class="notif-pref-label">Blog Activity</div>
+                <div class="notif-pref-desc">Likes, comments and newsletter signups</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="notifBlog" />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Danger Zone -->
+      <div class="danger-zone" style="margin-top:24px">
+        <h4>⚠️ Danger Zone</h4>
+        <p>These actions are permanent and cannot be undone. Please proceed with caution.</p>
+        <button class="dash-btn" style="background:#dc2626;color:#fff;border:none" onclick="confirmStaffDeleteAccount()">
+          Request Account Deletion
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="dashToast" class="dash-toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../../js/supabase.js"></script>
+<script src="../../js/notifications.js"></script>
+<script src="../../js/dashboard-staff.js"></script>
+</body>
+</html>

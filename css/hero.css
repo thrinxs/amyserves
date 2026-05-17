@@ -1,0 +1,321 @@
+/* ══════════════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════════════ */
+.hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Slideshow */
+  .hero-slideshow {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+  
+  .hero-slide.active {
+    opacity: 1;
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(10,20,40,0.88) 0%,
+      rgba(10,20,40,0.75) 50%,
+      rgba(15,50,70,0.65) 100%
+    );
+  }
+  
+  /* Content sits above slideshow */
+  .hero .container {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    padding-top: 80px;
+    padding-bottom: 60px;
+  }
+  
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 64px;
+    align-items: center;
+  }
+  
+  /* Left side */
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(200,148,26,0.15);
+    border: 1px solid rgba(200,148,26,0.3);
+    color: var(--gold-light);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    width: fit-content;
+  }
+  
+  .hero-title {
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  
+  .hero-accent {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.75;
+    max-width: 480px;
+    margin-bottom: 36px;
+  }
+  
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+  
+  .hero-actions .btn {
+    padding: 14px 28px;
+    font-size: 0.95rem;
+  }
+  
+  /* Stats */
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+  
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .hero-stat-num {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  
+  .hero-stat-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.5px;
+  }
+  
+  .hero-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255,255,255,0.15);
+  }
+  
+  /* Right side */
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .hero-brands-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 16px;
+  }
+  
+  .hero-brand-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  
+  .hero-brand-card:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.25);
+    transform: translateX(4px);
+  }
+  
+  .hero-brand-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .hero-brand-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex: 1;
+  }
+  
+  .hero-brand-info strong {
+    color: var(--white);
+    font-size: 0.95rem;
+  }
+  
+  .hero-brand-info span {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.8rem;
+  }
+  
+  .hero-brand-arrow {
+    color: rgba(255,255,255,0.3);
+    font-size: 1.1rem;
+    transition: var(--transition);
+  }
+  
+  .hero-brand-card:hover .hero-brand-arrow {
+    color: var(--gold-light);
+    transform: translateX(4px);
+  }
+  
+  /* Slideshow dots */
+  .hero-dots {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+    padding-left: 4px;
+  }
+  
+  .hero-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .hero-dot.active {
+    background: var(--gold);
+    width: 24px;
+    border-radius: 4px;
+  }
+  
+  /* Logo bar */
+  .hero-logo-bar {
+    background: rgba(0,0,0,0.35);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 14px 0;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero-logo-bar .container {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  
+  .logo-bar-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    flex-shrink: 0;
+  }
+  
+  .logo-bar-brands {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .brand-pill {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 14px;
+    border: 1px solid;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+    transition: var(--transition);
+  }
+  
+  .brand-pill:hover {
+    color: var(--white);
+    background: rgba(255,255,255,0.05);
+  }
+  
+  .brand-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .hero-right { max-width: 500px; }
+  }
+  
+  @media (max-width: 768px) {
+    .hero .container {
+      padding-top: 48px;
+      padding-bottom: 48px;
+    }
+    .hero-actions .btn {
+      padding: 12px 20px;
+      font-size: 0.875rem;
+    }
+    .hero-stats { gap: 16px; }
+  }

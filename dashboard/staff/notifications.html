@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notifications — AmyServes Staff Portal</title>n<link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/main.css" />
+  <link rel="stylesheet" href="../../css/dashboard.css" />
+  <style>
+    body { opacity: 0; transition: opacity 0.3s ease; }
+    body.auth-ready { opacity: 1; }
+
+    .notif-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
+    .notif-tab { padding:7px 16px; border-radius:20px; border:1.5px solid #e0dbd4; background:#fff; font-size:.82rem; font-weight:600; color:var(--warm-grey); cursor:pointer; transition:all 0.2s; }
+    .notif-tab.active { background:var(--navy); color:#fff; border-color:var(--navy); }
+    .notif-tab:hover:not(.active) { border-color:var(--navy); color:var(--navy); }
+
+    .notif-page-item { display:flex; gap:16px; padding:18px 24px; border-bottom:1px solid #f0ede8; cursor:pointer; transition:background 0.2s; }
+    .notif-page-item:hover { background:#faf8f5; }
+    .notif-page-item.unread { background:#fffbf2; border-left:3px solid var(--gold); }
+    .notif-page-item:last-child { border-bottom:none; }
+
+    .notif-icon { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; }
+    .notif-icon.booking  { background:#e8f5e9; }
+    .notif-icon.message  { background:#e3f2fd; }
+    .notif-icon.status_update { background:#fff3e0; }
+    .notif-icon.general  { background:#f3f0ff; }
+    .notif-icon.login    { background:#e8f5e9; }
+    .notif-icon.request  { background:#fff8e6; }
+
+    .notif-body { flex:1; min-width:0; }
+    .notif-title-row { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:4px; }
+    .notif-title { font-size:.92rem; color:var(--navy); }
+    .notif-title.bold { font-weight:700; }
+    .notif-time { font-size:.75rem; color:var(--warm-grey); white-space:nowrap; }
+    .notif-text { font-size:.85rem; color:#555; line-height:1.5; }
+    .notif-unread-dot { width:10px; height:10px; border-radius:50%; background:var(--gold); flex-shrink:0; margin-top:6px; }
+
+    .notif-empty { padding:48px 24px; text-align:center; }
+    .notif-empty span { font-size:2rem; display:block; margin-bottom:12px; }
+    .notif-empty h4 { margin:0 0 4px; color:var(--navy); }
+    .notif-empty p { color:var(--warm-grey); font-size:.9rem; margin:0; }
+
+    /* Send Notification Panel */
+    .send-notif-panel { background:#fff; border-radius:12px; border:1.5px solid #e0dbd4; padding:24px; margin-bottom:24px; }
+    .send-notif-panel h3 { font-size:1rem; color:var(--navy); margin:0 0 16px; }
+  </style>
+<link rel="icon" href="/assets/images/favicon.png?v=1" />n<link rel="apple-touch-icon" href="/assets/images/favicon.png" />n<meta name="theme-color" content="#1A3C5E" />n</head>
+<body>
+
+<div id="dashSidebarOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:99"></div>
+
+<div class="dash-page">
+
+  <!-- SIDEBAR -->
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="dash-sidebar-logo">
+      <img src="../../assets/images/logos/amyserves.png" alt="AmyServes" />
+      <span class="dash-sidebar-role">Staff Portal</span>
+    </div>
+    <nav class="dash-nav">
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Overview</span>
+        <a href="index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Operations</span>
+        <a href="clients.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          My Clients
+        </a>
+        <a href="requests.html" id="navRequests">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+          Service Requests
+        </a>
+        <a href="messages.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Messages
+          <span class="dash-nav-badge dash-nav-badge--red" id="unreadBadge" style="display:none">0</span>
+        </a>
+        <a href="notifications.html" class="active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          Notifications
+          <span class="dash-nav-badge dash-nav-badge--red" id="notifNavBadge" style="display:none">0</span>
+        </a>
+        <a href="profile.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            My Profile
+          </a>
+      </div>
+      <div class="dash-nav-section" id="navPayments" style="display:none">
+        <span class="dash-nav-label">Finance</span>
+        <a href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          Billing & Payments
+        </a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">AmyServes</span>
+        <a href="../../index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          Back to Website
+        </a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Account</span>
+        <button id="sidebarSignOutBtn" class="dash-nav-signout-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sign Out
+        </button>
+      </div>
+    </nav>
+    <div class="dash-sidebar-footer">
+      <div class="dash-user-chip">
+        <div class="dash-user-avatar" id="sidebarAvatar">ST</div>
+        <div>
+          <div class="dash-user-name" id="sidebarName">Staff Member</div>
+          <div class="dash-user-role" id="sidebarRole">Staff Account</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="dash-main">
+    <header class="dash-topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="dash-menu-toggle" id="dashMenuToggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <span class="dash-topbar-title">Notifications</span>
+      </div>
+      <div class="dash-topbar-actions">
+        <div class="dash-notif-wrapper">
+          <button class="dash-topbar-btn dash-notif-btn" id="notifBellBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="dash-notif-badge" id="notifBadge" style="display:none">0</span>
+          </button>
+          <div class="dash-notif-dropdown" id="notifDropdown">
+            <div class="dash-notif-header">
+              <span>Notifications</span>
+              <button id="markAllRead" class="dash-notif-mark-read">Mark all read</button>
+            </div>
+            <div class="dash-notif-list" id="notifList">
+              <div class="dash-notif-empty">No notifications yet</div>
+            </div>
+            <a href="notifications.html" class="dash-notif-footer">View All</a>
+          </div>
+        </div>
+        <button id="topbarSignOutBtn" class="dash-topbar-btn" title="Sign out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="dash-content">
+      <div class="dash-page-header">
+        <h1>Notifications</h1>
+        <p>All client activity alerts and updates in real-time.</p>
+      </div>
+
+      <!-- Send Notification Panel -->
+      <div class="send-notif-panel">
+        <h3>🔔 Send Notification to a Client</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+          <div>
+            <label style="font-size:.82rem;font-weight:600;display:block;margin-bottom:6px">Select Client</label>
+            <select id="notifClientSelect" style="width:100%;padding:10px 14px;border:1.5px solid #e0dbd4;border-radius:8px;font-size:.9rem">
+              <option value="">Choose a client…</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:.82rem;font-weight:600;display:block;margin-bottom:6px">Notification Type</label>
+            <select id="broadcastType" style="width:100%;padding:10px 14px;border:1.5px solid #e0dbd4;border-radius:8px;font-size:.9rem">
+              <option value="general">General</option>
+              <option value="status_update">Status Update</option>
+              <option value="message">Message</option>
+              <option value="booking">Booking</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-bottom:14px">
+          <label style="font-size:.82rem;font-weight:600;display:block;margin-bottom:6px">Title</label>
+          <input type="text" id="broadcastTitle" placeholder="Notification title…" style="width:100%;padding:10px 14px;border:1.5px solid #e0dbd4;border-radius:8px;font-size:.9rem" />
+        </div>
+        <div style="margin-bottom:16px">
+          <label style="font-size:.82rem;font-weight:600;display:block;margin-bottom:6px">Message</label>
+          <textarea id="broadcastBody" rows="3" placeholder="Write your message to the client…" style="width:100%;padding:10px 14px;border:1.5px solid #e0dbd4;border-radius:8px;font-size:.9rem;resize:vertical"></textarea>
+        </div>
+        <button class="dash-btn dash-btn--primary" id="sendBroadcastBtn">
+          Send Notification 🔔
+        </button>
+      </div>
+
+      <!-- Actions Bar -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+        <div class="notif-tabs">
+          <button class="notif-tab active" data-filter="all">All</button>
+          <button class="notif-tab" data-filter="unread">Unread</button>
+          <button class="notif-tab" data-filter="read">Read</button>
+        </div>
+        <button class="dash-btn dash-btn--secondary" id="markAllReadStaff" style="font-size:.85rem">
+          Mark All as Read
+        </button>
+      </div>
+
+      <!-- Notifications List -->
+      <div class="dash-card" style="padding:0;overflow:hidden">
+        <div id="staffNotifList">
+          <div class="notif-empty">
+            <span>🔔</span>
+            <h4>No notifications yet</h4>
+            <p>Client activity will appear here in real-time.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="dash-toast" id="dashToast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../../js/supabase.js"></script>
+<script src="../../js/notifications.js"></script>
+<script src="../../js/dashboard-staff.js"></script>
+
+<script>
+  /* ── SEND BROADCAST NOTIFICATION ── */
+  document.addEventListener('DOMContentLoaded', async function () {
+
+    /* Populate client dropdown */
+    async function loadClientDropdown() {
+      if (typeof supabaseClient === 'undefined' || !supabaseClient) return;
+      var { data } = await supabaseClient
+        .from('profiles')
+        .select('id, full_name')
+        .eq('role', 'client')
+        .order('full_name');
+
+      var select = document.getElementById('notifClientSelect');
+      if (!select || !data) return;
+
+      data.forEach(function (c) {
+        var opt   = document.createElement('option');
+        opt.value = c.id;
+        opt.textContent = c.full_name || c.id;
+        select.appendChild(opt);
+      });
+    }
+
+    await loadClientDropdown();
+
+    /* Send button */
+    var sendBtn = document.getElementById('sendBroadcastBtn');
+    if (sendBtn) {
+      sendBtn.addEventListener('click', async function () {
+        var clientId = document.getElementById('notifClientSelect').value;
+        var title    = document.getElementById('broadcastTitle').value.trim();
+        var body     = document.getElementById('broadcastBody').value.trim();
+        var type     = document.getElementById('broadcastType').value;
+        var select   = document.getElementById('notifClientSelect');
+        var clientName = select.options[select.selectedIndex]?.text || 'Client';
+
+        if (!clientId) {
+          alert('Please select a client.');
+          return;
+        }
+        if (!title || !body) {
+          alert('Please fill in both title and message.');
+          return;
+        }
+
+        var { error } = await supabaseClient
+          .from('notifications')
+          .insert({
+            user_id:   clientId,
+            title:     title,
+            body:      body,
+            type:      type,
+            direction: 'received',
+            is_read:   false,
+            link:      '/dashboard/client/notifications.html'
+          });
+
+        if (error) {
+          alert('Failed to send notification.');
+          return;
+        }
+
+        document.getElementById('broadcastTitle').value = '';
+        document.getElementById('broadcastBody').value  = '';
+        document.getElementById('notifClientSelect').value = '';
+
+        var toast = document.getElementById('dashToast');
+        if (toast) {
+          toast.textContent = '✅ Notification sent to ' + clientName + '!';
+          toast.className   = 'dash-toast show dash-toast--success';
+          setTimeout(function () { toast.classList.remove('show'); }, 3000);
+        }
+      });
+    }
+  });
+</script>
+</body>
+</html>

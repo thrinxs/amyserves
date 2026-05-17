@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile — AmyServes Client Portal</title>n<link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/main.css" />
+  <link rel="stylesheet" href="../../css/dashboard.css" />
+  <style>
+    /* Hide the whole app until the Auth Guard says it's okay */
+    body { opacity: 0; transition: opacity 0.3s ease; }
+    body.auth-ready { opacity: 1; }
+  </style>
+<link rel="icon" href="/assets/images/favicon.png?v=1" />n<link rel="apple-touch-icon" href="/assets/images/favicon.png" />n<meta name="theme-color" content="#1A3C5E" />n</head>
+<body>
+
+<div class="dash-page">
+  <div id="dashSidebarOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:99"></div>
+
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="dash-sidebar-logo">
+      <img src="../../assets/images/logos/amyserves.png" alt="AmyServes" />
+      <span class="dash-sidebar-role">Client Portal</span>
+    </div>
+    <nav class="dash-nav">
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Overview</span>
+        <a href="index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">My Services</span>
+      
+        <a href="messages.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Messages
+          <span class="dash-nav-badge dash-nav-badge--red" id="unreadBadge" style="display:none">0</span>
+        </a>
+      
+        <a href="notifications.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 17h5l-1.4-1.4a2 2 0 0 1-.6-1.4V11a6 6 0 1 0-12 0v3.2a2 2 0 0 1-.6 1.4L4 17h5"/>
+            <path d="M9 17a3 3 0 0 0 6 0"/>
+          </svg>
+          Notifications
+          <span class="dash-nav-badge dash-nav-badge--red" id="notifNavBadge" style="display:none">0</span>
+        </a>
+      
+        <a href="profile.html" class="active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          My Profile
+        </a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">AmyServes</span>
+        <a href="../../services.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+          Our Services
+        </a>
+        <a href="../../index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          Back to Website
+        </a>
+      </div>
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Account</span>
+        <button id="sidebarSignOutBtn" class="dash-nav-signout-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          Sign Out
+        </button>
+      </div>
+    </nav>
+    <div class="dash-sidebar-footer">
+      <div class="dash-user-chip">
+        <div class="dash-user-avatar" id="sidebarAvatar">CL</div>
+        <div>
+          <div class="dash-user-name" id="sidebarName">Client</div>
+          <div class="dash-user-role">Client Account</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="dash-main">
+    <header class="dash-topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="dash-menu-toggle" id="dashMenuToggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <span class="dash-topbar-title">My Profile</span>
+      </div>
+      <div class="dash-topbar-actions">
+        <!-- Notification Bell -->
+        <div class="dash-notif-wrapper" id="notifWrapper">
+          <button class="dash-topbar-btn dash-notif-btn" id="notifBellBtn" title="Notifications">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+            <span class="dash-notif-badge" id="notifCount" style="display:none">0</span>
+          </button>
+          <div class="dash-notif-dropdown" id="notifDropdown">
+            <div class="dash-notif-header">
+              <span>Notifications</span>
+              <button id="markAllRead" class="dash-notif-mark-read">Mark all read</button>
+            </div>
+            <div class="dash-notif-list" id="notifList">
+              <div class="dash-notif-empty">No notifications yet</div>
+            </div>
+            <a href="notifications.html" class="dash-notif-footer">View All Notifications</a>
+          </div>
+        </div>
+    
+        <!-- Sign Out -->
+        <button id="topbarSignOutBtn" class="dash-topbar-btn" title="Sign out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="dash-content">
+      <div class="dash-page-header">
+        <h1>My Profile</h1>
+        <p>Manage your personal details and account preferences.</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:20px;max-width:700px">
+
+        <!-- Profile Header Card -->
+        <div class="dash-card">
+          <div class="dash-card-body" style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+            <div class="profile-avatar-wrapper" id="avatarWrapper">
+              <div id="profileAvatar" class="profile-avatar-circle">CL</div>
+              <button class="profile-avatar-edit" id="avatarEditBtn" title="Change profile photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                  <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                  <path d="m15 5 4 4"/>
+                </svg>
+              </button>
+            </div>
+            <div style="flex:1">
+              <h2 id="profileName" style="font-size:1.2rem;color:var(--navy);margin-bottom:4px">Loading…</h2>
+              <p id="profileEmail" style="font-size:.875rem;color:var(--warm-grey);margin-bottom:10px">—</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <span class="dash-badge dash-badge--teal" id="profileService">Client</span>
+                <span class="dash-badge dash-badge--grey">Abuja, Nigeria</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Personal Details -->
+        <div class="dash-card">
+          <div class="dash-card-header"><h3>Personal Details</h3></div>
+          <div class="dash-card-body">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <div class="dash-form-group">
+                <label>Full Name</label>
+                <input type="text" id="pfFullName" placeholder="Your full name" />
+              </div>
+              <div class="dash-form-group">
+                <label>Phone Number</label>
+                <input type="tel" id="pfPhone" placeholder="09098104610" />
+              </div>
+              <div class="dash-form-group">
+                <label>Email Address</label>
+                <input type="email" id="pfEmail" placeholder="your@email.com" />
+              </div>
+              <div class="dash-form-group">
+                <label>Your Role / Job Title</label>
+                <input type="text" id="pfRole" placeholder="e.g. CEO, Office Manager" />
+              </div>
+            </div>
+            <div class="dash-form-group">
+              <label>Business Name</label>
+              <input type="text" id="pfBusiness" placeholder="Your company name" />
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <div class="dash-form-group">
+                <label>Industry</label>
+                <select id="pfIndustry">
+                  <option value="">Select industry</option>
+                  <option>Banking &amp; Finance</option>
+                  <option>Construction &amp; Real Estate</option>
+                  <option>Education</option>
+                  <option>Energy &amp; Oil</option>
+                  <option>Healthcare</option>
+                  <option>Hospitality &amp; Tourism</option>
+                  <option>Logistics &amp; Supply Chain</option>
+                  <option>Manufacturing</option>
+                  <option>NGO / Non-Profit</option>
+                  <option>Retail &amp; FMCG</option>
+                  <option>Technology</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="dash-form-group">
+                <label>Primary Service Interest</label>
+                <select id="pfService">
+                  <option value="">Select service</option>
+                  <option value="cleaning">Pura-Kle'N — Cleaning</option>
+                  <option value="hr">Yourfirm — HR Consulting</option>
+                  <option value="both">Both Services</option>
+                </select>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:flex-end;margin-top:8px">
+              <button class="dash-btn dash-btn--primary" onclick="saveProfile()">Save Changes</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Change Password -->
+        <div class="dash-card">
+          <div class="dash-card-header"><h3>Change Password</h3></div>
+          <div class="dash-card-body">
+            <div class="dash-form-group">
+              <label>Current Password</label>
+              <input type="password" id="pfCurrentPw" placeholder="Your current password" />
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <div class="dash-form-group">
+                <label>New Password</label>
+                <input type="password" id="pfNewPw" placeholder="Min. 8 characters" />
+              </div>
+              <div class="dash-form-group">
+                <label>Confirm New Password</label>
+                <input type="password" id="pfConfirmPw" placeholder="Repeat new password" />
+              </div>
+            </div>
+            <div style="display:flex;justify-content:flex-end;margin-top:8px">
+              <button class="dash-btn dash-btn--primary" onclick="changePassword()">Update Password</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notification Preferences -->
+        <div class="dash-card">
+          <div class="dash-card-header"><h3>Notification Preferences</h3></div>
+          <div class="dash-card-body">
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <label style="display:flex;align-items:center;gap:12px;cursor:pointer;font-size:.875rem;color:var(--navy)">
+                <input type="checkbox" id="notifEmail" checked style="accent-color:var(--navy);width:16px;height:16px" />
+                Email me when my service request status changes
+              </label>
+              <label style="display:flex;align-items:center;gap:12px;cursor:pointer;font-size:.875rem;color:var(--navy)">
+                <input type="checkbox" id="notifMessages" checked style="accent-color:var(--navy);width:16px;height:16px" />
+                Email me when I receive a new message
+              </label>
+              <label style="display:flex;align-items:center;gap:12px;cursor:pointer;font-size:.875rem;color:var(--navy)">
+                <input type="checkbox" id="notifMarketing" style="accent-color:var(--navy);width:16px;height:16px" />
+                Receive tips and service updates from AmyServes
+              </label>
+            </div>
+            <div style="display:flex;justify-content:flex-end;margin-top:16px">
+              <button class="dash-btn dash-btn--primary" onclick="saveNotifications()">Save Preferences</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Danger Zone -->
+        <div class="dash-card" style="border-color:rgba(220,50,70,0.2)">
+          <div class="dash-card-header"><h3 style="color:#b71c1c">Danger Zone</h3></div>
+          <div class="dash-card-body">
+            <p style="font-size:.875rem;color:var(--warm-grey);margin-bottom:16px">These actions are irreversible. Please be certain before proceeding.</p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <button class="dash-btn dash-btn--danger" onclick="confirmDeleteAccount()">Delete My Account</button>
+              <button id="signOutBtn" class="dash-btn dash-btn--secondary">Sign Out</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dash-toast" id="dashToast"></div>
+
+<!-- Avatar Upload Modal -->
+<div class="avatar-modal-overlay" id="avatarModal">
+  <div class="avatar-modal">
+    <div class="avatar-modal-header">
+      <h3>Update Profile Photo</h3>
+      <button class="avatar-modal-close" id="avatarModalClose">&times;</button>
+    </div>
+
+    <div class="avatar-modal-body">
+      <!-- Current Photo Preview -->
+      <div class="avatar-preview-section">
+        <div class="avatar-preview-circle" id="avatarPreview">
+          <span id="avatarPreviewInitials">CL</span>
+          <img id="avatarPreviewImg" src="" alt="" style="display:none" />
+        </div>
+        <p class="avatar-preview-hint" id="avatarPreviewHint">Current photo</p>
+      </div>
+
+      <!-- Drop Zone -->
+      <div class="avatar-dropzone" id="avatarDropzone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40" style="color:var(--warm-grey)">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="17 8 12 3 7 8"/>
+          <line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+        <p class="dropzone-text">Drag & drop your photo here</p>
+        <p class="dropzone-subtext">or</p>
+        <button class="dropzone-browse-btn" id="avatarBrowseBtn">Browse Files</button>
+        <p class="dropzone-hint">JPG, PNG or WebP · Max 2MB</p>
+        <input type="file" id="avatarFileInput" accept="image/jpeg,image/png,image/webp" style="display:none" />
+      </div>
+
+      <!-- New Photo Preview (shown after selecting) -->
+      <div class="avatar-new-preview" id="avatarNewPreview" style="display:none">
+        <div class="avatar-new-preview-circle">
+          <img id="avatarNewImg" src="" alt="New photo preview" />
+        </div>
+        <p class="avatar-new-filename" id="avatarNewFilename"></p>
+        <button class="avatar-change-btn" id="avatarChangeBtn">Choose different photo</button>
+      </div>
+    </div>
+
+    <div class="avatar-modal-footer">
+      <button class="dash-btn dash-btn--ghost avatar-remove-btn" id="avatarRemoveBtn">Remove Photo</button>
+      <div style="display:flex;gap:10px">
+        <button class="dash-btn dash-btn--secondary" id="avatarCancelBtn">Cancel</button>
+        <button class="dash-btn dash-btn--primary" id="avatarSaveBtn" disabled>Save Photo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    'use strict';
+  
+    var selectedFile = null;
+    var modal, dropzone, fileInput, saveBtn;
+  
+    document.addEventListener('DOMContentLoaded', function() {
+      modal     = document.getElementById('avatarModal');
+      dropzone  = document.getElementById('avatarDropzone');
+      fileInput = document.getElementById('avatarFileInput');
+      saveBtn   = document.getElementById('avatarSaveBtn');
+  
+      // Open modal
+      var editBtn = document.getElementById('avatarEditBtn');
+      var wrapper = document.getElementById('avatarWrapper');
+      if (editBtn) editBtn.addEventListener('click', openAvatarModal);
+      if (wrapper) wrapper.addEventListener('click', openAvatarModal);
+  
+      // Close modal
+      var closeBtn  = document.getElementById('avatarModalClose');
+      var cancelBtn = document.getElementById('avatarCancelBtn');
+      if (closeBtn)  closeBtn.addEventListener('click', closeAvatarModal);
+      if (cancelBtn) cancelBtn.addEventListener('click', closeAvatarModal);
+  
+      // Click overlay to close
+      if (modal) {
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) closeAvatarModal();
+        });
+      }
+  
+      // Browse button
+      var browseBtn = document.getElementById('avatarBrowseBtn');
+      if (browseBtn) browseBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        fileInput.click();
+      });
+  
+      // Dropzone click
+      if (dropzone) dropzone.addEventListener('click', function() {
+        fileInput.click();
+      });
+  
+      // File selected
+      if (fileInput) fileInput.addEventListener('change', function() {
+        if (fileInput.files && fileInput.files[0]) handleFile(fileInput.files[0]);
+      });
+  
+      // Drag and drop
+      if (dropzone) {
+        dropzone.addEventListener('dragover', function(e) {
+          e.preventDefault();
+          dropzone.classList.add('dragover');
+        });
+        dropzone.addEventListener('dragleave', function() {
+          dropzone.classList.remove('dragover');
+        });
+        dropzone.addEventListener('drop', function(e) {
+          e.preventDefault();
+          dropzone.classList.remove('dragover');
+          if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+            handleFile(e.dataTransfer.files[0]);
+          }
+        });
+      }
+  
+      // Change photo button
+      var changeBtn = document.getElementById('avatarChangeBtn');
+      if (changeBtn) changeBtn.addEventListener('click', function() {
+        resetToDropzone();
+        fileInput.click();
+      });
+  
+      // Save button
+      if (saveBtn) saveBtn.addEventListener('click', uploadAvatar);
+  
+      // Remove button
+      var removeBtn = document.getElementById('avatarRemoveBtn');
+      if (removeBtn) removeBtn.addEventListener('click', removeAvatar);
+  
+      // Load current avatar
+      loadCurrentAvatar();
+    });
+  
+    function openAvatarModal() {
+      if (modal) modal.classList.add('open');
+    }
+  
+    function closeAvatarModal() {
+      if (modal) modal.classList.remove('open');
+      resetToDropzone();
+      selectedFile = null;
+    }
+  
+    function handleFile(file) {
+      var validTypes = ['image/jpeg', 'image/png', 'image/webp'];
+      if (validTypes.indexOf(file.type) === -1) {
+        showToast('Please select a JPG, PNG, or WebP image.', 'error');
+        return;
+      }
+  
+      if (file.size > 2 * 1024 * 1024) {
+        showToast('Image must be under 2MB.', 'error');
+        return;
+      }
+  
+      selectedFile = file;
+  
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var newPreview = document.getElementById('avatarNewPreview');
+        var newImg     = document.getElementById('avatarNewImg');
+        var filename   = document.getElementById('avatarNewFilename');
+  
+        if (newImg)     newImg.src = e.target.result;
+        if (filename)   filename.textContent = file.name;
+        if (newPreview) newPreview.style.display = 'block';
+        if (dropzone)   dropzone.style.display = 'none';
+        if (saveBtn)    saveBtn.disabled = false;
+      };
+      reader.readAsDataURL(file);
+    }
+  
+    function resetToDropzone() {
+      var newPreview = document.getElementById('avatarNewPreview');
+      if (newPreview) newPreview.style.display = 'none';
+      if (dropzone)   dropzone.style.display = '';
+      if (saveBtn)    saveBtn.disabled = true;
+      if (fileInput)  fileInput.value = '';
+      selectedFile = null;
+    }
+  
+    async function uploadAvatar() {
+      if (!selectedFile || !supabaseClient) return;
+  
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Uploading…';
+  
+      try {
+        var sessionResult = await supabaseClient.auth.getSession();
+        var session = sessionResult.data.session;
+        if (!session || !session.user) throw new Error('Not logged in');
+  
+        var userId = session.user.id;
+        var ext = selectedFile.name.split('.').pop().toLowerCase();
+        var filePath = userId + '/avatar.' + ext;
+  
+        var { error: uploadError } = await supabaseClient.storage
+          .from('avatars')
+          .upload(filePath, selectedFile, {
+            cacheControl: '3600',
+            upsert: true
+          });
+  
+        if (uploadError) throw uploadError;
+  
+        var { data: urlData } = supabaseClient.storage
+          .from('avatars')
+          .getPublicUrl(filePath);
+  
+        var avatarUrl = urlData.publicUrl + '?t=' + Date.now();
+  
+        var { error: dbError } = await supabaseClient
+          .from('profiles')
+          .update({ avatar_url: avatarUrl })
+          .eq('id', userId);
+  
+        if (dbError) throw dbError;
+  
+        updateAvatarUI(avatarUrl);
+        closeAvatarModal();
+        showToast('Profile photo updated!', 'success');
+  
+      } catch (err) {
+        console.error('Avatar upload error:', err);
+        showToast('Failed to upload photo. ' + (err.message || ''), 'error');
+      }
+  
+      saveBtn.disabled = false;
+      saveBtn.textContent = 'Save Photo';
+    }
+  
+    async function removeAvatar() {
+      if (!supabaseClient) return;
+  
+      if (!confirm('Remove your profile photo?')) return;
+  
+      try {
+        var sessionResult = await supabaseClient.auth.getSession();
+        var session = sessionResult.data.session;
+        if (!session || !session.user) return;
+  
+        var userId = session.user.id;
+  
+        await supabaseClient
+          .from('profiles')
+          .update({ avatar_url: null })
+          .eq('id', userId);
+  
+        var extensions = ['jpg', 'jpeg', 'png', 'webp'];
+        for (var i = 0; i < extensions.length; i++) {
+          await supabaseClient.storage
+            .from('avatars')
+            .remove([userId + '/avatar.' + extensions[i]]);
+        }
+  
+        updateAvatarUI(null);
+        closeAvatarModal();
+        showToast('Profile photo removed.', 'info');
+  
+      } catch (err) {
+        console.error('Remove avatar error:', err);
+        showToast('Failed to remove photo.', 'error');
+      }
+    }
+  
+    async function loadCurrentAvatar() {
+      if (!supabaseClient) return;
+  
+      try {
+        var sessionResult = await supabaseClient.auth.getSession();
+        var session = sessionResult.data.session;
+        if (!session || !session.user) return;
+  
+        var { data: profile } = await supabaseClient
+          .from('profiles')
+          .select('avatar_url, full_name, initials, color')
+          .eq('id', session.user.id)
+          .single();
+  
+        if (profile && profile.avatar_url) {
+          updateAvatarUI(profile.avatar_url);
+        }
+      } catch (err) {
+        console.warn('Load avatar warning:', err);
+      }
+    }
+  
+    function updateAvatarUI(url) {
+      var profileAvatar = document.getElementById('profileAvatar');
+      if (profileAvatar) {
+        if (url) {
+          profileAvatar.innerHTML = '<img src="' + url + '" alt="Profile photo" />';
+        } else {
+          var initials = profileAvatar.dataset.initials || 'CL';
+          profileAvatar.textContent = initials;
+        }
+      }
+  
+      var previewImg      = document.getElementById('avatarPreviewImg');
+      var previewInitials = document.getElementById('avatarPreviewInitials');
+      if (url) {
+        if (previewImg) { previewImg.src = url; previewImg.style.display = 'block'; }
+        if (previewInitials) previewInitials.style.display = 'none';
+      } else {
+        if (previewImg) previewImg.style.display = 'none';
+        if (previewInitials) previewInitials.style.display = '';
+      }
+  
+      var sidebarAvatar = document.getElementById('sidebarAvatar');
+      if (sidebarAvatar) {
+        if (url) {
+          sidebarAvatar.innerHTML = '<img src="' + url + '" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%" />';
+        } else {
+          var sideInitials = sidebarAvatar.dataset.initials || 'CL';
+          sidebarAvatar.textContent = sideInitials;
+        }
+      }
+  
+      var hint = document.getElementById('avatarPreviewHint');
+      if (hint) hint.textContent = url ? 'Current photo' : 'No photo set';
+    }
+  
+    function showToast(msg, type) {
+      var t = document.getElementById('dashToast');
+      if (!t) return;
+      t.textContent = msg;
+      t.className = 'dash-toast show dash-toast--' + (type || 'info');
+      setTimeout(function() { t.classList.remove('show'); }, 3000);
+    }
+  
+  })();
+  </script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../../js/supabase.js"></script>
+<script src="../../js/notifications.js"></script>
+<script src="../../js/dashboard-client.js"></script>
+
+</body>
+</html>

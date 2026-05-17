@@ -1,0 +1,595 @@
+/* ══════════════════════════════════════════════════════
+   DASHBOARD-CLIENT.JS — AmyServes Client Portal
+   Mock data — replace with Supabase calls in Phase 5
+══════════════════════════════════════════════════════ */
+
+(function () {
+  'use strict';
+
+  /* ── MOCK DATA ───────────────────────────────────────── */
+  var mockUser = {
+    name: 'Emeka Nwosu',
+    email: 'emeka@techstart.ng',
+    phone: '09098104610',
+    role: 'CEO',
+    business: 'TechStart Ltd',
+    industry: 'Technology',
+    service: 'cleaning',
+    initials: 'EN',
+    color: '#0F6E56'
+  };
+
+  var mockRequests = [];
+  
+
+  /* ── SUPABASE HYDRATION + AUTH GUARD ─────────────────── */
+  async function hydrateMockUserFromSupabase() {
+    if (typeof supabaseClient === 'undefined' || !supabaseClient) {
+      console.warn('Supabase client not available, using mock user');
+      return;
+    }
+
+    const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
+
+    if (sessionError || !session || !session.user) {
+      console.warn('No active session. Redirecting to login...');
+      window.location.replace('../../auth/login.html');
+      return;
+    }
+
+    const user = session.user;
+
+    const userRole = user.user_metadata?.role || 'client';
+    if (userRole !== 'client') {
+      console.warn('Unauthorized role for this dashboard.');
+      window.location.replace('../../auth/login.html');
+      return;
+    }
+
+    const { data: profile, error: profileError } = await supabaseClient
+      .from('profiles')
+      .select('*')
+      .eq('id', user.id)
+      .single();
+
+    if (profileError) {
+      console.warn('Profile not found, falling back to user metadata', profileError);
+    }
+
+    const meta = user.user_metadata || {};
+    const fullName =
+      (profile && profile.full_name) ||
+      meta.full_name ||
+      user.email.split('@')[0];
+
+    const initials =
+      (profile && profile.initials) ||
+      meta.initials ||
+      fullName
+        .split(' ')
+        .map(function (w) { return w[0]; })
+        .join('')
+        .slice(0, 2)
+        .toUpperCase();
+
+    const color =
+      (profile && profile.color) ||
+      meta.color ||
+      '#1A3C5E';
+
+    // FIXED - pulls from profiles table first, then metadata, then fallback
+mockUser = {
+  name: fullName,
+  email: user.email || '',
+  phone: (profile && profile.phone) || meta.phone || '',
+  role: (profile && profile.job_title) || meta.role || '',
+  business: (profile && profile.business) || meta.business || '',
+  industry: (profile && profile.industry) || meta.industry || '',
+  service: meta.service_interest || 'general',
+  initials: initials,
+  color: color
+};
+  }
+
+  /* ── SHARED STATE ────────────────────────────────────── */
+  var state = {
+    user: mockUser,
+    requests: mockRequests,
+    messages: mockMessages,
+    selectedMessage: null
+  };
+
+  /* ── TOAST ───────────────────────────────────────────── */
+  var toastTimer;
+  function showToast(msg, type) {
+    var t = document.getElementById('dashToast');
+    if (!t) return;
+    t.textContent = msg;
+    t.className = 'dash-toast show dash-toast--' + (type || 'info');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove('show'); }, 3000);
+  }
+
+  /* ── SIGN OUT ────────────────────────────────────────── */
+  async function handleSignOut() {
+    try {
+      if (typeof supabaseClient !== 'undefined' && supabaseClient) {
+        await supabaseClient.auth.signOut();
+      }
+      window.location.href = '../../auth/login.html';
+    } catch (err) {
+      showToast('Sign out failed. Please try again.', 'error');
+      console.error('Sign out error:', err);
+    }
+  }
+
+  /* ── SIDEBAR TOGGLE ──────────────────────────────────── */
+  function initSidebar() {
+    var toggle = document.getElementById('dashMenuToggle');
+    var sidebar = document.getElementById('dashSidebar');
+    var overlay = document.getElementById('dashSidebarOverlay');
+    if (toggle) {
+      toggle.addEventListener('click', function () {
+        sidebar.classList.toggle('open');
+        if (overlay) overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+      });
+    }
+    if (overlay) {
+      overlay.addEventListener('click', function () {
+        sidebar.classList.remove('open');
+        overlay.style.display = 'none';
+      });
+    }
+  }
+
+  /* ── POPULATE USER INFO ──────────────────────────────── */
+  function populateUserInfo() {
+    var u = state.user;
+    var avatarEl = document.getElementById('sidebarAvatar');
+    var nameEl   = document.getElementById('sidebarName');
+    if (avatarEl) { avatarEl.textContent = u.initials; avatarEl.style.background = u.color; }
+    if (nameEl)   nameEl.textContent = u.name;
+  }
+
+  /* ── PAGE: INDEX ─────────────────────────────────────── */
+  function initIndexPage() {
+    if (!document.getElementById('welcomeName')) return;
+    var u = state.user;
+
+    document.getElementById('welcomeName').textContent = 'Welcome back, ' + u.name.split(' ')[0] + '!';
+
+    var profileAvatar = document.getElementById('profileAvatar');
+    if (profileAvatar) { profileAvatar.textContent = u.initials; profileAvatar.style.background = u.color; }
+
+    var total  = state.requests.length;
+    var active = state.requests.filter(function (r) { return r.status === 'in-progress' || r.status === 'pending'; }).length;
+    var done   = state.requests.filter(function (r) { return r.status === 'completed'; }).length;
+
+    var stTotal  = document.getElementById('statTotal');
+    var stActive = document.getElementById('statActive');
+    var stDone   = document.getElementById('statDone');
+    if (stTotal)  stTotal.textContent  = total;
+    if (stActive) stActive.textContent = active;
+    if (stDone)   stDone.textContent   = done;
+
+    renderRequestsTable();
+    renderRecentMessages();
+  }
+
+  function renderRequestsTable() {
+    var tbody = document.getElementById('requestsBody');
+    if (!tbody) return;
+    if (state.requests.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="5"><div class="dash-empty" style="padding:24px"><span>📋</span><h4>No requests yet</h4><p>Your service requests will appear here.</p></div></td></tr>';
+      return;
+    }
+    tbody.innerHTML = state.requests.map(function (r) {
+      return '<tr>'
+        + '<td><strong style="font-size:.82rem">' + r.id + '</strong></td>'
+        + '<td>' + r.service + '</td>'
+        + '<td><span class="dash-badge dash-badge--' + (r.brand === 'puraklen' ? 'teal' : 'purple') + '">' + (r.brand === 'puraklen' ? "Pura-Kle'N" : 'Yourfirm') + '</span></td>'
+        + '<td style="font-size:.82rem;color:var(--warm-grey)">' + r.date + '</td>'
+        + '<td>' + statusBadge(r.status) + '</td>'
+        + '</tr>';
+    }).join('');
+  }
+
+  function renderRecentMessages() {
+    var el = document.getElementById('recentMessages');
+    if (!el) return;
+    var recent = state.messages.slice(0, 3);
+    if (recent.length === 0) return;
+    el.innerHTML = recent.map(function (m) {
+      return '<div style="display:flex;align-items:flex-start;gap:12px;padding:14px 24px;border-bottom:1px solid #f0ede8;cursor:pointer" onclick="window.location.href=\'messages.html\'">'
+        + '<div style="width:36px;height:36px;border-radius:50%;background:' + m.avatar + ';display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#fff;flex-shrink:0">' + m.from.substring(0, 2).toUpperCase() + '</div>'
+        + '<div style="flex:1;min-width:0">'
+          + '<div style="display:flex;justify-content:space-between;align-items:center">'
+            + '<span style="font-size:.855rem;font-weight:' + (m.unread ? '700' : '500') + ';color:var(--navy)">' + m.from + '</span>'
+            + '<span style="font-size:.72rem;color:var(--warm-grey)">' + m.time + '</span>'
+          + '</div>'
+          + '<div style="font-size:.825rem;color:#444;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:' + (m.unread ? '600' : '400') + '">' + m.subject + '</div>'
+          + '<div style="font-size:.78rem;color:var(--warm-grey);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + m.preview + '</div>'
+        + '</div>'
+        + (m.unread ? '<div style="width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0"></div>' : '')
+        + '</div>';
+    }).join('');
+  }
+
+  /* ── PAGE: MESSAGES ──────────────────────────────────── */
+  function initMessagesPage() {
+    if (!document.getElementById('messageList')) return;
+    renderMessageList();
+
+    var search = document.getElementById('msgSearch');
+    if (search) {
+      search.addEventListener('input', function () { renderMessageList(search.value); });
+    }
+  }
+
+  function renderMessageList(query) {
+    var list = document.getElementById('messageList');
+    if (!list) return;
+    var msgs = state.messages.filter(function (m) {
+      if (!query) return true;
+      var q = query.toLowerCase();
+      return m.from.toLowerCase().indexOf(q) > -1 || m.subject.toLowerCase().indexOf(q) > -1;
+    });
+    if (msgs.length === 0) {
+      list.innerHTML = '<div class="dash-empty" style="padding:32px"><span>📭</span><h4>No messages</h4></div>';
+      return;
+    }
+    list.innerHTML = msgs.map(function (m) {
+      return '<div class="dash-msg-item' + (m.unread ? ' unread' : '') + '" data-id="' + m.id + '" onclick="openMessage(\'' + m.id + '\')" style="cursor:pointer">'
+        + '<div class="dash-msg-avatar" style="background:' + m.avatar + '">' + m.from.substring(0, 2).toUpperCase() + '</div>'
+        + '<div class="dash-msg-body">'
+          + '<div style="display:flex;justify-content:space-between;align-items:center">'
+            + '<span class="dash-msg-from">' + m.from + '</span>'
+          + '</div>'
+          + '<div class="dash-msg-subject">' + m.subject + '</div>'
+          + '<div class="dash-msg-preview">' + m.preview + '</div>'
+        + '</div>'
+        + '<div class="dash-msg-meta">'
+          + '<span class="dash-msg-time">' + m.time + '</span>'
+          + (m.unread ? '<span class="dash-msg-unread-dot"></span>' : '')
+        + '</div>'
+        + '</div>';
+    }).join('');
+  }
+
+  window.openMessage = function (id) {
+    var msg = state.messages.find(function (m) { return m.id === id; });
+    if (!msg) return;
+    msg.unread = false;
+    state.selectedMessage = msg;
+    renderMessageList();
+    var detail = document.getElementById('messageDetail');
+    if (!detail) return;
+    detail.innerHTML = '<div style="padding:28px 32px">'
+      + '<div style="margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #e8e4de">'
+        + '<div style="font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:8px">' + msg.subject + '</div>'
+        + '<div style="display:flex;gap:16px;font-size:.82rem;color:var(--warm-grey);flex-wrap:wrap">'
+          + '<span>From: <strong style="color:var(--navy)">' + msg.from + '</strong></span>'
+          + '<span>' + msg.date + '</span>'
+        + '</div>'
+      + '</div>'
+      + '<div style="font-size:.9rem;line-height:1.8;color:#3a3a3a;margin-bottom:28px">' + msg.body.replace(/\n/g, '<br>') + '</div>'
+      + '<div style="display:flex;gap:10px">'
+        + '<button class="dash-btn dash-btn--primary" onclick="openReplyToMessage(\'' + msg.id + '\')">Reply</button>'
+        + '<a href="https://wa.me/09098104610" target="_blank" class="dash-btn dash-btn--secondary">Chat on WhatsApp</a>'
+      + '</div>'
+    + '</div>';
+  };
+
+  window.openReplyToMessage = function (id) {
+    var msg = state.messages.find(function (m) { return m.id === id; });
+    if (!msg) return;
+    var modal = document.getElementById('newMsgModal');
+    if (!modal) return;
+    document.getElementById('newMsgSubject').value = 'Re: ' + msg.subject;
+    modal.classList.add('open');
+  };
+
+  window.openNewMessage = function () {
+    var modal = document.getElementById('newMsgModal');
+    if (modal) modal.classList.add('open');
+  };
+
+  window.closeNewMessage = function () {
+    var modal = document.getElementById('newMsgModal');
+    if (modal) modal.classList.remove('open');
+  };
+
+  window.sendNewMessage = function () {
+    var subject = (document.getElementById('newMsgSubject').value || '').trim();
+    var body    = (document.getElementById('newMsgBody').value || '').trim();
+    if (!subject || !body) { showToast('Please fill in all fields.', 'error'); return; }
+    closeNewMessage();
+    showToast('Message sent! yourfirmci@gmail.com respond within 24 hours.', 'success');
+    document.getElementById('newMsgSubject').value = '';
+    document.getElementById('newMsgBody').value = '';
+  };
+
+  /* ── PAGE: PROFILE ───────────────────────────────────── */
+  function initProfilePage() {
+    if (!document.getElementById('pfFullName')) return;
+    var u = state.user;
+
+    var profileAvatar = document.getElementById('profileAvatar');
+    var profileName   = document.getElementById('profileName');
+    var profileEmail  = document.getElementById('profileEmail');
+    if (profileAvatar) { profileAvatar.textContent = u.initials; profileAvatar.style.background = u.color; }
+    if (profileName)   profileName.textContent  = u.name;
+    if (profileEmail)  profileEmail.textContent = u.email;
+
+    document.getElementById('pfFullName').value  = u.name;
+    document.getElementById('pfPhone').value     = u.phone;
+    document.getElementById('pfEmail').value     = u.email;
+    document.getElementById('pfRole').value      = u.role;
+    document.getElementById('pfBusiness').value  = u.business;
+
+    var industryEl = document.getElementById('pfIndustry');
+    var serviceEl  = document.getElementById('pfService');
+    if (industryEl) industryEl.value = u.industry;
+    if (serviceEl)  serviceEl.value  = u.service;
+
+    var profileServiceBadge = document.getElementById('profileService');
+    if (profileServiceBadge) {
+      var labels = { cleaning: "Pura-Kle'N Cleaning", hr: 'Yourfirm HR', both: 'Both Services' };
+      profileServiceBadge.textContent = labels[u.service] || 'Client';
+    }
+  }
+
+  window.saveProfile = async function () {
+    var fullName = document.getElementById('pfFullName').value.trim();
+    var phone    = document.getElementById('pfPhone').value.trim();
+    var jobTitle = document.getElementById('pfRole').value.trim();
+    var business = document.getElementById('pfBusiness').value.trim();
+    var industry = document.getElementById('pfIndustry') ? document.getElementById('pfIndustry').value.trim() : '';
+    var service  = document.getElementById('pfService')  ? document.getElementById('pfService').value  : '';
+  
+    if (!fullName) {
+      showToast('Full name cannot be empty.', 'error');
+      return;
+    }
+  
+    try {
+      // 1. Update the profiles table
+      const { error: profileError } = await supabaseClient
+        .from('profiles')
+        .update({
+          full_name: fullName,
+          phone:     phone,
+          job_title: jobTitle,
+          business:  business,
+          industry:  industry
+        })
+        .eq('id', (await supabaseClient.auth.getSession()).data.session.user.id);
+  
+      if (profileError) throw profileError;
+  
+      // 2. Update auth metadata to keep them in sync
+      const { error: metaError } = await supabaseClient.auth.updateUser({
+        data: {
+          full_name:        fullName,
+          phone:            phone,
+          service_interest: service
+        }
+      });
+  
+      if (metaError) throw metaError;
+  
+      // 3. Update local state so the sidebar name updates immediately
+      state.user.name     = fullName;
+      state.user.phone    = phone;
+      state.user.role     = jobTitle;
+      state.user.business = business;
+      state.user.industry = industry;
+  
+      // 4. Recalculate initials and update sidebar
+      state.user.initials = fullName
+        .split(' ')
+        .map(function (w) { return w[0]; })
+        .join('')
+        .slice(0, 2)
+        .toUpperCase();
+  
+      populateUserInfo();
+      showToast('Profile updated successfully.', 'success');
+  
+    } catch (err) {
+      console.error('Save profile error:', err);
+      showToast('Failed to save profile. Please try again.', 'error');
+    }
+  };
+
+  window.changePassword = async function () {
+    var cur  = document.getElementById('pfCurrentPw').value;
+    var nw   = document.getElementById('pfNewPw').value;
+    var conf = document.getElementById('pfConfirmPw').value;
+  
+    if (!cur || !nw || !conf) {
+      showToast('Please fill in all password fields.', 'error');
+      return;
+    }
+    if (nw.length < 8) {
+      showToast('New password must be at least 8 characters.', 'error');
+      return;
+    }
+    if (nw !== conf) {
+      showToast('New passwords do not match.', 'error');
+      return;
+    }
+  
+    try {
+      // Supabase handles this directly
+      const { error } = await supabaseClient.auth.updateUser({
+        password: nw
+      });
+  
+      if (error) throw error;
+  
+      document.getElementById('pfCurrentPw').value = '';
+      document.getElementById('pfNewPw').value     = '';
+      document.getElementById('pfConfirmPw').value = '';
+  
+      showToast('Password updated successfully.', 'success');
+  
+    } catch (err) {
+      console.error('Password update error:', err);
+      showToast(err.message || 'Failed to update password.', 'error');
+    }
+  };
+
+  window.saveNotifications = function () {
+    showToast('Notification preferences saved.', 'success');
+  };
+
+  window.confirmDeleteAccount = function () {
+    if (confirm('Are you sure you want to delete your account? This cannot be undone.')) {
+      showToast('Account deletion request sent. Our team will process it within 48 hours.', 'info');
+    }
+  };
+
+  /* ── HELPERS ─────────────────────────────────────────── */
+  function statusBadge(status) {
+    var map    = { pending: 'yellow', 'in-progress': 'navy', completed: 'green' };
+    var labels = { pending: 'Pending', 'in-progress': 'In Progress', completed: 'Completed' };
+    return '<span class="dash-badge dash-badge--' + (map[status] || 'grey') + '">' + (labels[status] || status) + '</span>';
+  }
+
+  /* ── NOTIFICATIONS ───────────────────────────────── */
+async function initNotifications() {
+  if (typeof supabaseClient === 'undefined' || !supabaseClient) return;
+
+  var sessionResult = await supabaseClient.auth.getSession();
+  var session = sessionResult.data.session;
+  if (!session || !session.user) return;
+
+  // Fetch notifications
+  var { data: notifications, error } = await supabaseClient
+    .from('notifications')
+    .select('*')
+    .eq('user_id', session.user.id)
+    .order('created_at', { ascending: false })
+    .limit(10);
+
+  if (error) {
+    console.error('Notifications error:', error);
+    return;
+  }
+
+  // Update badge count
+  var unread = notifications ? notifications.filter(function (n) { return !n.is_read; }) : [];
+  var badge = document.getElementById('notifCount');
+  if (badge) {
+    if (unread.length > 0) {
+      badge.textContent = unread.length;
+      badge.style.display = 'flex';
+    } else {
+      badge.style.display = 'none';
+    }
+  }
+
+  // Render dropdown list
+  var list = document.getElementById('notifList');
+  if (!list || !notifications || notifications.length === 0) {
+    if (list) list.innerHTML = '<div class="dash-notif-empty">No notifications yet</div>';
+    return;
+  }
+
+  list.innerHTML = notifications.map(function (n) {
+    var icons = { booking: '📋', message: '💬', status_update: '🔄', general: '🔔' };
+    var icon = icons[n.type] || '🔔';
+    var time = timeAgo(n.created_at);
+
+    return '<div class="dash-notif-item' + (n.is_read ? '' : ' unread') + '" data-id="' + n.id + '">'
+      + '<div class="dash-notif-item-icon ' + (n.type || 'general') + '">' + icon + '</div>'
+      + '<div class="dash-notif-item-body">'
+        + '<div class="dash-notif-item-title">' + n.title + '</div>'
+        + '<div class="dash-notif-item-text">' + n.body + '</div>'
+        + '<div class="dash-notif-item-time">' + time + '</div>'
+      + '</div>'
+    + '</div>';
+  }).join('');
+
+  // Click notification to mark as read and go to notifications page
+  list.querySelectorAll('.dash-notif-item').forEach(function (item) {
+    item.addEventListener('click', async function () {
+      var id = item.dataset.id;
+      await supabaseClient
+        .from('notifications')
+        .update({ is_read: true })
+        .eq('id', id);
+      window.location.href = 'notifications.html';
+    });
+  });
+
+  // Bell toggle
+  var bell = document.getElementById('notifBellBtn');
+  var dropdown = document.getElementById('notifDropdown');
+  if (bell && dropdown) {
+    bell.addEventListener('click', function (e) {
+      e.stopPropagation();
+      dropdown.classList.toggle('open');
+    });
+    document.addEventListener('click', function () {
+      dropdown.classList.remove('open');
+    });
+  }
+
+  // Mark all read
+  var markAll = document.getElementById('markAllRead');
+  if (markAll) {
+    markAll.addEventListener('click', async function (e) {
+      e.stopPropagation();
+      await supabaseClient
+        .from('notifications')
+        .update({ is_read: true })
+        .eq('user_id', session.user.id)
+        .eq('is_read', false);
+
+      list.querySelectorAll('.dash-notif-item.unread').forEach(function (el) {
+        el.classList.remove('unread');
+      });
+      if (badge) badge.style.display = 'none';
+    });
+  }
+}
+
+function timeAgo(dateStr) {
+  var now = new Date();
+  var date = new Date(dateStr);
+  var diff = Math.floor((now - date) / 1000);
+
+  if (diff < 60) return 'Just now';
+  if (diff < 3600) return Math.floor(diff / 60) + 'm ago';
+  if (diff < 86400) return Math.floor(diff / 3600) + 'h ago';
+  if (diff < 604800) return Math.floor(diff / 86400) + 'd ago';
+  return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+}
+
+  /* ── INIT ────────────────────────────────────────────── */
+  document.addEventListener('DOMContentLoaded', async function () {
+    await hydrateMockUserFromSupabase();
+
+    state.user = mockUser;
+
+    initSidebar();
+    populateUserInfo();
+    initIndexPage();
+    initMessagesPage();
+    initProfilePage();
+    await initNotifications();
+
+    // Wire up ALL sign out buttons
+    var signOutIds = ['sidebarSignOutBtn', 'topbarSignOutBtn', 'signOutBtn'];
+    signOutIds.forEach(function (id) {
+      var btn = document.getElementById(id);
+      if (btn) btn.addEventListener('click', handleSignOut);
+    });
+
+    // Reveal the page
+    document.body.classList.add('auth-ready');
+  });
+
+})();

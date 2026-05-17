@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Staff Dashboard — AmyServes</title>n<link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/main.css" />
+  <link rel="stylesheet" href="../../css/dashboard.css" />
+  <style>
+    body { opacity: 0; transition: opacity 0.3s ease; }
+    body.auth-ready { opacity: 1; }
+  </style>
+<link rel="icon" href="/assets/images/favicon.png?v=1" />n<link rel="apple-touch-icon" href="/assets/images/favicon.png" />n<meta name="theme-color" content="#1A3C5E" />n</head>
+<body>
+
+<div id="dashSidebarOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:99"></div>
+
+<div class="dash-page">
+
+  <!-- SIDEBAR -->
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="dash-sidebar-logo">
+      <img src="../../assets/images/logos/amyserves.png" alt="AmyServes" />
+      <span class="dash-sidebar-role">Staff Portal</span>
+    </div>
+
+    <nav class="dash-nav">
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Overview</span>
+        <a href="index.html" class="active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </a>
+      </div>
+
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Operations</span>
+        <a href="clients.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          My Clients
+          <span class="dash-nav-badge" id="pendingBadge" style="display:none">0</span>
+        </a>
+        <a href="requests.html" id="navRequests">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Service Requests
+        </a>
+        <a href="messages.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Messages
+          <span class="dash-nav-badge dash-nav-badge--red" id="unreadBadge" style="display:none">0</span>
+        </a>
+        <a href="notifications.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          Notifications
+          <span class="dash-nav-badge dash-nav-badge--red" id="notifNavBadge" style="display:none">0</span>
+        </a>
+        <a href="profile.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          My Profile
+        </a>
+      </div>
+
+      <div class="dash-nav-section" id="navPayments" style="display:none">
+        <span class="dash-nav-label">Finance</span>
+        <a href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          Billing & Payments
+        </a>
+      </div>
+
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">AmyServes</span>
+        <a href="../../index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          Back to Website
+        </a>
+      </div>
+
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Account</span>
+        <button id="sidebarSignOutBtn" class="dash-nav-signout-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sign Out
+        </button>
+      </div>
+    </nav>
+
+    <div class="dash-sidebar-footer">
+      <div class="dash-user-chip">
+        <div class="dash-user-avatar" id="sidebarAvatar">ST</div>
+        <div>
+          <div class="dash-user-name" id="sidebarName">Staff Member</div>
+          <div class="dash-user-role" id="sidebarRole">Staff Account</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="dash-main">
+
+    <!-- TOPBAR -->
+    <header class="dash-topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="dash-menu-toggle" id="dashMenuToggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <span class="dash-topbar-title">Staff Overview</span>
+      </div>
+      <div class="dash-topbar-actions">
+        <!-- Notifications Bell -->
+        <div class="dash-notif-wrapper" id="notifWrapper">
+          <button class="dash-topbar-btn dash-notif-btn" id="notifBellBtn" title="Notifications">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="dash-notif-badge" id="notifBadge" style="display:none">0</span>
+          </button>
+          <div class="dash-notif-dropdown" id="notifDropdown">
+            <div class="dash-notif-header">
+              <span>Notifications</span>
+              <button id="markAllRead" class="dash-notif-mark-read">Mark all read</button>
+            </div>
+            <div class="dash-notif-list" id="notifList">
+              <div class="dash-notif-empty">No notifications yet</div>
+            </div>
+            <a href="notifications.html" class="dash-notif-footer">View All Notifications</a>
+          </div>
+        </div>
+        <!-- Sign Out -->
+        <button id="topbarSignOutBtn" class="dash-topbar-btn" title="Sign out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="dash-content">
+
+      <!-- Welcome Banner -->
+      <div style="background:linear-gradient(135deg,#083325,#0f6e56);border-radius:14px;padding:28px 32px;margin-bottom:28px;position:relative;overflow:hidden">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(255,255,255,0.06) 0%,transparent 60%);pointer-events:none"></div>
+        <div style="position:relative;z-index:1">
+          <p style="color:rgba(255,255,255,0.55);font-size:.82rem;margin-bottom:4px" id="staffRoleLabel">Staff Portal</p>
+          <h1 style="color:#fff;font-size:1.4rem;margin-bottom:8px" id="welcomeName">Welcome back!</h1>
+          <p style="color:rgba(255,255,255,0.6);font-size:.875rem">Here's your workload summary for today.</p>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="dash-stats-grid">
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon dash-stat-icon--navy">👥</div>
+          <div class="dash-stat-value" id="statClients">0</div>
+          <div class="dash-stat-label">Total Clients</div>
+          <div class="dash-stat-change dash-stat-change--neu">Active accounts</div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon dash-stat-icon--gold">⏳</div>
+          <div class="dash-stat-value" id="statPending">0</div>
+          <div class="dash-stat-label">Pending Requests</div>
+          <div class="dash-stat-change dash-stat-change--neu">Needs attention</div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon dash-stat-icon--teal">🔄</div>
+          <div class="dash-stat-value" id="statInProgress">0</div>
+          <div class="dash-stat-label">In Progress</div>
+          <div class="dash-stat-change dash-stat-change--up">Active engagements</div>
+        </div>
+        <div class="dash-stat-card">
+          <div class="dash-stat-icon dash-stat-icon--purple">💬</div>
+          <div class="dash-stat-value" id="statMessages">0</div>
+          <div class="dash-stat-label">Unread Messages</div>
+          <div class="dash-stat-change dash-stat-change--neu">Requires reply</div>
+        </div>
+      </div>
+
+      <div class="dash-grid-2">
+
+        <!-- Recent Requests -->
+        <div class="dash-card" style="grid-column:1 / -1">
+          <div class="dash-card-header">
+            <h3>Recent Service Requests</h3>
+            <a href="requests.html" class="dash-btn dash-btn--secondary dash-btn--sm">View All</a>
+          </div>
+          <div class="dash-table-wrap">
+            <table class="dash-table">
+              <thead>
+                <tr>
+                  <th>Client</th>
+                  <th>Service</th>
+                  <th>Brand</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="clientsBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="dash-grid-2">
+
+        <!-- Activity Feed -->
+        <div class="dash-card">
+          <div class="dash-card-header"><h3>Recent Activity</h3></div>
+          <div class="dash-card-body">
+            <div class="dash-feed" id="activityFeed">
+              <div class="dash-empty" style="padding:24px 0">
+                <span>📋</span>
+                <h4>No recent activity</h4>
+                <p>Updates will appear here.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="dash-card">
+          <div class="dash-card-header"><h3>Quick Actions</h3></div>
+          <div class="dash-card-body" style="display:flex;flex-direction:column;gap:10px">
+            <a href="clients.html" class="dash-btn dash-btn--primary" style="width:100%;justify-content:center">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              View My Clients
+            </a>
+            <a href="requests.html" class="dash-btn dash-btn--secondary" style="width:100%;justify-content:center">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+              Service Requests
+            </a>
+            <a href="messages.html" class="dash-btn dash-btn--secondary" style="width:100%;justify-content:center">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Check Messages
+            </a>
+            <a href="notifications.html" class="dash-btn dash-btn--secondary" style="width:100%;justify-content:center">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              Notifications
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dash-toast" id="dashToast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../../js/supabase.js"></script>
+<script src="../../js/notifications.js"></script>
+<script src="../../js/dashboard-staff.js"></script>
+</body>
+</html>

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notifications — AmyServes Client Portal</title>n<link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link rel="stylesheet" href="../../css/main.css" />
+  <link rel="stylesheet" href="../../css/dashboard.css" />
+  <style>
+    body { opacity: 0; transition: opacity 0.3s ease; }
+    body.auth-ready { opacity: 1; }
+
+    /* ── TABS ── */
+    .notif-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .notif-tab {
+      padding: 7px 16px;
+      border-radius: 20px;
+      border: 1.5px solid #e0dbd4;
+      background: #fff;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--warm-grey);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .notif-tab.active {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+    }
+
+    .notif-tab:hover:not(.active) {
+      border-color: var(--navy);
+      color: var(--navy);
+    }
+
+    /* ── NOTIFICATION ITEMS ── */
+    .notif-page-item {
+      display: flex;
+      gap: 16px;
+      padding: 18px 24px;
+      border-bottom: 1px solid #f0ede8;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .notif-page-item:hover {
+      background: #faf8f5;
+    }
+
+    .notif-page-item.unread {
+      background: #fffbf2;
+      border-left: 3px solid var(--gold);
+    }
+
+    .notif-page-item:last-child {
+      border-bottom: none;
+    }
+
+    .notif-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .notif-icon.booking  { background: #e8f5e9; }
+    .notif-icon.message  { background: #e3f2fd; }
+    .notif-icon.status_update { background: #fff3e0; }
+    .notif-icon.general  { background: #f3f0ff; }
+    .notif-icon.sent     { background: #f0fdf4; }
+
+    .notif-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .notif-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+
+    .notif-title {
+      font-size: .92rem;
+      color: var(--navy);
+    }
+
+    .notif-title.bold {
+      font-weight: 700;
+    }
+
+    .notif-time {
+      font-size: .75rem;
+      color: var(--warm-grey);
+      white-space: nowrap;
+    }
+
+    .notif-text {
+      font-size: .85rem;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .notif-direction-badge {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-top: 6px;
+    }
+
+    .notif-direction-badge.received {
+      background: #e3f2fd;
+      color: #1565c0;
+    }
+
+    .notif-direction-badge.sent {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .notif-unread-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    .notif-empty {
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    .notif-empty span {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .notif-empty h4 {
+      margin: 0 0 4px;
+      color: var(--navy);
+    }
+
+    .notif-empty p {
+      color: var(--warm-grey);
+      font-size: .9rem;
+      margin: 0;
+    }
+  </style>
+<link rel="icon" href="/assets/images/favicon.png?v=1" />n<link rel="apple-touch-icon" href="/assets/images/favicon.png" />n<meta name="theme-color" content="#1A3C5E" />n</head>
+<body>
+
+<div id="dashSidebarOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:99"></div>
+
+<div class="dash-page">
+
+  <!-- SIDEBAR -->
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="dash-sidebar-logo">
+      <span class="dash-sidebar-title">AmyServes</span>
+      <span class="dash-sidebar-role">Client Portal</span>
+    </div>
+
+    <nav class="dash-nav">
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Overview</span>
+        <a href="index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+          </svg>
+          Dashboard
+        </a>
+      </div>
+
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">My Services</span>
+
+        <a href="messages.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Messages
+          <span class="dash-nav-badge dash-nav-badge--red" id="unreadBadge" style="display:none">0</span>
+        </a>
+
+        <a href="notifications.html" class="active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 17h5l-1.4-1.4a2 2 0 0 1-.6-1.4V11a6 6 0 1 0-12 0v3.2a2 2 0 0 1-.6 1.4L4 17h5"/>
+            <path d="M9 17a3 3 0 0 0 6 0"/>
+          </svg>
+          Notifications
+          <span class="dash-nav-badge dash-nav-badge--red" id="notifNavBadge" style="display:none">0</span>
+        </a>
+
+        <a href="profile.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          My Profile
+        </a>
+      </div>
+
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">AmyServes</span>
+        <a href="../../services.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          </svg>
+          Our Services
+        </a>
+        <a href="../../index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          </svg>
+          Back to Website
+        </a>
+      </div>
+
+      <div class="dash-nav-section">
+        <span class="dash-nav-label">Account</span>
+        <button id="sidebarSignOutBtn" class="dash-nav-signout-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          Sign Out
+        </button>
+      </div>
+    </nav>
+
+    <div class="dash-sidebar-footer">
+      <div class="dash-user-chip">
+        <div class="dash-user-avatar" id="sidebarAvatar">CL</div>
+        <div>
+          <div class="dash-user-name" id="sidebarName">Client</div>
+          <div class="dash-user-role">Client Account</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="dash-main">
+
+    <!-- TOPBAR -->
+    <header class="dash-topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="dash-menu-toggle" id="dashMenuToggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+        <span class="dash-topbar-title">Notifications</span>
+      </div>
+      <div class="dash-topbar-actions">
+        <!-- Bell -->
+        <div class="dash-notif-wrapper" id="notifWrapper">
+          <button class="dash-topbar-btn dash-notif-btn" id="notifBellBtn" title="Notifications">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+            <span class="dash-notif-badge" id="notifCount" style="display:none">0</span>
+          </button>
+          <div class="dash-notif-dropdown" id="notifDropdown">
+            <div class="dash-notif-header">
+              <span>Notifications</span>
+              <button id="markAllRead" class="dash-notif-mark-read">Mark all read</button>
+            </div>
+            <div class="dash-notif-list" id="notifList">
+              <div class="dash-notif-empty">No notifications yet</div>
+            </div>
+            <a href="notifications.html" class="dash-notif-footer">View All Notifications</a>
+          </div>
+        </div>
+        <!-- Sign Out -->
+        <button id="topbarSignOutBtn" class="dash-topbar-btn" title="Sign out">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="dash-content">
+
+      <div class="dash-page-header">
+        <h1>Notifications</h1>
+        <p>All your activity alerts and updates.</p>
+      </div>
+
+      <!-- Actions Bar -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+        <!-- Tabs -->
+        <div class="notif-tabs">
+          <button class="notif-tab active" data-filter="all">All</button>
+          <button class="notif-tab" data-filter="received">Received</button>
+          <button class="notif-tab" data-filter="sent">Sent</button>
+          <button class="notif-tab" data-filter="unread">Unread</button>
+          <button class="notif-tab" data-filter="read">Read</button>
+        </div>
+        <button class="dash-btn dash-btn--secondary" id="markAllReadPage" style="font-size:.85rem">
+          Mark All as Read
+        </button>
+      </div>
+
+      <!-- Notifications List -->
+      <div class="dash-card" style="padding:0;overflow:hidden">
+        <div id="notificationsPageList">
+          <div class="notif-empty">
+            <span>🔔</span>
+            <h4>No notifications yet</h4>
+            <p>When you receive updates, they'll appear here.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="dashToast" class="dash-toast"></div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../../js/supabase.js"></script>
+<script src="../../js/dashboard-client.js"></script>
+<script src="../../js/notifications.js"></script>
+
+<script>
+  (function () {
+    'use strict';
+
+    var allNotifications = [];
+    var currentFilter    = 'all';
+    var realtimeChannel  = null;
+
+    var icons = {
+      booking:       '📋',
+      message:       '💬',
+      status_update: '🔄',
+      general:       '🔔',
+      sent:          '📤',
+      login:         '🔐',
+      request:       '📝'
+    };
+
+    /* ── INIT ── */
+    document.addEventListener('DOMContentLoaded', async function () {
+      await waitForAuth();
+      await loadNotifications();
+      await subscribeToRealTime();
+
+      // Tab clicks
+      document.querySelectorAll('.notif-tab').forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          document.querySelectorAll('.notif-tab').forEach(function (t) {
+            t.classList.remove('active');
+          });
+          tab.classList.add('active');
+          currentFilter = tab.dataset.filter;
+          renderNotifications();
+        });
+      });
+
+      // Mark all read
+      var markAllBtn = document.getElementById('markAllReadPage');
+      if (markAllBtn) {
+        markAllBtn.addEventListener('click', markAllAsRead);
+      }
+    });
+
+    /* ── WAIT FOR AUTH ── */
+    async function waitForAuth() {
+      return new Promise(function (resolve) {
+        var tries = 0;
+        var check = setInterval(function () {
+          tries++;
+          if (typeof supabaseClient !== 'undefined' && supabaseClient) {
+            clearInterval(check);
+            resolve();
+          }
+          if (tries > 50) {
+            clearInterval(check);
+            resolve();
+          }
+        }, 100);
+      });
+    }
+
+    /* ── GET USER ── */
+    async function getUserId() {
+      if (!supabaseClient) return null;
+      var sessionResult = await supabaseClient.auth.getSession();
+      var session = sessionResult.data.session;
+      if (!session || !session.user) return null;
+      return session.user.id;
+    }
+
+    /* ── LOAD ── */
+    async function loadNotifications() {
+      var userId = await getUserId();
+      if (!userId) return;
+
+      var { data, error } = await supabaseClient
+        .from('notifications')
+        .select('*')
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Load notifications error:', error);
+        return;
+      }
+
+      allNotifications = data || [];
+      renderNotifications();
+      updatePageBadges();
+    }
+
+    /* ── REAL-TIME SUBSCRIPTION ── */
+    async function subscribeToRealTime() {
+      var userId = await getUserId();
+      if (!userId) return;
+
+      realtimeChannel = supabaseClient
+        .channel('notifications-page')
+        .on(
+          'postgres_changes',
+          {
+            event:  'INSERT',
+            schema: 'public',
+            table:  'notifications',
+            filter: 'user_id=eq.' + userId
+          },
+          function (payload) {
+            // Add new notification to the TOP of the list
+            allNotifications.unshift(payload.new);
+            renderNotifications();
+            updatePageBadges();
+
+            // Show toast for new notification
+            showToast('🔔 ' + payload.new.title, 'info');
+          }
+        )
+        .on(
+          'postgres_changes',
+          {
+            event:  'UPDATE',
+            schema: 'public',
+            table:  'notifications',
+            filter: 'user_id=eq.' + userId
+          },
+          function (payload) {
+            // Update the notification in the list
+            var index = allNotifications.findIndex(function (n) {
+              return n.id === payload.new.id;
+            });
+            if (index !== -1) {
+              allNotifications[index] = payload.new;
+              renderNotifications();
+              updatePageBadges();
+            }
+          }
+        )
+        .subscribe();
+    }
+
+    /* ── RENDER ── */
+    function renderNotifications() {
+      var list = document.getElementById('notificationsPageList');
+      if (!list) return;
+
+      var filtered = allNotifications.filter(function (n) {
+        if (currentFilter === 'all')      return true;
+        if (currentFilter === 'received') return n.direction === 'received' || !n.direction;
+        if (currentFilter === 'sent')     return n.direction === 'sent';
+        if (currentFilter === 'unread')   return !n.is_read;
+        if (currentFilter === 'read')     return n.is_read;
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        var labels = {
+          all:      'No notifications yet',
+          received: 'No received notifications',
+          sent:     'No sent notifications',
+          unread:   'No unread notifications',
+          read:     'No read notifications'
+        };
+        list.innerHTML = '<div class="notif-empty">'
+          + '<span>🔔</span>'
+          + '<h4>' + (labels[currentFilter] || 'Nothing here') + '</h4>'
+          + '<p>When you receive updates, yourfirmci@gmail.com appear here.</p>'
+          + '</div>';
+        return;
+      }
+
+      list.innerHTML = filtered.map(function (n) {
+        var icon      = icons[n.type] || '🔔';
+        var direction = n.direction || 'received';
+        var isUnread  = !n.is_read;
+        var hasLink   = n.link ? ' data-link="' + n.link + '"' : '';
+
+        return '<div class="notif-page-item' + (isUnread ? ' unread' : '') + '" data-id="' + n.id + '"' + hasLink + '>'
+          + '<div class="notif-icon ' + (n.type || 'general') + '">' + icon + '</div>'
+          + '<div class="notif-body">'
+            + '<div class="notif-title-row">'
+              + '<div class="notif-title' + (isUnread ? ' bold' : '') + '">' + n.title + '</div>'
+              + '<div class="notif-time">' + timeAgo(n.created_at) + '</div>'
+            + '</div>'
+            + '<div class="notif-text">' + n.body + '</div>'
+            + '<span class="notif-direction-badge ' + direction + '">'
+              + (direction === 'sent' ? '↑ Sent' : '↓ Received')
+            + '</span>'
+          + '</div>'
+          + (isUnread ? '<div class="notif-unread-dot"></div>' : '')
+          + '</div>';
+      }).join('');
+
+      // Click to mark as read + follow link
+      list.querySelectorAll('.notif-page-item').forEach(function (item) {
+        item.addEventListener('click', async function () {
+          var id    = item.dataset.id;
+          var link  = item.dataset.link;
+          var notif = allNotifications.find(function (n) { return n.id === id; });
+
+          // Mark as read if unread
+          if (notif && !notif.is_read) {
+            await supabaseClient
+              .from('notifications')
+              .update({ is_read: true })
+              .eq('id', id);
+            notif.is_read = true;
+            renderNotifications();
+            updatePageBadges();
+          }
+
+          // Follow link if exists
+          if (link) {
+            window.location.href = link;
+          }
+        });
+      });
+    }
+
+    /* ── MARK ALL READ ── */
+    async function markAllAsRead() {
+      var userId = await getUserId();
+      if (!userId) return;
+
+      await supabaseClient
+        .from('notifications')
+        .update({ is_read: true })
+        .eq('user_id', userId)
+        .eq('is_read', false);
+
+      allNotifications.forEach(function (n) { n.is_read = true; });
+      renderNotifications();
+      updatePageBadges();
+      showToast('All notifications marked as read ✅', 'success');
+    }
+
+    /* ── UPDATE BADGES ── */
+    function updatePageBadges() {
+      var unread   = allNotifications.filter(function (n) { return !n.is_read; }).length;
+      var bell     = document.getElementById('notifCount');
+      var navBadge = document.getElementById('notifNavBadge');
+
+      if (bell) {
+        bell.textContent   = unread;
+        bell.style.display = unread > 0 ? 'flex' : 'none';
+      }
+      if (navBadge) {
+        navBadge.textContent   = unread;
+        navBadge.style.display = unread > 0 ? 'inline-flex' : 'none';
+      }
+    }
+
+    /* ── TOAST ── */
+    function showToast(msg, type) {
+      var toast = document.getElementById('dashToast');
+      if (!toast) return;
+      toast.textContent  = msg;
+      toast.className    = 'dash-toast show dash-toast--' + (type || 'success');
+      setTimeout(function () { toast.classList.remove('show'); }, 3000);
+    }
+
+    /* ── TIME AGO ── */
+    function timeAgo(dateStr) {
+      if (!dateStr) return '';
+      var now  = new Date();
+      var date = new Date(dateStr);
+      var diff = Math.floor((now - date) / 1000);
+      if (diff < 60)     return 'Just now';
+      if (diff < 3600)   return Math.floor(diff / 60)   + 'm ago';
+      if (diff < 86400)  return Math.floor(diff / 3600)  + 'h ago';
+      if (diff < 604800) return Math.floor(diff / 86400) + 'd ago';
+      return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+    }
+
+  })();
+</script>
+
+</body>
+</html>

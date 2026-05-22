@@ -401,7 +401,7 @@
       + '<div style="font-size:.9rem;line-height:1.8;color:#3a3a3a;margin-bottom:28px">' + msg.body.replace(/\n/g, '<br>') + '</div>'
       + '<div style="display:flex;gap:10px">'
         + '<button class="dash-btn dash-btn--primary" onclick="openReplyToMessage(\'' + msg.id + '\')">Reply</button>'
-        + '<a href="https://wa.me/2349098104610" target="_blank" class="dash-btn dash-btn--secondary">Chat on WhatsApp</a>'
+        + '<a href="https://wa.me/2349098104610?text=Hello%2C%20AmyServes%2C%20I%27d%20like%20to%20make%20inquiries%20about%20your%20services." target="_blank" class="dash-btn dash-btn--secondary">Chat on WhatsApp</a>'
       + '</div>'
     + '</div>';
   };

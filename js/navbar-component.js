@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', () => {
 /* ══════════════════════════════════════════════════════
    NAVBAR COMPONENT
    Shared across all pages. Edit once, updates everywhere.
@@ -157,8 +158,8 @@
   
     // Detect the current "page key"
     function getPageKey() {
-      if (path.includes('/puraklen/')) return 'puraklen';
-      if (path.includes('/yourfirm/')) return 'yourfirm';
+      if (path.includes('/puraklen')) return 'puraklen';
+      if (path.includes('/yourfirm')) return 'yourfirm';
       if (path.includes('/about'))    return 'about';
       if (path.includes('/services')) return 'services';
       if (path.includes('/blog'))     return 'blog';
@@ -192,6 +193,29 @@
       });
     });
   
+    
+    // ── EXTRA POLISH ─────────────────────────────────────
+    // Close menu on window resize (to desktop)
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 960) navbar.classList.remove('open');
+    });
+
+    // Close menu on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        navbar.classList.remove('open');
+        if (profileDD) profileDD.classList.remove('open');
+      }
+    });
+
+    // Accessibility: aria-expanded
+    if (navToggle) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = navbar.classList.contains('open');
+        navToggle.setAttribute('aria-expanded', isOpen);
+      });
+    }
+
     // ── SCROLL EFFECT ────────────────────────────────────
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 30);
@@ -234,9 +258,9 @@
                            .toUpperCase();
     
       // Set dashboard URL based on role
-      const dashboardUrl = role === 'admin'  ? '/dashboard/admin/index.html'
-                         : role === 'staff'  ? '/dashboard/staff/index.html'
-                         : '/dashboard/client/index.html';
+      const dashboardUrl = role === 'admin'  ? '/dashboard/admin'
+                         : role === 'staff'  ? '/dashboard/staff'
+                         : '/dashboard/client';
     
       if (profileAvatar) profileAvatar.textContent = initials;
       if (profileName)   profileName.textContent   = name;
@@ -294,7 +318,7 @@
         if (signOutBtn) {
           signOutBtn.addEventListener('click', async function () {
             await supabaseClient.auth.signOut();
-            window.location.href = '/auth/login.html';
+            window.location.href = '/auth/login';
           });
         }
   
@@ -313,3 +337,5 @@
     })();
   
   })();
+
+});

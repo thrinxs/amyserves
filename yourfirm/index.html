@@ -16,7 +16,24 @@
   <link rel="stylesheet" href="yourfirm.css" />
 <meta name="theme-color" content="#1A3C5E" />
   <link rel="icon" href="/assets/images/favicon.ico?v=1000" />
-</head>
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://amyserves.com/yourfirm" />
+    <meta property="og:title" content="Yourfirm Consults — HR & Workforce Consulting in Abuja" />
+    <meta property="og:description" content="Yourfirm Consults provides expert HR and workforce management solutions for businesses in Abuja." />
+    <meta property="og:image" content="https://amyserves.com/assets/images/og-image.jpg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Yourfirm Consults — HR & Workforce Consulting in Abuja" />
+    <meta name="twitter:description" content="Yourfirm Consults provides expert HR and workforce management solutions for businesses in Abuja." />
+    <meta name="twitter:image" content="https://amyserves.com/assets/images/og-image.jpg" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://amyserves.com/yourfirm" />
+
+  </head>
 
 <body>
 
@@ -28,10 +45,10 @@
   
       <!-- Logo + back link -->
       <div class="navbar-logo-group">
-        <a href="index.html" class="navbar-logo">
+        <a href="/" class="navbar-logo">
           <img src="../assets/images/logos/yourfirm.png" alt="Yourfirm Consults" />
         </a>
-        <a href="../index.html" class="navbar-back-link">← AmyServes</a>
+        <a href="/" class="navbar-back-link">← AmyServes</a>
       </div>
   
       <!-- Desktop Links -->
@@ -71,8 +88,8 @@
   
           <!-- Logged OUT -->
           <div class="navbar-auth" id="navAuthOut" style="display:none">
-            <a href="../auth/login.html" class="btn-nav-login">Sign In</a>
-            <a href="../auth/signup.html" class="btn-nav-signup">Sign Up</a>
+            <a href="/auth/login" class="btn-nav-login">Sign In</a>
+            <a href="/auth/signup" class="btn-nav-signup">Sign Up</a>
           </div>
   
           <!-- Logged IN -->
@@ -115,7 +132,7 @@
         <a href="#why-us" class="nav-link">Why Us</a>
         <a href="#process" class="nav-link">Our Process</a>
         <a href="#testimonials" class="nav-link">Testimonials</a>
-        <a href="../index.html" class="nav-link">← Back to AmyServes</a>
+        <a href="/" class="nav-link">← Back to AmyServes</a>
         <div class="navbar-mobile-divider"></div>
         <div class="navbar-mobile-actions">
           <a
@@ -136,8 +153,8 @@
   
         <!-- Mobile: Logged OUT -->
         <div class="navbar-mobile-auth" id="mobileAuthOut" style="display:flex">
-          <a href="../auth/login.html" class="btn-mobile-login">Sign In</a>
-          <a href="../auth/signup.html" class="btn-mobile-signup">Sign Up</a>
+          <a href="/auth/login" class="btn-mobile-login">Sign In</a>
+          <a href="/auth/signup" class="btn-mobile-signup">Sign Up</a>
         </div>
   
         <!-- Mobile: Logged IN -->
@@ -877,7 +894,7 @@
         <div class="yf-footer-brand">
           <img src="../assets/images/logos/yourfirm.png" alt="Yourfirm Consults" class="yf-footer-logo" />
           <p>HR and workforce consulting for Nigerian SMEs. Employment contracts, recruitment, payroll, and performance — all under one roof. A brand of AmyServes Group.</p>
-          <a href="../index.html" class="yf-footer-back">← Back to AmyServes</a>
+          <a href="/" class="yf-footer-back">← Back to AmyServes</a>
         </div>
         <div class="yf-footer-col">
           <h5>Our Services</h5>
@@ -893,11 +910,11 @@
         <div class="yf-footer-col">
           <h5>AmyServes</h5>
           <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../about.html">About Us</a></li>
-            <li><a href="../services.html">All Services</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/services">All Services</a></li>
             <li><a href="../puraklen/index.html">Pura-Kle'N Cleaning</a></li>
-            <li><a href="../contact.html">Contact</a></li>
+            <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
         <div class="yf-footer-col">
@@ -933,8 +950,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../js/supabase.js"></script>
-  <script src="../js/navbar.js"></script>
   <script src="yourfirm.js"></script>
   <script src="../js/quote-form.js"></script>
-</body>
+  <script src="/js/navbar-component.js"></script>
+  </body>
 </html>

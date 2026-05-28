@@ -206,28 +206,7 @@
   justify-content: flex-end;
 }
 
-/* ── LOADING SKELETON ── */
-.navbar-auth-loading {
-  display: flex;
-  align-items: center;
-}
 
-.nav-auth-skeleton {
-  width: 80px;
-  height: 32px;
-  border-radius: 8px;
-  background: linear-gradient(
-    90deg,
-    rgba(255,255,255,0.06) 25%,
-    rgba(255,255,255,0.12) 50%,
-    rgba(255,255,255,0.06) 75%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.4s infinite;
-}
-
-@keyframes shimmer {
-  0%   { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }
 
@@ -703,92 +682,10 @@
   }
 }
 
-/* ── AUTH WRAP ────────────────────────────────────── */
-.navbar-auth-wrap {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
 
-/* ── LOADING SKELETON ─────────────────────────────── */
-.navbar-auth-loading {
-  display: flex;
-  align-items: center;
-}
 
-.nav-auth-skeleton {
-  width: 80px;
-  height: 32px;
-  border-radius: 8px;
-  background: linear-gradient(
-    90deg,
-    rgba(255,255,255,0.06) 25%,
-    rgba(255,255,255,0.12) 50%,
-    rgba(255,255,255,0.06) 75%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.4s infinite;
-}
 
-@keyframes shimmer {
-  0%   { background-position: 200% 0; }
   100% { background-position: -200% 0; }
-}
-
-/* ── SECOND ROW: AUTH ─────────────────────────────── */
-.navbar-auth-row {
-  border-top: 1px solid rgba(255,255,255,0.06);
-  padding: 8px 0 10px;
-  background: rgba(8, 18, 38, 0.96);
-  overflow: visible;
-}
-
-.navbar-auth-row .container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  overflow: visible;
-}
-
-/* ── TOP ROW: GET STARTED ─────────────────────────── */
-.navbar-cta--top {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  position: relative;
-  z-index: 2;
-}
-
-.navbar-cta--top .btn-getstarted {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 20px;
-  background: var(--gold);
-  color: var(--navy-dark);
-  border: none;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-decoration: none;
-  letter-spacing: 0.3px;
-  transition: all 0.25s ease;
-  white-space: nowrap;
-}
-
-.navbar-cta--top .btn-getstarted:hover {
-  background: var(--gold-light);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(200,148,26,0.4);
-}
-
-.navbar-cta--top .btn-getstarted span {
-  transition: transform 0.25s ease;
-}
-
-.navbar-cta--top .btn-getstarted:hover span {
-  transform: translateX(2px);
 }
 
 /* ── PURAKLEN: LOGO + BACK LINK ───────────────────── */

@@ -61,7 +61,7 @@ async function notifyLogin(userId, userName) {
     body:      'You successfully logged in to your AmyServes account.',
     type:      'login',
     direction: 'received',
-    link:      '/dashboard/client/index.html'
+    link:      '/dashboard/client'
   });
 
   await notifyAdminAndStaff(
@@ -86,7 +86,7 @@ async function notifyServiceRequest(userId, userName, serviceName, brand) {
       body:      'Your request for "' + serviceName + '" via ' + brandLabel + ' has been yourfirmci@gmail.com be in touch within 24 hours.',
       type:      'booking',
       direction: 'received',
-      link:      '/dashboard/client/index.html'
+      link:      '/dashboard/client'
     });
   
     // Notify admin & staff
@@ -127,7 +127,7 @@ async function notifyPostLike(userId, userName, postTitle) {
     body:      'You liked the post: "' + postTitle + '".',
     type:      'general',
     direction: 'sent',
-    link:      '/blog.html'
+    link:      '/blog'
   });
 
   await notifyAdminAndStaff(
@@ -145,7 +145,7 @@ async function notifyComment(userId, userName, postTitle) {
     body:      'Your comment on "' + postTitle + '" has been posted successfully.',
     type:      'general',
     direction: 'sent',
-    link:      '/blog.html'
+    link:      '/blog'
   });
 
   await notifyAdminAndStaff(
@@ -163,7 +163,7 @@ async function notifyNewsletterSubscription(userId, userEmail) {
     body:      'yourfirmci@gmail.com successfully subscribed to the AmyServes newsletter.',
     type:      'general',
     direction: 'received',
-    link:      '/dashboard/client/index.html'
+    link:      '/dashboard/client'
   });
 
   await notifyAdminAndStaff(
@@ -181,7 +181,7 @@ async function notifyStatusUpdate(clientId, staffName, serviceName, newStatus) {
     body:      'Your request for "' + serviceName + '" has been updated to: ' + newStatus + '.',
     type:      'status_update',
     direction: 'received',
-    link:      '/dashboard/client/index.html'
+    link:      '/dashboard/client'
   });
 }
 
@@ -193,7 +193,7 @@ async function notifySignup(userId, userName, userEmail) {
       body:      'Hi ' + userName + '! Your account has been created yourfirmci@gmail.com glad to have you.',
       type:      'general',
       direction: 'received',
-      link:      '/dashboard/client/index.html'
+      link:      '/dashboard/client'
     });
   
     // Notify admin & staff

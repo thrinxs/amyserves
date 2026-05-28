@@ -30,7 +30,7 @@ function showAlert(msg) {
   
     try {
       const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-        redirectTo: window.location.origin + '/auth/login.html'
+        redirectTo: window.location.origin + '/auth/login'
       });
       if (error) throw error;
   

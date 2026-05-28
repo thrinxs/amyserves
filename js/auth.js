@@ -16,7 +16,7 @@ async function getSession() {
     const session = await getSession();
   
     if (!session) {
-      window.location.href = '/auth/login.html';
+      window.location.href = '/auth/login';
       return null;
     }
   
@@ -24,11 +24,11 @@ async function getSession() {
   
     if (allowedRoles && !allowedRoles.includes(role)) {
       const redirects = {
-        admin:  '/dashboard/admin/index.html',
-        staff:  '/dashboard/staff/index.html',
-        client: '/dashboard/client/index.html'
+        admin:  '/dashboard/admin',
+        staff:  '/dashboard/staff',
+        client: '/dashboard/client'
       };
-      window.location.href = redirects[role] || '/auth/login.html';
+      window.location.href = redirects[role] || '/auth/login';
       return null;
     }
   
@@ -38,7 +38,7 @@ async function getSession() {
   /* ── SIGN OUT ────────────────────────────────────────── */
   async function signOut() {
     if (supabaseClient) await supabaseClient.auth.signOut();
-    window.location.href = '/auth/login.html';
+    window.location.href = '/auth/login';
   }
   
   /* ── GET USER DISPLAY NAME ───────────────────────────── */

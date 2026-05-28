@@ -28,7 +28,24 @@
 
 <meta name="theme-color" content="#1A3C5E" />
   <link rel="icon" href="/assets/images/favicon.ico?v=1000" />
-</head>
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://amyserves.com/puraklen" />
+    <meta property="og:title" content="Pura-Kle'N — Professional Cleaning in Abuja" />
+    <meta property="og:description" content="Pura-Kle'N delivers premium office and facility cleaning services across Abuja." />
+    <meta property="og:image" content="https://amyserves.com/assets/images/og-image.jpg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Pura-Kle'N — Professional Cleaning in Abuja" />
+    <meta name="twitter:description" content="Pura-Kle'N delivers premium office and facility cleaning services across Abuja." />
+    <meta name="twitter:image" content="https://amyserves.com/assets/images/og-image.jpg" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://amyserves.com/puraklen" />
+
+  </head>
 
 <body>
 
@@ -40,10 +57,10 @@
 
             <!-- Logo: Pura-Kle'N + back link -->
             <div class="navbar-logo-group">
-              <a href="index.html" class="navbar-logo">
+              <a href="/" class="navbar-logo">
                 <img src="../assets/images/logos/puraklen.png" alt="Pura-Kle'N" />
               </a>
-              <a href="../index.html" class="navbar-back-link">
+              <a href="/" class="navbar-back-link">
                 ← AmyServes
               </a>
             </div>
@@ -85,8 +102,8 @@
 
           <!-- Logged OUT -->
           <div class="navbar-auth" id="navAuthOut" style="display:none">
-            <a href="../auth/login.html" class="btn-nav-login">Sign In</a>
-            <a href="../auth/signup.html" class="btn-nav-signup">Sign Up</a>
+            <a href="/auth/login" class="btn-nav-login">Sign In</a>
+            <a href="/auth/signup" class="btn-nav-signup">Sign Up</a>
           </div>
 
           <!-- Logged IN -->
@@ -129,7 +146,7 @@
         <a href="#services" class="nav-link">Services</a>
         <a href="#process" class="nav-link">How It Works</a>
         <a href="#testimonials" class="nav-link">Reviews</a>
-        <a href="../index.html" class="nav-link">← Back to AmyServes</a>
+        <a href="/" class="nav-link">← Back to AmyServes</a>
         <div class="navbar-mobile-divider"></div>
         <div class="navbar-mobile-actions">
           <a
@@ -150,8 +167,8 @@
 
         <!-- Mobile: Logged OUT -->
         <div class="navbar-mobile-auth" id="mobileAuthOut" style="display:flex">
-          <a href="../auth/login.html" class="btn-mobile-login">Sign In</a>
-          <a href="../auth/signup.html" class="btn-mobile-signup">Sign Up</a>
+          <a href="/auth/login" class="btn-mobile-login">Sign In</a>
+          <a href="/auth/signup" class="btn-mobile-signup">Sign Up</a>
         </div>
 
         <!-- Mobile: Logged IN -->
@@ -893,7 +910,6 @@ aria-label="Chat on WhatsApp"
   <!-- ── SCRIPTS ───────────────────────────────────────── -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../js/supabase.js"></script>
-  <script src="../js/navbar.js"></script>
   <script src="puraklen.js"></script>
   <script src="../js/quote-form.js"></script>
 
@@ -921,5 +937,6 @@ aria-label="Chat on WhatsApp"
     });
   </script>
 
-</body>
+  <script src="/js/navbar-component.js"></script>
+  </body>
 </html>

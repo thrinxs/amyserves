@@ -327,11 +327,6 @@
   justify-content: center;
 }
 
-/* Navbar — light background, show logo as-is */
-.navbar-logo img {
-  filter: none;
-}
-
 /* Footer — dark navy background, make logo white */
 .footer-brand img {
   filter: brightness(0) invert(1);
@@ -350,31 +345,7 @@
   opacity: 0.95;
 }
 
-/* ===== FOOTER SYSTEM ===== */
-.footer {
-  background: #0f172a;
-  color: #ffffff;
-}
-
-/* layout */
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  padding: 24px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  font-size: 14px;
-}
-
-/* text */
-.footer-bottom p {
-  margin: 0;
-  opacity: 0.8;
-}
-
-/* built-by section */
+/* ── FOOTER CREDIT ───────────────────────────────────── */
 .footer-credit {
   display: flex;
   align-items: center;
@@ -383,7 +354,6 @@
   opacity: 0.9;
 }
 
-/* link styling */
 .footer-credit-link {
   display: flex;
   align-items: center;
@@ -394,7 +364,6 @@
   letter-spacing: 0.2px;
 }
 
-/* logo */
 .footer-credit-link img {
   height: 18px;
   width: auto;
@@ -402,15 +371,6 @@
   display: block;
 }
 
-/* hover effect */
 .footer-credit-link:hover {
   opacity: 1;
-}
-
-/* mobile */
-@media (max-width: 768px) {
-  .footer-bottom {
-    flex-direction: column;
-    text-align: center;
-  }
 }

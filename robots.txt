@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block private pages
+Disallow: /auth/
+Disallow: /dashboard/
+
+# Sitemap
+Sitemap: https://amyserves.com/sitemap.xml

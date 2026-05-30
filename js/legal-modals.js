@@ -146,7 +146,7 @@
         <p>We may update this Privacy Policy from time to time. The "Last updated" date at the top reflects the latest version.</p>
         <h3>11. Contact Us</h3>
         <ul>
-          <li>Email: <a href="mailto:yourfirmci@gmail.com">yourfirmci@gmail.com</a></li>
+          <li>Email: <a href="mailto:hello@amyserves.com">hello@amyserves.com</a></li>
           <li>WhatsApp: <a href="https://wa.me/2349098104610">+234 909 810 4610</a></li>
           <li>Address: Gwarimpa, Abuja, FCT, Nigeria</li>
         </ul>
@@ -185,7 +185,7 @@
         <p>These Terms are governed by the laws of the Federal Republic of Nigeria. Any disputes shall be resolved in the courts of the FCT, Abuja.</p>
         <h3>11. Contact</h3>
         <ul>
-          <li>Email: <a href="mailto:yourfirmci@gmail.com">yourfirmci@gmail.com</a></li>
+          <li>Email: <a href="mailto:hello@amyserves.com">hello@amyserves.com</a></li>
           <li>WhatsApp: <a href="https://wa.me/2349098104610">+234 909 810 4610</a></li>
           <li>Address: Gwarimpa, Abuja, FCT, Nigeria</li>
         </ul>
@@ -219,7 +219,7 @@
         <p>We may update this Cookie Policy from time to time. The "Last updated" date above reflects the most recent change.</p>
         <h3>6. Contact Us</h3>
         <ul>
-          <li>Email: <a href="mailto:yourfirmci@gmail.com">yourfirmci@gmail.com</a></li>
+          <li>Email: <a href="mailto:hello@amyserves.com">hello@amyserves.com</a></li>
           <li>WhatsApp: <a href="https://wa.me/2349098104610">+234 909 810 4610</a></li>
           <li>Address: Gwarimpa, Abuja, FCT, Nigeria</li>
         </ul>

@@ -46,7 +46,61 @@
     <!-- Canonical -->
     <link rel="canonical" href="https://amyserves.com/" />
 
-  </head>
+  
+  <style>
+    .testimonial-submit-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 32px;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+    .testimonial-submit-card h3 {
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .testimonial-submit-card p {
+      font-size: 0.9rem;
+      color: var(--warm-grey);
+      margin-bottom: 20px;
+    }
+    .tf-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .tf-row input {
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      outline: none;
+      width: 100%;
+    }
+    .tf-row input:focus { border-color: var(--navy); }
+    #tfStars { margin-bottom: 12px; }
+    #tfMessage {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      resize: vertical;
+      outline: none;
+      margin-bottom: 16px;
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+    #tfMessage:focus { border-color: var(--navy); }
+    @media (max-width: 600px) {
+      .tf-row { grid-template-columns: 1fr; }
+    }
+  </style>
+
+</head>
 
   <body>
     
@@ -638,67 +692,53 @@
     </section> -->
 
     <!-- ── TESTIMONIALS ─────────────────────────────────── -->
-    <!-- <section class="section section-alt" id="testimonials">
+    
+
+    
+    <!-- ── TESTIMONIALS ─────────────────────────────────── -->
+    <section class="section section-alt" id="testimonials" style="display:none">
       <div class="container">
         <div class="section-header">
           <span class="eyebrow">Testimonials</span>
           <h2>What Our Clients Say</h2>
+          <p>Real experiences from businesses we've worked with.</p>
         </div>
-        <div class="grid-3" id="testimonialsGrid">
-          <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p class="testimonial-text">
-              "AmyServes transformed how we run our office. The Puraklen team is
-              always on time, always thorough — and Yourfirm sorted out our HR
-              documentation in two weeks."
-            </p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar" style="background: var(--navy)">
-                MB
+        <div class="grid-3" id="testimonialsGrid"></div>
+
+        <!-- Submit Testimonial -->
+        <div id="testimonialFormWrap" style="display:none; margin-top:48px;">
+          <div class="testimonial-submit-card">
+            <h3>Share Your Experience</h3>
+            <p>You must be signed in to leave a testimonial. It will appear after review.</p>
+            <div id="testimonialFormInner">
+              <div class="tf-row">
+                <input type="text" id="tfRole" placeholder="Your Role (e.g. CEO)" />
+                <input type="text" id="tfCompany" placeholder="Company Name" />
               </div>
-              <div>
-                <strong>Mr. Bassey</strong>
-                <span>CEO, Tech Firm · Abuja</span>
+              <div class="tf-stars" id="tfStars">
+                <span data-val="1">★</span>
+                <span data-val="2">★</span>
+                <span data-val="3">★</span>
+                <span data-val="4">★</span>
+                <span data-val="5">★</span>
               </div>
+              <textarea id="tfMessage" rows="4" placeholder="Tell us about your experience with AmyServes..."></textarea>
+              <button class="btn btn-gold" id="tfSubmitBtn">Submit Testimonial</button>
+              <p id="tfError" style="color:red;font-size:.85rem;margin-top:8px;"></p>
+              <p id="tfSuccess" style="color:green;font-size:.85rem;margin-top:8px;display:none;">
+                Thank you! Your testimonial has been submitted and will appear after review.
+              </p>
             </div>
           </div>
-          <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p class="testimonial-text">
-              "I didn't know one company could handle both cleaning and HR. Now
-              I don't understand how I managed without them. Professional,
-              communicative, and genuinely invested."
-            </p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar" style="background: var(--teal)">
-                JM
-              </div>
-              <div>
-                <strong>Jane B. Morgan</strong>
-                <span>Operations Director · Abuja</span>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p class="testimonial-text">
-              "Yourfirm found the HR gaps we didn't even know we had — and fixed
-              them before they became problems. That alone was worth every naira
-              we invested."
-            </p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar" style="background: var(--purple)">
-                SB
-              </div>
-              <div>
-                <strong>Sara Brown</strong>
-                <span>Founder, Retail Business · Abuja</span>
-              </div>
-            </div>
-          </div>
+        </div>
+
+        <!-- CTA for logged out users -->
+        <div id="testimonialLoginCta" style="display:none; text-align:center; margin-top:32px;">
+          <p style="color:var(--warm-grey);margin-bottom:12px;">Have you worked with us? Share your experience.</p>
+          <a href="/auth/login" class="btn btn-outline">Sign In to Leave a Review</a>
         </div>
       </div>
-    </section> -->
+    </section>
 
     <!-- ── CONTACT FORM ─────────────────────────────────── -->
     <section class="section" id="contact">
@@ -923,6 +963,7 @@
 <script src="./js/supabase.js"></script>
     <script src="js/navbar-component.js"></script>
     <script src="js/home.js"></script>
+    <script src="js/testimonials.js"></script>
   <script src="/js/legal-modals.js"></script>
 </body>
 </html>

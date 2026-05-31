@@ -1033,3 +1033,86 @@
       display: none;
     }
   }
+
+/* ══════════════════════════════════════════════════════
+   LOCATION CARDS
+══════════════════════════════════════════════════════ */
+.location-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.location-card {
+  position: relative;
+  height: 160px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--navy);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.location-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+}
+
+.location-card--coming {
+  background-image: none !important;
+  background: linear-gradient(135deg, var(--navy), #2a5a8e);
+  opacity: 0.7;
+}
+
+.location-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.1) 100%);
+}
+
+.location-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.location-card-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--teal);
+  margin-bottom: 4px;
+}
+
+.location-card-content strong {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.location-card-content span {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.75);
+}
+
+@media (max-width: 768px) {
+  .location-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .location-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .location-card { height: 130px; }
+}
